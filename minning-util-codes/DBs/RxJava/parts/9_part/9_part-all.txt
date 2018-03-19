@@ -1,0 +1,194 @@
+Revert use of CurrentThreadScheduler for Observable.from  Use ImmediateScheduler as performance is 4x faster and CurrentThreadScheduler currently offers no benefit (it doesn���t solve the unsubscribe problem).  Performance numbers:       * Observable.from(Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L), scheduler);      *      * --- Schedulers.immediate() ---      *      * Run: 0 - 1,849,947 ops/sec      * Run: 1 - 2,076,067 ops/sec      * Run: 2 - 2,114,688 ops/sec      * Run: 3 - 2,114,301 ops/sec      * Run: 4 - 2,102,543 ops/sec      *      * --- Schedulers.currentThread() ---      *      * Run: 0 - 548,862 ops/sec      * Run: 1 - 559,955 ops/sec      * Run: 2 - 581,412 ops/sec      * Run: 3 - 562,187 ops/sec      * Run: 4 - 565,723 ops/sec       * Observable.from(Arrays.asList(1L), scheduler);      *      * --- Schedulers.immediate() ---      *      * Run: 10 - 4,113,672 ops/sec      * Run: 11 - 4,068,351 ops/sec      * Run: 12 - 4,070,318 ops/sec      * Run: 13 - 4,161,793 ops/sec      * Run: 14 - 4,156,725 ops/sec      *      * --- Schedulers.currentThread() ---      *      * Run: 10 - 1,692,286 ops/sec      * Run: 11 - 1,765,054 ops/sec      * Run: 12 - 1,763,100 ops/sec      * Run: 13 - 1,770,907 ops/sec      * Run: 14 - 1,732,291 ops/sec
+Merge pull request #723 from benjchristensen/deprecation  Deprecate multiple arity ���from���
+Deprecate multiple arity ���from���  - added @Deprecated annotations where it was only part of the Javadoc - deprecated ���where��� which is a duplicate of `filter` kept from early days matching Rx.Net
+Merge pull request #717 from Applied-Duality/ScalaPublishFix  Added ConnectableObservable
+Added ConnectableObservable Fixed test Added overload for scan Added trivial test for scan
+Merge pull request #715 from y-p/PR_GH623  Add missing type hint to clojure example
+Add missing type hint to clojure example  Following GH623
+Merge pull request #714 from benjchristensen/rxjava-computation-expressions  rxjava-computation-expressions
+rxjava-computation-expressions  The conditional operators are going in this contrib module.  See https://github.com/Netflix/RxJava/issues/683
+Merge pull request #712 from benjchristensen/scheduler-memory-leak  Fix Scheduler Memory Leaks
+Remove Validation of Ordering  - this test does a flatMap which uses merge which has non-deterministic ordering since the Observable.from can be on a new thread each time
+Remove Timeout on Tests
+Increasing Unit Test Timeout for Slow Machines  - Increasing timeout by a lot to handle slow machines such as this: https://netflixoss.ci.cloudbees.com/job/RxJava-pull-requests/629/testReport/junit/rx.schedulers/ExecutorSchedulerTests/recursionUsingFunc2/ - The timeout is only there if a deadlock or memory leak occurs (which is what this PR is fixing) so when everything is healthy it does not timeout
+Missing Header
+Updated Schedulers Unit Tests  - merged all scheduler tests into the same package - using inheritance so that the same tests are applied to each of the different Scheduler implementations - manual test (too slow for normal execution) can be run to test memory leaks (TestRecursionMemoryUsage.java)
+Fix CurrentThreadScheduler Delay Bug  - introduced a bug during refactor, caught it while updating unit tests
+CurrentThreadScheduler Fixes  - outer/inner scheduling so nested order is correct while not deadlocking on certain nested use cases as found in previous testing
+Small ObserveOn Improvements  - use Long instead of Int so we don���t overflow - migrate from deprecated method
+CurrentThreadScheduler Memory Leak Fixed  - Current/Immediate/NewThread/Executor Schedulers are passing unit tests - Current/NewThread/Executor Schedulers do not leak memory on the recursion test (Immediate can���t be used for recursion otherwise it stack overflows)
+ExecutorScheduler Memory Leak Fix  - new InnerExecutorScheduler and childSubscription - improvements to unit tests
+Scheduler Unit Tests  - passing for all but ExecutorScheduler
+Fix Memory Leak in NewThreadScheduler Recursion  - the Action0 method did not have a leak - the Func2 method on inner scheduler recursion did have a leak
+Memory Leak Tests  NewThreadScheduler is working, the other two are not so commented out for now until fixed.
+Fix Deprecated Method Call
+Update Scheduler Tests for Recursion and Common Testing
+Merge pull request #710 from Netflix/docs  Created new wiki page for the operators in the Async class
+Created new wiki page for the operators in the Async class ...adjusted javadoc links accordingly ...added new sections for previously un-wiki-documented operators in Async ...added links to those in javadocs
+Merge pull request #709 from Netflix/docs  Lotsa javadoc improvements
+Lotsa javadoc improvements * diagrams for previously-undiagram'd methods * links to wiki docs where available * standardizing format & nomenclature
+Merge pull request #708 from benjchristensen/combine-latest  Combine latest fix
+Manual Merge of Pull #616  Manual merge of https://github.com/Netflix/RxJava/pull/616  - remove use of SingleAssignmentSubscription - suppress warnings
+Merge branch 'CombineLatestFix' of github.com:akarnokd/RxJava into combine-latest
+Merge pull request #707 from benjchristensen/rxjava-async-util-module  Merge of rxjava-async-util
+Manual merge of https://github.com/akarnokd/RxJava/commit/eee312a6ac41582e4efe3daac3dfcd0385359d25  - To clean up the pull request I cherry picked the single commit with actual changes to avoid the merges that affected lots of other files. - The original commit also included conflicting and unrelated changes to Observable and ObservableTests that I skippedManual merge of https://github.com/akarnokd/RxJava/commit/eee312a6ac41582e4efe3daac3dfcd0385359d25
+New contrib module: rxjava-async-util  Home for async utility functions with juc.Future, Actions, Functions etc that don���t need to be in rxjava-core.  As per discussions at:  - https://github.com/Netflix/RxJava/pull/646#issuecomment-31147005 - https://github.com/Netflix/RxJava/pull/645#issuecomment-31146492 - https://github.com/Netflix/RxJava/pull/622#issuecomment-31144128
+Merge pull request #705 from Netflix/docs  adjust javadocs for new sumFoo()/averageFoo() method names
+adjust javadocs for new sumFoo()/averageFoo() method names
+Merge pull request #700 from Netflix/docs  various javadoc improvements
+Merge pull request #703 from benjchristensen/small-tweaks  Small Tweaks
+Standardize Naming of average/sum methods  See https://github.com/Netflix/RxJava/pull/698#issuecomment-31282416
+Remove Extra Synchronization  The use of flatMap/mergeMap already synchronizes.
+Mark as Deprecated
+Merge pull request #701 from benjchristensen/collect  Collect Operator
+Collect Operator
+adding diagram to repeat() javadocs
+Merge remote-tracking branch 'origin/master' into docs
+Adding diagrams, improving javadocs for sumFoo/averageFoo operators.
+Merge pull request #699 from benjchristensen/repeat  Repeat Operator
+Repeat Operator  - merge and slight modification of https://github.com/Netflix/RxJava/pull/518
+Merge remote-tracking branch 'origin/master' into docs
+javadoc improvements: * diagrams for skip(t), single(), take(t), skipLast(t) * minor corrections, reformatting of javadoc comments
+Merge pull request #698 from benjchristensen/pull-657-merge  Merge of Pull 657: Average and Sum
+Rename to ReduceTest
+Remove newly added aggregate methods  - avoiding methods with `index` - resultSelector overload is same as `reduce(seed, accumulator).map(resultSelector)`
+Merge branch 'AggregatorsWithSelector' of github.com:akarnokd/RxJava into pull-657-merge
+Merge pull request #697 from benjchristensen/skip-take-time-merge  Manual Merge of Pull #667
+Manual Merge github.com:akarnokd/RxJava SkipTakeTimed2  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java 	rxjava-core/src/main/java/rx/operators/OperationTakeLast.java
+Remove ObserverBase Import  Was unused and causing build break once that class was removed.
+Merge pull request #664 from akarnokd/OperationAsObservable  Operation AsObservable
+Merge pull request #689 from akarnokd/ObserverBaseLess  Removed ObserverBase
+Merge pull request #694 from Netflix/docs  Change page from "Mathematical Operators" to "Mathematical and Aggregate Operators"
+correcting typo causing build failure
+javadoc improvements * add "see also" notes about hidden Rx.NET "asyncFoo" methods to Observable.java * reformat BlockingObservable javadoc comments to Oracle formatting standards * add links to RxJava Wiki & MSDN web pages as "see also" links in BlockingObservable javadocs
+Change in wiki page from "Mathematical Operators" to "Mathematical and Aggregate Operators" move toList, reduce, concat, toSortedList, toMap, and toMultiMap to that page deprecate aggregate in favor of reduce [should I move takeLast, last, and takeLastBuffer to the Aggregate operators page? they don't operate on the aggregate, exactly, but they do wait until the source completes before emitting anything]
+Merge pull request #693 from MarioAriasC/master  Kotlin M6.2
+Kotlin M6.2
+Merge pull request #691 from Netflix/docs  javadoc improvements:
+javadoc improvements: * diagrams for switchLatest, mergeMap, concatMap, switchMap, mapWithIndex, doOnNext * change text to note deprecation of aggregate * standardized formatting * force image size in ReplaySubject javadoc
+Merge pull request #690 from Applied-Duality/benChanges  Fixed Scala bindings
+Fixed Scala bindings
+Removed ObserverBase
+Merge pull request #688 from benjchristensen/SafeObserver-errorHandling  Fix SafeObserver handling of onComplete errors
+Fix SafeObserver handling of onComplete errors  Fixes https://github.com/Netflix/RxJava/issues/630
+Merge pull request #670 from benjchristensen/api-tweaks  API Design Tweaks
+Merge pull request #669 from Netflix/docs  Javadoc improvements:
+Deprecate aggregate in favor of reduce  We have had aggregate from Rx.Net for a while but long ago migrated to reduce as the primary. Time to deprecate it.
+Deprecate manWithIndex  If we leave mapWithIndex then we should have ���withIndex��� on many other operators. Instead of this, an Observable should just be zipped with an infinite stream of numbers and the zip function provides the index. This keeps the API surface area smaller and provides the desired behavior on all operators.
+MergeMap, ConcatMap, SwitchMap  - flattening map implementations that better fit mental models and use cases - keeping flatMap as alias to mergeMap since flatMap is common ��� (though flatMap still confuses people) - deprecate mapMany as alias to flatMap and mergeMap
+Update Tests for doOn* Changes
+Fix TakeLast after removing SingleAssignmentSubscription  - SingleAssignmentSubscription was removed in one merge, TakeLast modified in another merge.
+Javadoc improvements: * diagrams for switchCase, doWhile, whileDo, ifThen, delaySubscription, single, singleOrDefault, takeFirst, takeLast (and variant forms of these) * standardizing javadoc comment formatting * standardizing nomenclature
+Operators Skip, SkipLast, Take with time
+doOnNext, doOnCompleted, doOnError, doOnEach
+Alias from switchOnNext to switchLatest to match RxJS  - keeping onNext to be locally consistent with doOnNext
+Merge pull request #659 from akarnokd/SubjectsFixAdditional  Missing fixes from the subject rewrite
+Operation AsObservable
+Merge pull request #638 from akarnokd/OperationTakeLastwBufferDeferSubscr  Operators DelaySubscription, TakeLast w/ time, TakeLastBuffer
+Merge pull request #635 from akarnokd/OpCaseIfDoWhileWhile  Operators: switchCase (Case), ifThen (If), doWhile (DoWhile), WhileDo (W...
+Merge pull request #633 from zsxwing/fix-issue-595  Fixed issue #595 about null in toList operator
+Merge pull request #626 from akarnokd/OperationLatestAndFixes  Added: BO.Latest, fixed: BO.next, BO.mostRecent, BO.toIterable
+Merge pull request #621 from Applied-Duality/CleanFixes  SerialSubscription & From
+Merge pull request #520 from zsxwing/first  Fixed the blocking/non-blocking first
+Merge pull request #661 from benjchristensen/subscriptions  Subscriptions Rewrite
+Naming and Class Conventions  - make concrete implementations final as extending them is dangerous (use composition and implement Subscription instead) - deprecated long get/setSubscription methods in favor of short verbs (add/get/set/clear/remove) - updated unit tests with changes
+Refactor SerialSubscription  - simplified state machine
+Refactor MultipleAssignment  - simplified state machine
+Refactor CompositeSubscription  - simplified state machine - removed busy spin state
+Refactor RefCountSubscription  - simplified logic - remove unnecessary busy spins and state changes
+Missing fixes from the subject rewrite.
+Code Reformatting
+Remove Unnecessary Subscription  - be explicit for error case in JoinObserver
+BooleanSubscription: Add Action Support
+Merge pull request #651 from benjchristensen/subjects-fixes  Subjects Refactor - Non-Blocking, Common Abstraction, Performance
+Reverting to Previous SafeObserver  - Performance difference between changes are trivial at best so preferring to keep code that is easier to understand.  Test numbers:  ``` Old SafeObserver  Run: 0 - 3,751,704 ops/sec Run: 1 - 34,619,086 ops/sec Run: 2 - 30,483,715 ops/sec Run: 3 - 27,746,023 ops/sec Run: 4 - 54,078,608 ops/sec Run: 5 - 55,107,045 ops/sec Run: 6 - 53,935,396 ops/sec Run: 7 - 54,947,168 ops/sec Run: 8 - 57,024,246 ops/sec Run: 9 - 55,059,712 ops/sec Run: 10 - 56,904,832 ops/sec Run: 11 - 55,919,967 ops/sec Run: 12 - 55,076,087 ops/sec Run: 13 - 55,066,685 ops/sec Run: 14 - 55,025,476 ops/sec  Run: 0 - 3,839,266 ops/sec Run: 1 - 34,115,371 ops/sec Run: 2 - 29,675,175 ops/sec Run: 3 - 28,677,042 ops/sec Run: 4 - 55,405,652 ops/sec Run: 5 - 55,260,220 ops/sec Run: 6 - 55,147,464 ops/sec Run: 7 - 54,261,126 ops/sec Run: 8 - 53,941,505 ops/sec Run: 9 - 54,324,501 ops/sec Run: 10 - 55,125,576 ops/sec Run: 11 - 56,102,870 ops/sec Run: 12 - 55,061,834 ops/sec Run: 13 - 55,476,039 ops/sec Run: 14 - 55,073,054 ops/sec  Run: 0 - 3,704,536 ops/sec Run: 1 - 34,694,514 ops/sec Run: 2 - 30,778,227 ops/sec Run: 3 - 28,441,329 ops/sec Run: 4 - 54,116,946 ops/sec Run: 5 - 55,204,699 ops/sec Run: 6 - 54,859,450 ops/sec Run: 7 - 55,214,757 ops/sec Run: 8 - 55,005,500 ops/sec Run: 9 - 55,339,118 ops/sec Run: 10 - 55,501,903 ops/sec Run: 11 - 55,074,570 ops/sec Run: 12 - 55,102,187 ops/sec Run: 13 - 55,756,278 ops/sec Run: 14 - 54,768,411 ops/sec  New SafeObserver  Run: 0 - 3,983,308 ops/sec Run: 1 - 34,767,250 ops/sec Run: 2 - 30,806,957 ops/sec Run: 3 - 29,855,113 ops/sec Run: 4 - 57,451,453 ops/sec Run: 5 - 55,515,152 ops/sec Run: 6 - 56,086,822 ops/sec Run: 7 - 56,295,529 ops/sec Run: 8 - 55,371,905 ops/sec Run: 9 - 55,816,653 ops/sec Run: 10 - 55,793,296 ops/sec Run: 11 - 56,011,426 ops/sec Run: 12 - 55,568,521 ops/sec Run: 13 - 55,396,137 ops/sec Run: 14 - 56,353,267 ops/sec  Run: 0 - 3,933,367 ops/sec Run: 1 - 34,498,342 ops/sec Run: 2 - 30,233,584 ops/sec Run: 3 - 29,179,785 ops/sec Run: 4 - 55,761,874 ops/sec Run: 5 - 55,948,124 ops/sec Run: 6 - 55,264,801 ops/sec Run: 7 - 56,267,020 ops/sec Run: 8 - 57,474,567 ops/sec Run: 9 - 55,879,657 ops/sec Run: 10 - 55,998,880 ops/sec Run: 11 - 56,044,073 ops/sec Run: 12 - 55,498,515 ops/sec Run: 13 - 56,204,720 ops/sec Run: 14 - 55,845,954 ops/sec  Run: 0 - 3,981,914 ops/sec Run: 1 - 34,160,822 ops/sec Run: 2 - 30,873,631 ops/sec Run: 3 - 29,135,067 ops/sec Run: 4 - 55,845,330 ops/sec Run: 5 - 55,101,883 ops/sec Run: 6 - 55,724,276 ops/sec Run: 7 - 56,085,564 ops/sec Run: 8 - 55,639,942 ops/sec Run: 9 - 56,464,955 ops/sec Run: 10 - 55,453,275 ops/sec Run: 11 - 56,115,463 ops/sec Run: 12 - 56,509,945 ops/sec Run: 13 - 53,863,348 ops/sec Run: 14 - 55,866,858 ops/sec ```
+Comments on Performance Increase
+Operations Aggregate, Average and Sum with selector
+Added create with initial capacity, minor fix
+Added create with initial capacity.
+Performance improvement suggestions.
+Refactor for Performance  - previous commit got non-blocking working but perf tests showed it slow - this commit retains non-blocking but surpasses master branch performance  Master branch: 11,947,459 ops/sec This commit: 16,151,174 ops/sec
+License Header and Separate out Perf Tests
+Subject Refactor  - Common logic composed inside SubjectSubscriptionManager - ReplaySubject does not block while replaying to new subscribers - Added unit tests and fixed behavior while reviewing with @headinthebox compared to Rx.Net - Uses mostly non-blocking approach (I believe it���s all correct, unit and long running tests have been used to prove it. The tests found concurrency problems during development and became stable once I got the design correct. As with all concurrent code I may be missing something.)
+Remove volatile
+Fix the unit tests in groovy and kotlin
+Implement the blocking/non-blocking single, singleOrDefault, first, firstOrDefault, last, lastOrDefault
+Mark takeFirst deprecated
+Add MSDN links
+Fixed the blocking/non-blocking first
+Merge pull request #639 from Netflix/docs  Moved the descriptions of some operators to a new wiki page.
+Moved the descriptions of some operators to a new "Conditional and Boolean Operators" wiki page.
+Operators DelaySubscription, TakeLast w/ time, TakeLastBuffer
+Operators: switchCase (Case), ifThen (If), doWhile (DoWhile), WhileDo (While)
+Fixed issue #595 about null in toList operator
+Merge pull request #631 from benjchristensen/NewThreadScheduler-Daemon  Make NewThreadScheduler create Daemon threads
+Fix non-deterministic unit test  - there is no guarantee for how many threads Interval will use so useless to assert anything on it
+Make NewThreadScheduler create Daemon threads  This matches the behavior of Schedulers.COMPUTATION_EXECUTOR and Schedulers.IO_EXECUTOR.  See https://groups.google.com/forum/#!topic/rxjava/Qe1qi0aHtnE and https://github.com/Netflix/RxJava/issues/431#issuecomment-30767610
+Increased time delay in test.
+Fixes based on @zsxwing's suggestions.
+Merge pull request #628 from mattrjacobs/fix-merge-delay-error  Properly wired up SynchronizedObserver within MergeDelayError operator
+Properly wired up SynchronizedObserver within MergeDelayError operator
+Added: BO.Latest, fixed: BO.next, BO.mostRecent, BO.toIterable
+Merge pull request #619 from benjchristensen/executorSchedulerConcurrencyTests  UnitTest to assert thread safety of Executor Scheduler
+Observable.from with scheduler Fixed blocking test in ObservableWindowTest
+Observable.from with scheduler
+Removed local SerialSubscription isUnsubscribed implementation since underlying subscription now implements it.
+UnitTest to assert thread safety of Executor Scheduler  - The Executor thread-pools hop threads when using observeOn so this tests that it is thread-safe when doing so. - The test performs non-thread-safe mutations which should fail (or at least be non-deterministic) if memory visibility problems or concurrency is occurring.
+Merge pull request #602 from benjchristensen/observeOn  ObserveOn Fixes
+ObserveOn Fixes  - fix subscription leak (Composite+MultipleAssignment instead of just Composite) - add unit tests
+Merge pull request #617 from Netflix/docs  replay() and timer() javadocs: diagrams & wiki links
+replay() and timer() javadocs: diagrams & wiki links
+Moved onError, onCompleted and cancel.unsubscribed outside the lock
+CombineLatest fix
+Merge pull request #615 from abersnaze/issue614  Copied the code from OperationMerge to fix synchronization
+Copied the code from OperationMerge
+Merge pull request #612 from akarnokd/ReplayAdditionalOps  Replay additional overloads
+Merge pull request #609 from akarnokd/OperationTimer3  Operation Timer 3.0
+Operation: Replay additional overloads
+CustomReplaySubject to support various replay() operators.
+Operation Timer 3.0
+Merge pull request #604 from akarnokd/StringObservableOps1  Added op:join to concat objects with separator between elements.
+Merge pull request #607 from Netflix/docs  Javadoc improvements:
+Javadoc improvements: * consistent nomenclature * consistent/standard javadoc formatting * more-precise descriptions * timer() marble digram & wiki link * delay() marble diagram & wiki link
+Added op:join to concat objects with separator between elements.
+Merge pull request #594 from zsxwing/start  Implement the 'Start' operator
+Remove the Action0 overloads
+Merge pull request #600 from benjchristensen/replay-subject  BugFix: Replay Subject
+Fix #544 ReplaySubject emits items received after onError
+ReplaySubject UnitTests  Shows bug handling terminal state.
+Merge pull request #599 from benjchristensen/rx.schedulers  Refactor rx.concurrency to rx.schedulers
+Add Missing License Headers
+Migrate code to use rx.schedulers instead of rx.concurrency  Unit tests passed before and after (did change in multiple steps to assert unit test pass against rx.concurrency before migrating to rx.schedulers).
+rx.concurrent -> rx.schedulers for Android and Swing modules
+Backwards compatible deprecated rx.concurrency classes  These will exist for a few releases to allow people to migrate from rx.concurrency to rx.schedulers.
+Organize Imports - Migrate to rx.schedulers for src/main
+Migrate Schedulers to rx.schedulers package
+Merge pull request #593 from akarnokd/LockFreeSubscriptions  Lock-free subscriptions
+Merge pull request #576 from samuelgruetter/delay2  Timer and Delay
+Merge pull request #597 from Netflix/docs  Javadoc updates (longCount, sample(sampler))
+Merge pull request #596 from akarnokd/BufferFix1  Fix for buffer not stopping when unsubscribed.
+Add more unit tests
+Merge pull request #598 from Applied-Duality/RebaseLatestChanges  New Scala Bindings
+Release notes edits.
+Release notes edits.
+Renamed apply(items: T*) to items. Fixed all tests.
+Added accept with Observer to match RxJava
+Empty subscribe()
+* corrects grammar of sequenceEqual() javadoc * updates link to wiki description of count() * adds sample(sampler) marble diagram/wiki link * adds longCount() marble diagram/wiki link
+Merge branch 'master' of https://github.com/Netflix/RxJava into docs
+Made rx.Scheduler bindings  private [scala] such that you can access them them if needed.
+Fix for buffer not stopping when unsubscribed.
+Implement the 'Start' operator
+Lock-free subscriptions
+Test to show various constructors.
+Experimental extension methods for lists.
+More precise marble diagram for the case when zip() takes an Observable that emits Observables
+make OperationDelayTest test Observable.delay instead of OperationDelay.delay
+add delay methods in Observable.java (copied those by @jmhofer)  source: https://github.com/jmhofer/RxJava/blob/18d40522bb19f80c0ff8d4079bcb925742efecf4/rxjava-core/src/main/java/rx/Observable.java
+copy delay test by @jmhofer  source: https://github.com/jmhofer/RxJava/blob/e9027293dadf846b64f62e91da7c5c5850ed76f5/rxjava-core/src/main/java/rx/operators/OperationDelay.java
+add OperationDelay
+add timer methods in Observable.java
+add OperationTimer
+Added test
+Added OperationRepeat & repeat operator
+Added OperationRepeat & repeat operator

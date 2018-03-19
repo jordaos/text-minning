@@ -1,0 +1,201 @@
+Added default implementation in Subscription trait
+Observer cleanup
+Added back private PublishSubject[T] object.
+rebasing
+added apply(Observer) to Observable[T] trait
+Layout
+Release notes for Notification
+Cleaned up subscriptions to make them idempotent when called from either side.
+Normalize Line Endings  See https://help.github.com/articles/dealing-with-line-endings#re-normalizing-a-repository Fixes https://github.com/Netflix/RxJava/issues/579
+GitAttributes for Line Endings  https://help.github.com/articles/dealing-with-line-endings  See https://github.com/Netflix/RxJava/issues/579
+Merge pull request #586 from akarnokd/ConcatFix  Fix Concat to allow multiple observers
+Merge pull request #587 from akarnokd/LongCount  Operation LongCount
+Merge pull request #575 from zsxwing/sequence-equal  Reimplement the 'SequenceEqual' operator
+Merge pull request #574 from samuelgruetter/cache-documentation  clarify documentation on cache()
+Merge pull request #573 from akarnokd/OpeningClosingRemoved  Removed Opening and Closing historical artifacts.
+Merge pull request #572 from akarnokd/ObserveOn3  ObserveOn fix for observing the same source on the same scheduler by two...
+Merge pull request #571 from akarnokd/SampleWithObservable2  Operation Sample with Observable v2
+Merge pull request #568 from jloisel/master  Use lock free strategy for several Subscription implementations
+CRemoved Assert. prefix from tests
+renamed `accept` to `apply` for Notification.
+Updated release notes
+use non-locking state machine based on atomic reference
+Operation LongCount
+Fix Concat to allow multiple observers
+fix constructor usage in ObservableTest
+undo undesired side effects of search/replace  which were introduced by commit https://github.com/Applied-Duality/RxJava/commit/a0aa6db735481652fd9fab4c21ab7f83928efb22
+reorg imports of TestSchedulerExample
+fix one constructor usage
+remove rx.lang.scala.subscriptions.SubscriptionTests,  because rx.lang.scala.SubscriptionTests is more up to date
+Documented factory method changes.  and also Notification.asJava => Notfication.asJavaNotification  Conflicts: 	language-adaptors/rxjava-scala/src/main/scala/rx/lang/scala/Notification.scala
+Interop Helpers
+README  * Needed to comment out interop test because, build cannot find my javac. * Note scheduler test don't terminate with JDK 7 on my machine.
+Manually merge branch 'master' of github.com:Netflix/RxJava into MergingFinalStageSam  Conflicts: 	language-adaptors/rxjava-scala/src/examples/scala/rx/lang/scala/examples/RxScalaDemo.scala 	language-adaptors/rxjava-scala/src/main/scala/rx/lang/scala/Notification.scala 	language-adaptors/rxjava-scala/src/main/scala/rx/lang/scala/Observable.scala 	language-adaptors/rxjava-scala/src/test/scala/rx/lang/scala/ObservableTest.scala 	language-adaptors/rxjava-scala/src/test/scala/rx/lang/scala/subscriptions/SubscriptionTests.scala
+Update ObservableHttp.java  Removed pesty dangling </p>
+Updated release notes for Subject[T]
+Simplified Subject[-T, +R] extends Observable[R] with Observer[T] to Subject[T] extends Observable[T] with Observer[T].  This was a generalization in .NET that did not pan out and Subject is always used with [T,T].  Fought to get multicast to work. I really hate Java variance.
+(Superfluous) Subject tests.
+Notification tests.
+Notification tests.
+Doc comments for Notification.
+Changed def to val in release notes to match source code.  Which I could put in hyperlink ;-)
+Merge pull request #2 from samuelgruetter/RxJavaBugFixesSam2  release notes details
+Re-instantiating commented out tests.
+Re-instantiating commented out tests.
+Fix the 'null' issue in the default equality
+Reimplement the 'SequenceEqual' operator using other operators
+release notes details
+Tried to improve type inference, alas.
+private [scala] val asJavaXXX for all.
+Subjects & Observers
+Added test for SerialSubscription
+Renamed rx.lang.scala.concurrency to rx.lang.scala.schedulers Fixed Scheduler constructor to map to correct scheduler type.
+Cosmetic changes to Notification. Cleaned up overloads for Observer.
+Release notes for Notification
+Added overloads for Observer companion object
+clarify documentation on cache()
+Merge pull request #1 from samuelgruetter/OpeningClosingRemovedSam  remove package rx.lang.scala.util since all its contents were removed
+remove import rx.lang.scala.util._
+remove package rx.lang.scala.util since all its contents were removed
+Fixed scala compilation error.
+Removed Opening and Closing historical artifacts.
+Modified Subscription tests.
+Modified Subscription tests.
+Modified Subscription tests.
+ObserveOn fix for observing the same source on the same scheduler by two different observers.
+Operation Sample with Observable v2
+Return null on getSubscription() when previously unsubscribed to match initial contract
+Making tests work. Solution was to delete all class files. Why is there no build/clean?
+Making tests work
+Removing BooleanSubscription
+Strange changes ...
+Added overrides.
+Release notes
+Added release notes for Observer. Added missing empty implementations for Observer methods.
+Merge pull request #569 from Netflix/docs  javadoc improvements (groupJoin, groupByUntil, timestamp w/scheduler)
+JUnit setting subscription concurrently
+fix: getSubscription should not expose internal sentinel subscription
+Simplify code; Junits
+javadoc improvements (groupJoin, groupByUntil, timestamp w/scheduler)
+Code simplification
+Lock free strategy using a sentinel (Thanks to akarnokd)
+Make unsubscribe + reference modification an atomic operation
+Use lock free strategy  Reduce contention by using CAS (Compare And Swap) operations to replace subscription
+Merge pull request #567 from akarnokd/TimestampWithScheduler  Operation Timestamp with Scheduler
+Merge pull request #565 from akarnokd/GroupJoin2  Operator GroupJoin v2
+Merge pull request #561 from samuelgruetter/scala-constructors  Creating Observables in Scala: Approach04
+Operation Timestamp with Scheduler
+Manually merge branch 'master' of github.com:Netflix/RxJava into scala-constructors  Conflicts: 	language-adaptors/rxjava-scala/src/examples/scala/rx/lang/scala/examples/RxScalaDemo.scala 	language-adaptors/rxjava-scala/src/main/scala/rx/lang/scala/ImplicitFunctionConversions.scala 	language-adaptors/rxjava-scala/src/main/scala/rx/lang/scala/Observable.scala
+Operator GroupJoin v2
+Merge pull request #563 from akarnokd/GroupByUntil5  Operation GroupByUntil
+Merge pull request #562 from samuelgruetter/RxJavaBugFixesSam  Scala Adaptor Improvements by Erik
+Operation GroupByUntil v5
+Merge pull request #560 from landonf/java-do-variances  Add type variances for doOnEach actions.
+Merge pull request #537 from landonf/scala-do-operator  Add scala adapters for doOnEach operator.
+undo commit 99a1d035233100e32050240472a9bdc85521bc61
+add Observable.from(Future) constructor
+add equals, hashCode, toString to Notifications
+Add type variances for doOnEach actions.  This fixes the use of contravariant actions.
+Remove unnecessary type parameter.  Apparently (to my surprise), the implicit conversions are smart enough to resolve this.
+Merge branch 'master' into scala-do-operator
+Merge remote-tracking branch 'upstream/master'
+rename Observable constructors
+replace Observable.apply(rx.Observable) by toScalaObservable  and move Java types <=> Scala types conversions from ImplicitFunctionConversions to JavaConversions
+Merge pull request #555 from Netflix/docs  skipUntil() marble diagram and wiki link in javadoc
+skipUntil() marble diagram and wiki link in javadoc
+Merge pull request #541 from akarnokd/SkipUntil  Operation SkipUntil
+Merge pull request #539 from samuelgruetter/test-zip-pr  Zipping a finite and an infinite Observable
+Merge pull request #545 from akarnokd/ZipInfiniteFix  Fixed Zip issue with infinite streams.
+Merge pull request #535 from soundcloud/android-support-library-fix  Fix compilation errors due to referencing the Android support library directly
+Merge pull request #533 from akarnokd/ToAsync2  Async conversions
+Merge pull request #531 from Netflix/docs  visually distinguish operators that use schedulers, etc.
+Merge pull request #516 from abersnaze/string-observable  Adding utility functions for observables of strings useful for processing non blocking IO.
+IntelliJ suggested style changes.
+Trivial code movements
+Fixed case with skipUntil(empty()) == never() (matches Rx.NET)
+Tests to verify fix and error behavior
+Made subjects safe
+Double negation Observer.
+Added Observable.create. (a) it will stop the pointless discussions around it. (b) it is removes the interference with from(T*) (c) we should remove the latter, since that is not the common case.
+Pulled in changes from Samuel. Fixed tests, all working without warnings
+Merge pull request #1 from samuelgruetter/RxJavaBugFixesSam  A few trivial Scala adaptor details
+restore subjects package object for scaladoc
+Fixed Zip issue with infinite streams.
+scaladoc for package rx.lang.scala
+scaladoc links in ThreadPoolForXxxScheduler
+make zip with selector function private because  Scala collections do not have such a function, and we want to be as close to Scala collections as possible
+reorg imports of ImplicitFunctionConversions
+deleting def observable[T](=>T) requires deleting corresponding demo, too
+add one missing import
+restore original gradlew
+Fixing tests
+Fixing tests
+Fixed implicit conversions to make compile work
+Fixed type errors in Schedulers. Added scheduler factory.
+Fixed ambigous definitions; kuddos to https://class.coursera.org/reactive-001/forum/thread?thread_id=1466.
+Added copyright headers
+Added copyright headers
+Factory methods for Observer.
+Added package names in doc comments to keep IntelliJ happy
+Made Subscription.app(rx.Subscription) private. Added overload for zip
+Inner classes set to private
+Operation SkipUntil
+Removed dead function, left package object for scala docs.
+Fixed doc comment.
+Moved stuff around some more.
+Moved stuff around.
+Deleted spurious package object
+Added TestScheduler
+Deleted spurious package object.
+Deleted old Schedulers object.
+Deleted old scheduler factory methods.
+Added ThreadPoolForIOScheduler
+Added ThreadPoolForComputationScheduler
+Added ScheduledExecutorServiceScheduler
+Added ExecutorScheduler
+Added current thread scheduler
+Added new thread scheduler
+Added immediate scheduler
+Moved Subscription object to package rx.lang.scala.subscriptions with the other subscriptions
+Removed spurious package
+setting the up that string test to use core test
+moving the AssertObservable class to the test side of the build.
+Moving StringObservable to contrib module
+Adding utility functions for observables of strings useful for processing non blocking IO.
+Remove unnecessary cast.
+tests for zipping a finite and an infinite Observable
+Add scala adapters for doOnEach operator.
+Use Object as argument type for fromFragment helper  This is to prevent compilation failures in projects that do not link the support-v4 library. The only other option I saw to fix this would have been to split up the android module into one for native fragments and one for support fragments, which I found would come with unjustified overhead. Hence I settled for the cheap way, which is to sacrifice type safety here.  Refs https://github.com/soundcloud/RxJava/issues/2
+Async conversions
+visually distinguish operators that use schedulers; add distinct doOnEach diagrams
+Version 0.15.1
+[Gradle Release Plugin] - new version commit:  '0.15.2-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.15.1'.
+Merge pull request #527 from Netflix/docs  Docs
+Merge pull request #529 from benjchristensen/scala-tweaks  Scala Tweaks
+Add License Headers
+Notification constructors Implicit conversions
+Calling constructor explicitly on schedulers
+Fix bad unit test  - no further events expected after unsubscribe
+Missing ! .... grrr.
+Update Observable.java  improve javadocs, including diagrams and wiki links for new operators
+Javadoc improvements, including diagrams and wiki links for new operators
+Merge pull request #526 from benjchristensen/pull-513-toMap  Manual Merge of toMap/toMultiMap
+Merge branch 'ToMapAndToMultimap' of github.com:akarnokd/RxJava into pull-513-toMap  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #525 from benjchristensen/bugfix-subjects  BugFix: Handling of Terminal State for Behavior/Publish Subjects
+BugFix: Handling of Terminal State for Behavior/Publish Subjects  - They were not correctly emitting onCompleted when new Observers subscribed after the Subject was terminated. - Added same logic that already existed on AsyncSubject
+Make unsubscribe idempotent.
+Make unsubscribe idempotent.
+UnitTests demonstrating bugs
+Merge pull request #514 from akarnokd/OperationJoin2  Operation Join again
+Merge pull request #522 from zsxwing/issue-521  Fixed the issue #521
+Merge pull request #512 from samuelgruetter/scalaadaptor  Scala Adaptor Details
+Fixed the issue #521
+Merge upstream/master into OperationJoin2  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge upstream/master into OperationJoin2  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge upstream/master into ToMapAndToMultimap
+Operations toMap (3) and toMultimap (4)
+standardizing javadoc comments, adding wiki links and diagrams, for and/then/when
+Update Observable.java  standardizing javadoc comments & adding wiki/image links for new methods
+Removed unused test function
+Operation: Join Issue #56

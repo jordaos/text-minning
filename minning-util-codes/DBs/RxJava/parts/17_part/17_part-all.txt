@@ -1,0 +1,201 @@
+Slightly cleaner code for onNext from buffer
+Merge pull request #1705 from edenman/1.x  Issue #1642 Fix null-emitting combineLatest
+Merge pull request #1687 from jbripley/opt-empty  Don't allocate an empty ArrayList for each Observable.empty call
+Issue #1642 Fix null-emitting combineLatest
+Don't allocate an empty ArrayList for each Observable.empty call
+Update README.md
+Remove CloudBees and Pull Request Logo  - migrating to Travis - Makes no sense to show the pull request build status as there can be many and any of them could fail without meaning anything for the project.
+fix typo
+Merge pull request #1672 from benjchristensen/merge-0_20_4  Merge 0.20.4 Fixes
+0.20.4 and 1.0.0-rc.3
+Make TakeUntil obey Rx contract
+Error Handling Unsubscribe and Terminal State
+Ignore furthur messages after entering terminate state
+OperatorScan should check for MAX_VALUE on request
+Fix the bug that Switch doesn't propagate 'unsubscribe'
+Update CONTRIBUTING.md  Added 0.x and 1.x branches.
+Update README.md
+Merge pull request #1665 from loganlinn/patch-1  Fix Javadoc README link
+Fix Javadoc README link
+Removing deprecated operators from operator decision trees
+1.0.0-rc.2
+1.0.0-rc.2
+Update CHANGES.md
+0.20.3
+Merge pull request #1652 from benjchristensen/1.x-scan-backpressure-fix  Operator Scan Backpressure Fix
+Operator Scan Backpressure Fix  Problem 1) The initial value was being emitted before subscription which caused issues with request/producer state, particularly if filter() was used to skip that initial value and then called request(1) before the real request had been sent. Problem 2) The initial value was not accounted for by the request so it was sending 1 more value than requested. It now modifies the request to account for it. Problem 3) Redo relied upon these nuances to work. I've fixed this by using a simpler implementation that just maintains state within a map function.
+Merge pull request #1645 from benjchristensen/remove-parallel-merge  Remove ParallelMerge
+Remove ParallelMerge  Removing confusing operator before locked in stone with 1.0.0 Final
+Travis build image
+Only JDK 7 for Travis
+JDKs for Travis
+Create .travis.yml
+Update build.gradle  GroupID is not needed as it will use the default `io.reactivex`
+Merge pull request #1644 from benjchristensen/nebula-build  Nebula Build - Single Module
+Nebula Build - Single Module
+migrate to single-module build
+Copying javadoc enhancements for CompositException from 0.20
+add license header
+0.20.2
+Merge pull request #1639 from benjchristensen/doOnEach-error-swallowing  doOnEach - Handle Fatal Exceptions
+doOnEach - Handle Fatal Exceptions  Merging change from 0.20 into 1.x => https://github.com/ReactiveX/RxJava/pull/1631/files
+Merge pull request #1638 from benjchristensen/composite-exception  Composite Exception - Circular Reference Handling
+Composite Exception - Circular Reference Handling  Same change as https://github.com/ReactiveX/RxJava/pull/1632 against 0.20 for 1.x
+Merge pull request #1635 from daschl/blockingperf  Optimize single BlockingObservable operations.
+0.20.1
+Optimize single BlockingObservable operations.  This changeset optimizes all blocking operations that just return a single value. The previous code used an iterator all the time, adding significant GC pressure with iterators and a backing LBQ.  The following numbers are from the added JMH tests just as a general measurement. The most boost is gained from small results and less GC pressure.  Before this change: r.o.BlockingObservablePerf.benchFirst          1  thrpt         5  2839391.882    17771.079    ops/s r.o.BlockingObservablePerf.benchFirst       1000  thrpt         5  2046716.781    22884.125    ops/s r.o.BlockingObservablePerf.benchFirst    1000000  thrpt         5  2067456.792    15499.650    ops/s r.o.BlockingObservablePerf.benchLast           1  thrpt         5  2160081.041    21230.437    ops/s r.o.BlockingObservablePerf.benchLast        1000  thrpt         5    83270.845      871.836    ops/s r.o.BlockingObservablePerf.benchLast     1000000  thrpt         5      100.190        1.001    ops/s r.o.BlockingObservablePerf.benchSingle         1  thrpt         5  3702921.521   154008.164    ops/s  After this change: r.o.BlockingObservablePerf.benchFirst          1  thrpt         5  6466732.996   191239.670    ops/s r.o.BlockingObservablePerf.benchFirst       1000  thrpt         5  3752276.751   135138.711    ops/s r.o.BlockingObservablePerf.benchFirst    1000000  thrpt         5  3840942.600    59305.202    ops/s r.o.BlockingObservablePerf.benchLast           1  thrpt         5  4110186.134    98795.733    ops/s r.o.BlockingObservablePerf.benchLast        1000  thrpt         5    84528.104     1710.853    ops/s r.o.BlockingObservablePerf.benchLast     1000000  thrpt         5       99.460        2.091    ops/s r.o.BlockingObservablePerf.benchSingle         1  thrpt         5 11897793.778   321260.803    ops/s
+Merge pull request #1621 from benjchristensen/deprecation-removal  Deprecation Removal
+Remove Deprecated Usage in Contrib Modules
+Deprecation Removal  Removing all deprecated methods and types for 1.0 https://github.com/ReactiveX/RxJava/issues/1001
+Merge pull request #1615 from abersnaze/migrate-rx-string  fix the usage of deprecated methods.
+fix the usage of deprecated methods.
+#1607 wiping the javadoc @since slate clean for 1.0
+copying over recent javadoc enhancements from the 0.20 branch
+Merge pull request #1613 from daschl/more-namespace-changes  Moving Netflix to ReactiveX
+Replacing Netflix/RxJava with ReactiveX/RxJava
+Update README to reflect repository move.
+0.20.0
+Migrate Non-Core Modules Out  - Delete all modules that have been moved into separate projects. - rename rxjava-core to rxjava
+[Gradle Release Plugin] - new version commit:  '0.20.1-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.20.0'.
+0.20.0-SNAPSHOT
+Merge pull request #1610 from benjchristensen/multicast-without-factory  Deprecate Multicast without Factory
+Merge pull request #1611 from benjchristensen/superfluous-overloads  Deprecate Superfluous Methods with Scheduler Overload
+Deprecate Superfluous Methods with Scheduler Overload  These should just use subscribeOn if scheduling is wanted.
+Merge pull request #1592 from benjchristensen/using-1466  Decouple Dispose Function for Using
+Deprecate Old Using Method
+Deprecate Multicast without Factory
+Merge pull request #1609 from zsxwing/rxscala-backpressure  RxScala: Add backpressure support
+Merge pull request #1608 from davidmoten/window-add-overload  Add missing window with time overload
+Update createExampleWithBackpressure to use subscribeOn
+RxScala: Add backpressure support
+add missing window with time overload, the one that has control over every parameter
+Merge pull request #1601 from zsxwing/rxscala-multicast  RxScala: Change "multicast" to be consistent with RxJava
+Merge pull request #1605 from jbripley/rxscala-retrywhensignature  RxScala: Update signatures of retryWhen/repeatWhen to match RxJava
+RxScala: Update signatures of retryWhen/repeatWhen to match RxJava
+Merge pull request #1597 from GeorgiKhomeriki/master  reactivex.io: RxScala getting started examples
+Merge pull request #1599 from davidmoten/reuse  reuse existing methods
+Merge pull request #1598 from jbripley/rxscala-doonunsubscribe  RxScala: Add mapping to RxJava doOnUnsubscribe
+Merge pull request #1600 from jbripley/rxscala-javadocfixes  RxScala: JavaDoc fixes to not use code or link
+Merge pull request #1602 from abersnaze/consistent-retrywhen  Make retryWhen the same with the Scheduler as the retryWhen without the Scheduler
+removed the unnecessary ` extends Notification<?>` from repeatWhen too.
+Make retryWhen the same with the Scheduler as the retryWhen without the Scheduler.
+RxScala: Change "multicast" to be consistent with RxJava
+RxScala: JavaDoc fixes to not use code or link
+RxScala: Add mapping to RxJava doOnSubscribe  - Fix doOnUnsubscribe JavaDoc to not use @code/@link
+reuse existing methods
+javadoc enhancements for the new doOnSubscribe() method
+RxScala: Add mapping to RxJava doOnUnsubscribe
+reactive.io: RxScala getting started examples
+Merge pull request #1593 from benjchristensen/doOnSubscribe  doOnSubscribe
+doOnSubscribe
+and... the inevitable javadoc enhancements (for the new doOnUnsubscribe method)...
+Merge pull request #1589 from g9yuayon/operatorOnUnsubscribed  Added doOnSubscribe() to Observable
+Decouple Dispose Function for Using  As per discussion at https://github.com/Netflix/RxJava/issues/1466
+Added doOnSubscribe() to Observable
+Merge pull request #1586 from jbripley/rxscala-just  RxScala: Observable.items(T*) -> Observable.just(T*)
+Merge pull request #1587 from jbripley/rxscala-replace-deprecated  RxScala: Switch mapped RxJava methods to non-deprecated versions
+RxScala: Switch mapped RxJava methods to map to non-deprecated versions  - Mark onErrorFlatMap/from(Iterable, Scheduler) as deprecated, since the RxJava version will go away
+RxScala: Observable.items(T*) -> Observable.just(T*)
+javadoc enhancements for from(a,b,c...) to just(a,b,c...) switchover
+Version 0.20.0-RC6
+[Gradle Release Plugin] - new version commit:  '0.20.0-RC7-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.20.0-RC6'.
+Merge pull request #1545 from ronshapiro/master  Make Android ViewObservable.input observe TextView instead of String
+Merge pull request #1576 from benjchristensen/from-items  from(T) -> just(T)
+javadoc enhancements for zip(iterable) => zipWith(iterable) switchover
+Merge pull request #1583 from benjchristensen/repeat-concat  Redo/Repeat Backpressure
+Redo/Repeat Backpressure  Fix backpressure and memory leaks  This now works:      public static void main(String[] args) {         Observable<Integer> o1 = Observable.from(1, 1).concatWith(Observable.just(-1).repeat());         Observable<Integer> o2 = Observable.from(2, 2, 2, 2);         Observable.zip(o1, o2, (a, b) -> a + b).forEach(System.out::println);     }
+Merge pull request #1582 from benjchristensen/groupedObservable-from  Deprecate GroupedObservable.from
+Deprecate GroupedObservable.from  It was a bad solution. Use Observable.groupBy with element selector instead  See https://github.com/Netflix/RxJava/issues/1579
+Merge pull request #1581 from benjchristensen/zip-zipWith  zip(Iterable) -> zipWith(Iterable)
+zip(Iterable) -> zipWith(Iterable)  As per https://github.com/Netflix/RxJava/issues/1578
+from(T) -> just(T)  See https://github.com/Netflix/RxJava/issues/1563 for discussion.
+Merge pull request #1577 from zsxwing/compose-covariance  Fix the compose covariance
+Clarify OperatorTextViewInputTest methods
+Fix the 'compose' unit test
+Fix the compose covariance
+Merge pull request #1569 from benjchristensen/compose-transformer-variance  Compose/Transform Covariance
+black magic applied.
+Merge pull request #1575 from benjchristensen/combineLatest-backpressure  combineLatest with backpressure
+combineLatest with backpressure  Implementation updated to support reactive pull: https://github.com/Netflix/RxJava/issues/1476
+Version 0.20.0-RC5
+[Gradle Release Plugin] - new version commit:  '0.20.0-RC6-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.20.0-RC5'.
+Use single Executor for all tests  ... so it doesn't leak for every test.
+additional javadoc enhancements for lift & compose
+Merge pull request #1573 from benjchristensen/parallel-backpressure  Backpressure: parallel
+Backpressure: parallel  Fixes https://github.com/Netflix/RxJava/issues/1485
+Remove Temporary Timeout in take  Fix it properly this time :-)
+Merge pull request #1572 from benjchristensen/remove-toBlocking-timeout  Remove Timeout in Blocking Iterator
+Remove Timeout in Blocking Iterator  This was a temporary timeout to track down bugs.
+javadoc enhancements for recent groupBy/compose/Transformer changes
+Merge pull request #1570 from daveray/rx-clj-fix-mapcat  Fix for mapcat, issue #1556
+Fix for mapcat, issue #1556  Corrected mapcat to actually concat its results rather than merging. Added warning to docstring thta this might not be ideal.  Added flatmap to cover map+merge case.
+Merge pull request #1568 from benjchristensen/compose-transformer  Compose/Transformer
+Compose/Transform Covariance  Failing test while exploring generic variance for https://github.com/Netflix/RxJava/issues/1416
+Compose/Transformer  See https://github.com/Netflix/RxJava/issues/1416 for discussion that led to this.  This does not have co/contra-variance which needs to be figured out.
+Merge pull request #1567 from benjchristensen/groupBy-selector  groupBy with element selector
+groupBy with element selector  Fixes https://github.com/Netflix/RxJava/issues/1554
+Merge pull request #1565 from benjchristensen/kotlin-defer  Fixing Kotlin Defer
+Fixing Kotlin Defer  Broke this with https://github.com/Netflix/RxJava/pull/1561
+Merge pull request #1507 from zsxwing/backpressure-bufferWithSize  BufferWithSize with Backpressure Support
+Merge pull request #1557 from zsxwing/backpressure-switch  SwitchOnNext with backpressure support
+Merge pull request #1562 from zsxwing/backpressure-takeLastTimed  TakeLastTimed with backpressure support
+Merge pull request #1564 from zsxwing/rxscala-completeness  RxScala: Fix errors in Completeness.scala and also improve it
+Merge pull request #1548 from stealthcode/BPRedo  Adding backpressure to OnSubscribeRedo
+Merge pull request #1559 from mattrjacobs/scheduler-plugin  More consistent hooks for scheduler plugins.  This is a rework of #1514.
+Add a blank line to fix the bullet points issue
+Fix errors in Completeness.scala and also improve it
+TakeLastTimed with backpressure support
+Merge pull request #1561 from benjchristensen/issue-1157-defer  Remove Variance on Defer
+Remove Variance on Defer  See https://github.com/Netflix/RxJava/issues/1157 for painful background.
+javadoc changes related to the mergeMap[Iterable] => flatMap[Iterable] changeover
+Merge pull request #1537 from GeorgiKhomeriki/master  recursive scheduling in RxScala
+Merge pull request #1560 from benjchristensen/flatMap-mergeMap  flatMap overloads
+flatMap overloads  - migrate mapPair to use actual merge instead of reimplementing it - deprecate mergeMap
+More consistent hooks for scheduler plugins.  This is a rework of #1514. * Deprecated RxJavaDefaultSchedulers and RxJavaDefaultSchedulersDefault (I think these names are confusing) * Added RxJavaSchedulersHook ** Ability to override entire schedulers from scratch ** Ability to decorate Action0 before submission to Scheduler
+Merge pull request #1558 from benjchristensen/issue-1550  mergeMap generics
+mergeMap generics  Fixes issue #1550
+Merge branch 'master' of https://github.com/Netflix/RxJava into docs
+SwitchOnNext with backpressure support
+Merge pull request #1552 from abersnaze/most-recent-null  Fixing a bug and a potential for other concurrency issues.
+Merge pull request #1555 from jbripley/rxscala-retrywhen  RxScala: Add retryWhen/repeatWhen methods
+RxScala: Add retryWhen/repeatWhen methods  - Add example usage of retryWhen/repeatWhen to RxScalaDemo
+javadocs: add @see links to wiki discussion of "Backpressure"; add marble diagrams for onBackpressureFoo() operators
+Bring back ViewObservable.input(EditText, boolean) and rename new version to ViewObservable.text
+Fixing a bug and a potential for other concurrency issues.
+Adding backpressure to OnSubscribeRedo
+Make Android ViewObservable.input observe TextView instead of String
+add "@since 0.20" annotation to new multicast() variant
+Version 0.20.0-RC4
+[Gradle Release Plugin] - new version commit:  '0.20.0-RC5-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.20.0-RC4'.
+Handle overflow
+`scheduleRec` for recursive scheduling (Scala)
+Merge pull request #1534 from benjchristensen/concat-backpressure  Concat Backpressure
+Merge pull request #1533 from benjchristensen/issue-1516  Amb + Backpressure
+Propagate request(n) to each AmbSubscriber  ... and then keep propagating to the winner.
+Amb with backpressure support
+Concat Backpressure  Route backpressure through the inner subscribers. Fixes https://github.com/Netflix/RxJava/issues/1480
+Merge pull request #1527 from mattrjacobs/reduce-fails-on-backpressure  Failing unit test for reduce, showing it does not implement backpressure correctly
+Merge pull request #1528 from Yarikx/android-broadcasts-rebased  Add operators to create Observables from BroadcastReceiver (rebased)
+Merge pull request #1523 from zsxwing/issue-1522  Fix issue #1522
+Merge pull request #1530 from zsxwing/issue-merge  Fix the unbounded check for merge
+Make "single" support backpressure  Signed-off-by: zsxwing <zsxwing@gmail.com>
+Fix the unbounded check for merge
+Optimize the fix for takeLast and handle the race condition
+fix sticky intent duplication, add tests for OperatorBroadcast
+remove main thread unsubscribe, fix LocalBroadcastOperatorTest
+Add operators to create Observables from BroadcastReceiver  it allows to listen global and local (with support LocalBroadcastManager) broadcasts
+Added another unit test to OperatorReduce/backpressure
+Failing unit test for reduce, showing it does not implement backpressure correctly
+Merge pull request #1526 from benjchristensen/ring-buffer-queue  Restore use of SpmcArrayQueue in RxRingBuffer
+Restore use of SpmcArrayQueue in RxRingBuffer  - Modification of SpmcArrayQueue with fix from https://github.com/JCTools/JCTools/issues/21 - Restore RxRingBuffer to use SpmcArrayQueue - this reduces object allocation significantly (see pull request for screenshots)
+Merge pull request #1468 from zsxwing/rxscala-completeness  RxScala: Update CompletenessTest.scala
+Merge pull request #1515 from benjchristensen/multicast-factory  Support Subject Factory with Multicast
+Fix issue #1522
+Bump to Robolectric 2.3, make samples build under Studio 0.8.+  refs https://github.com/Netflix/RxJava/pull/1449
+Support Subject Factory with Multicast
+BufferWithSize with Backpressure Support
+Update CompletenessTest.scala

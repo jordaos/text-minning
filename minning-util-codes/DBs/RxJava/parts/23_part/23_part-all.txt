@@ -1,0 +1,200 @@
+Switch the last SerialResource to manual resource management. (#4112)
+2.x: make sure the helper returns true if the pre-swap value was null (#4107)
+Invert subscription validation return type for better semantics. (#4108)
+Remove explicit cancel flags where it can be inferred. (#4106)
+Remove some superfluous reads before writes. (#4105)
+Expose isDisposed method on Disposable. (#4102)
+2.x: prepare the operator-fusion enhancement (#4103)
+Switch a SerialResource use to SerialDisposable. (#4101)
+2.x: Add PMD (#4100)
+2.x: convert Observable OnSubscribe to direct implementation (#4096)
+Invert request validation return type for better semantics. (#4095)
+Remove EmptySubscriber, start to remove NbpEmptySubscriber. (#4094)
+Ignore PMD and android studio, also check if push is still enabled.
+Merge CancelledSubscriber into EmptySubscriber. (#4083)
+Merge NbpCancelledSubscriber into NbpEmptySubscriber. (#4085)
+Normalize request validation using SubscriptionHelper. (#4087)
+More uses of SubscriptionHelper. (#4084)
+Do not leak the DISPOSED marker instance into public API. (#4081)  If this were to be used by public code it could have have Very Bad��� effects by causing operators to think that they already disposed resources when they actually had not. Since `Disposable` is stateless it's safe for `disposed()` and `empty()` to be synonymous, although that might change in the future so both methods are retained.
+Replace custom empty Disposables with global instance. (#4080)
+Re-use the single empty Disposable instance everywhere. (#4078)
+Some small tweaks to Disposables. (#4076)  * Use BooleanDisposable for Runnables. * Change BooleanDisposable to use null for disposed instead of keeping a marker instance. * Eliminate static factory for CompositeDisposable since its constructors are already public.
+Use more DisposableHelper and SubscriptionHelper in operators. (#4074)
+Merge SerialDisposable and MultipleAssignmentDisposable. (#4070)
+Dereference atomic ref before identity comparison. (#4072)  This returns false 100% of the time otherwise.
+Inline last uses of caching DisposableHelper's constant. (#4071)
+Remove second type parameter from Subject and FlowProcessor. (#4069)
+2.x: cleanup a few additional SubscriptionHelper locations (#4059)
+Use DisposableHelper and SubscriptionHelper to reduce duplication. (#4058)  A lot of operators contained their own marker instance and class definition of Disposable or Subscription. This changes almost all of them to use the shared instance provided by their respetive helper class. Some duplication still exists but can be cleaned up in a subsequent change.
+Update conversion method name to reflect new base type names. (#4055)
+Convert SchedulerSupport annotation to accept a string value. (#4053)
+2.x: make Flowable operators extend Flowable directly to reduce allocation (#4049)  * Converting the Publisher-based operators to direct  * Update remaining operators to implement Flowable directly
+2.x: Publish code coverage results to codecov.io (#4048)
+2.x: Single operators factored out, headers added (#4045)
+2.x: factor out Completable ops, unify disposed markers (#4043)  * Some operators extracted  * 2.x: factor out Completable ops, make them direct, fix disposed markers
+2.x: Use XCompletable in Completable and Single (#4042)
+2.x: Update Observable's ops to work with ObservableConsumable (#4041)
+2.x: factor out consumer types, add XConsumable, update ops
+Update groupID and readme. (#4031)
+2.x: first step switching to the reduced-allocation architecture (#4030)
+2.x: Add support for concurrently inserting actions while advancing time (#3648)  * 2.x: Adding support for concurrently inserting actions while advancing time  * Removing the unit test proving the thread safety of a BlockingPriorityQueue.
+2.x: Design.md +extension +fusion (#3980)  * 2.x: Design.md +extension +fusion  * Flatten the create-table  * Update create naming to avoid overload conflicts  * Add missing explanation, remove words
+Clean-up of the 2.x Design.md document (#3935)  * Take OS comments into account  * Remove dead sentence.
+Merge pull request #3782 from stevegury/stevegury/2.x-design  2.x design decisions
+Changed the wording of the Consumable and Fusion sections
+Merge pull request #3783 from akarnokd/DesignRefactorMain2x  2.x: rename and refactor classes to match the design document
+2.x: rename and refactor classes to match the design document
+Rework of the design decisions for the 2.x branch
+Merge pull request #3693 from stevegury/2.x  Update nebula gradle plugin
+Update nebula gradle plugin
+Merge pull request #3671 from akarnokd/SchedulerTestFix2x  2.x: fix SchedulerLifecycle.testStartIdempotence vs cached threads dying
+2.x: fix SchedulerLifecycle.testStartIdempotence vs cached threads dying
+Merge pull request #3668 from akarnokd/Java6Backport  2.x: full JDK 6 compatible backport + including bugfixes up to today
+2.x: full JDK 6 compatible backport + including bugfixes up to today
+Merge pull request #3623 from adam-arold/2.x  1.x: adding source links for @Beta and @Experimental
+#3618 adding source links for @Beta and @Experimental
+Merge pull request #3380 from akarnokd/CombineLatestCleanup2x  2.x: CombineLatest removed leftover debug field + better cleanup
+Merge pull request #3449 from JakeWharton/jw/delete-code  2.x: Remove duplication of Optional API behavior.
+Remove duplication of Optional API behavior.  get() throws NSE when absent and orElse(T) returns the provided value when absent.
+Merge pull request #3376 from akarnokd/RxVsStreamPerf2x  2.x: perf comparing Observable, NbpObservable, Stream and ParallelStream
+Merge pull request #3382 from akarnokd/SpscLinkedArrayQueueCapacityUse2x  2.x: fix SpscLinkedArrayQueue leaves 1 slot null just before growing
+Merge pull request #3377 from akarnokd/TakeReentrancyFix2x  2.x: fix take() reentrancy problem.
+2.x: fix SpscLinkedArrayQueue leaves 1 slot null just before growing
+2.x: CombineLatest removed leftover debug field + better cleanup
+2.x: fix take() reentrancy problem.  Discovered by @mgp in #3346 and using his supplied fix. I've already applied it to NbpObservable's take this Monday so all that's left was the unit test.
+2.x: perf comparing Observable, NbpObservable, Stream and ParallelStream
+Merge pull request #3358 from akarnokd/SingleOperators2x  2.x: Single class more operators + test from 1.x
+2.x: Single class + operators and test from 1.x + extra operators.
+Merge pull request #3371 from akarnokd/NbpObservableOps2x  2.x: non-backpressure NbpObservable all relevant operators + tests.
+2.x: non-backpressure NbpObservable all relevant operators + tests.
+Merge pull request #3348 from ReactiveX/v2-design-flowable  2.x Design: Flowable/Observable
+Merge pull request #3349 from ReactiveX/v2-design-subject  2.x Design: Subject
+2.x: perf: comparison of range and flatMap between Observable, NbpObservable and Single.
+Merge pull request #3354 from akarnokd/PerfAwaitFix2x  2.x: perf change wait to spin-loop for short async benchmarks
+2.x: perf change wait to spin-loop for short async benchmarks
+Merge pull request #3353 from akarnokd/RangePerf2x  2.x: range perf + added missing header.
+2.x: range perf + added missing header.
+Merge pull request #3350 from ReactiveX/v2-design-lifecycle  2.x Design: Creation/Destruction
+Merge pull request #3352 from akarnokd/MergePerf2x  2.x: perf checks for flatMap and merge
+2.x: perf checks for flatMap and merge
+2.x Design: Creation/Destruction  How to create and destroy streams.  The wording of this can become much better once agreement occurs in https://github.com/ReactiveX/RxJava/pull/3348/files  The intent of this is:  1) Specify how to create streams (Observable/Flowable) of the various flavors, and account for flow control. 2) Evolve towards what the creation/generation APIs are 3) Specify that it is not the responsibility of the final Subscriber to call unsubscribe/cancel upstream
+2.x Design: Subject  Clarification of `Subject` that affects implementation.  Related to discussion in https://github.com/ReactiveX/RxJava/pull/3345.
+Flowable/Observable  Proposed separation of `Observable` and `Flowable` along with description of each and their characteristics.
+Create DESIGN.md  Initial start with terminology and types as a place to begin evolving the design of RxJava v2.  I have bootstrapped this doc with things that should not be controversial, just statements of fact of what exists. If any are controversial, I apologize, please open a PR with the recommended change.  Further proposals to this document will come via PRs for discussion and approval.
+Merge pull request #3335 from akarnokd/ScalarFastPathEnable2x  2.x: scalar flatMap optimization enabled
+2.x: scalar flatMap optimization enabled  + I wanted to make sure the slow path passes all tests before enabling the scalar optimization. + Fixed headers for internal classes
+Merge pull request #3334 from akarnokd/DisposableTests2x  2.x: disposable unit tests + fix to RefCountDisposable behavior
+2.x: disposable unit tests + fix to RefCountDisposable behavior  + sorted `Observable` and added `@BackpressureSupport` and `SchedulerSupport` annotations. + created `@Beta` and `@Experimental` annotations, nothing is marked with them because I intent everything to be standard at this point.
+Merge pull request #3333 from akarnokd/SubscribersTests2x  2.x: subscribers/observers tests
+2.x: subscribers/observers tests  I had to ignore many tests because it either tests with null or throws an exception from a Subscriber method which are not allowed with RS
+Merge pull request #3332 from akarnokd/SubjectTests  2.x: subject tests and bugfixes
+Fixed testNestedAsyncConcat not waiting for the parent to complete and misses the last onComplete
+2.x: subject tests and bugfixes
+Merge pull request #3331 from akarnokd/SchedulersTests2x  2.x: schedulers test of classic schedulers
+2.x: scheduler tests (no single() yet).
+Merge pull request #3330 from akarnokd/OperatorsTestZipFinish2x  2.x: operator test zip and SafeSubscriberTest
+2.x: operator test zip and SafeSubscriberTest
+Merge pull request #3329 from akarnokd/OperatorTestWindow2x  2.x: operator test: window variants
+2.x: operator test: window variants  I had to adjust some test slightly due to the a new behavior: if one cancels a source which is windowed, as long as the windows are active, the source has to stay active. However, there are more subtle possibilities that need new tests.
+Merge pull request #3328 from akarnokd/OperatorTestsPack2xPart2  2.x: operator tests unsubscribeOn, withLatestFrom, zip (partial)
+2.x: operator tests unsubscribeOn, withLatestFrom, zip (partial)  + fixed cancellation behavior of observeOn, subscribeOn and unsubscribeOn (when and what to call cancel on) + fixed infinite loop in ScheduledRunnable + fixed zip not quitting eagerly if one of the sources was shorter + added specific ZipIterable because zip-iterable tests expect it to be not prefetching any of the sources (the plain zip does prefetch) + made the fromIterable more resilient to Iterable/Iterator crashes and added null-value checks
+Merge pull request #3327 from akarnokd/OperatorTestsPack2x  2.x: operator tests: timestamp, toMap, toMultiMap, toList, toSortedList
+Workaround for javac, added missing headers.
+2.x: operator tests: timestamp, toMap, toMultiMap, toList, toSortedList
+Merge pull request #3326 from akarnokd/OperatorTestsThrottleFirstTimeIntervalTimeout2x  2.x: operator throttleFirst, timeInterval and timeout + bugfixes
+2.x: operator throttleFirst, timeInterval and timeout + bugfixes
+Merge pull request #3325 from akarnokd/OperatorTestsTake2x  2.x: operator tests: take family + fixes
+2.x: operator tests: take family + fixes
+Merge pull request #3324 from akarnokd/OperatorsTestSubscribeOnSwitch2x  2.x: operator test: switchIfEmpty, switchMap + bugfixes
+2.x: operator test: switchIfEmpty, switchMap + bugfixes
+Merge pull request #3323 from akarnokd/OperatorTestSkip2x  2.x: operator test: skip variants and bugfix
+2.x: operator test: skip variants and bugfix  Note that since we know have time unit in schedulers, one must be careful with the time unit of the timed skip operators. The timestamps will be calculated via this unit and may not return the expected values.  For example, a skipLast of 1 second will not skip the value 0.5 seconds before completion because its timestamp is rounded down to the start of the second. But if one uses 1000 milliseconds, the value will be skipped.
+Merge pull request #3322 from akarnokd/OperatorTestSerializeSingle2x  2.x: operator test: serialize, single + SerializedSubscriber fix
+2.x: operator test: serialize, single + SerializedSubscriber fix
+Merge pull request #3321 from akarnokd/OperatorTestSampleScanEquals  2.x: operator tests: sample, scan and sequenceEqual + their bugfixes
+2.x: operator tests: sample, scan and sequenceEqual + their bugfixes
+Merge pull request #3320 from akarnokd/OperatorTestRetry2x  2.x: operator test: retry, retryWhen
+2.x: operator test: retry, retryWhen  + retry with bipredicate + fixed map not checking the returned value for null + since RS doesn't allow throwing other than NPE, temporarily subscribe and lift will throw NPE with the actual error as cause so we don't miss an operator bug due to swallowed exceptions.
+Merge pull request #3319 from akarnokd/OperatorTestReplay2x  2.x: operator test for replay
+2.x: operator test for replay  Note that testIssue_2191_SchedulerUnsubscribe had to change the call count to pass. I don't understand this test and the over-mocking (but recognize the style).
+Merge pull request #3318 from akarnokd/OperatorTestPublishReduceRepeat2x  2.x: operator tests: publish, reduce, repeat + fixes
+2.x: operator tests: publish, reduce, repeat + fixes  + added toSingle and toNbpObservable to Observable + fixed bugs in many operators and in the IO scheduler's release logic
+Merge pull request #3317 from akarnokd/OperatorTestOnError2x  2.x: operator test onError and onException, relevant bugfixes
+2.x: operator test onError and onException, relevant bugfixes
+Merge pull request #3316 from akarnokd/OperatorTestOnBackpressure2x  2.x: operator test onBackpressure(Buffer|Drop|Latest) and their bugfix
+2.x: operator test onBackpressure(Buffer|Drop|Latest) and their bugfix
+Merge pull request #3315 from akarnokd/OperatorTestObserveOn2x  2.x: operator test observeOn
+2.x: operator test observeOn and related bugfixes
+2.x: operator test map, materialize    - OperatorMulticastTest is empty because it is not supported   - Fixed headers   - increased wating time in RefCount test testConnectUnsubscriberRaceCondition   - fixed bugs in toFuture, materialize
+Merge pull request #3314 from akarnokd/OperatorTestIgnoreLastMapNotif2x  2.x: operator test ignoreElements, last, mapNotification
+2.x: operator test ignoreElements, last, mapNotification
+Merge pull request #3313 from akarnokd/OperatorTestGroupBy2x  2.x: operator test for groupBy; fix to groupBy and type argument swap
+2.x: operator test for groupBy; fix to groupBy and type argument swap for GroupedObservable  + added BooleanSubscription to detect cancellation without caring about requests.  I'm still not 100% convinced the groupBy request coordination works properly (i.e., no stall due lack of requests from one of the groups).
+Merge pull request #3312 from akarnokd/OperatorTestFlatMap2x  2.x: operator test flatMap, merge, mergeDelayError
+2.x: operator test flatMap, merge, mergeDelayError  + added operator flatMap of notifications, fixed a bug in onBackpressureBuffer
+Merge pull request #3311 from akarnokd/OperatorTestElementAtFilterFinally2x  2.x: operator test elementAt, filter, finally, first
+2.x: operator test elementAt, filter, finally, first
+Merge pull request #3310 from akarnokd/OperatorTestDoOn2x  2.x: operator test doOn(Request|Subscribe|Unsubscribe).
+2.x: operator test doOn(Request|Subscribe|Unsubscribe).
+Merge pull request #3309 from akarnokd/OperatorTestDistinctEach  2.x: operator test distinct, distinctUntilChanged and doOnEach
+2.x: operator test distinct, distinctUntilChanged and doOnEach   Note: several tests have been ignored due to non-conformance with RS
+Merge pull request #3308 from akarnokd/OperatorTestsDelayDematerialize  2.x: operator test delay, dematerialize
+2.x: operator test delay, dematerialize
+Merge pull request #3307 from akarnokd/OperatorTestDebounceDefaultIfEmpty2x  2.x: Operator debounce and defaultIfEmpty, fix to debounce behavior
+2.x: Operator debounce and defaultIfEmpty, fix to debounce behavior
+Merge pull request #3306 from akarnokd/OperatorTestsCastConcat2x  2.x: operators cast and concat tests
+2.x: operators cast and concat tests  The concat reuses the same inner subscriber to save on its allocation cost which works only if the inner source conforms with the spec and doesn't emit any event after an onComplete(). There is a test that explicitly calls onComplete() twice to test the resilience of concat. The current workaround makes this test pass but any async non-conforming source may still bug out the operator.  This is a tradeoff between safety and performance. If we'd expect such non-conforming behavior, the current optimization has to be turned into a regular individually allocated inner subscribers.
+Merge pull request #3305 from akarnokd/SingleAndNonBackpressured2x  2.x: classes Single and NbpObservable
+2.x: classes Single and NbpObservable  `Single` is a deferred single-value emitting Observable.  `NbpObservable` is the non-backpressure Observable, named this way until the main Observable gets all its tests ported so a refactor can deal with all of them.  I've implemented the most basic construction and operator methods on them.
+Merge pull request #3303 from akarnokd/AsyncSubscription2x  2.x: added missing buffer overload (with boundary selector)
+Fixed fromFuture, added headers
+2.x: added missing buffer overload (with boundary selector)  + added AsyncSubscription that allows setting the actual subscription later and can hold a resource. It has less overhead than SubscriptionArbiter due to single use.
+Merge pull request #3301 from akarnokd/OperatorBufferTest2x  2.x: test for buffer, I'm still missing the boundary-supplier version
+2.x: test for buffer, I'm still missing the boundary-supplier version
+Merge pull request #3300 from akarnokd/OperatorTestsAllAnyAsObservable  2.x: test for operators all, any, asObservable, fixes to all and any
+2.x: test for operators all, any, asObservable, fixes to all and any
+Merge pull request #3299 from akarnokd/OperatorTestsToFutureUsing2x  2.x: test for toFuture and using, changes according to the test
+2.x: test for toFuture and using, changes according to the test expectations  Some tests are now skipped due to being invalid in RS.
+Merge pull request #3298 from akarnokd/OperatorsTestsRefCountTimer2x  2.x: tests for refCount and timer, fixes to flatMap, publish and range
+2.x: tests for refCount and timer, fixes to flatMap and publish, range
+Merge pull request #3297 from akarnokd/OperatorFromIterableRange2x  2.x: unit tests and fixes for fromIterable and range
+2.x: unit tests and fixes for fromIterable and range
+Merge pull request #3294 from akarnokd/OperatorTests2xPart3  More tests and bugfixes to operators.
+More tests and bugfixes to operators.
+Merge pull request #3293 from akarnokd/OperatorTests2xPart2  Test some UnicastSubject, cache, NotificationLite, amb
+Test some UnicastSubject, cache, NotificationLite, amb  + bugfix to cache, skipUntil and takeUnit
+Merge pull request #3292 from akarnokd/OperatorTests2xPart1  Unit test for Blocking operators.
+Unit test for Blocking operators.
+Fixes to MpscLinkedQueue, some minor refactorings.
+BlockingObservable.toFuture cancel races with onSubscribe.
+Missed a return in case of a null value.
+Merge pull request #3284 from akarnokd/ThrottleZipTests2x  Simpler tests of throttleLast, throttleWithTimeout, zip
+Simpler tests of throttleLast, throttleWithTimeout, zip
+Merge pull request #3283 from akarnokd/SubscriberTest2x  SubscriberTests port from 1.x
+SubscriberTests port from 1.x
+Merge pull request #3282 from akarnokd/WindowReduceTests2x  Simpler tests for window reduce, scan, starWith.
+Simpler tests for window reduce, scan, starWith.
+Merge pull request #3280 from akarnokd/ObservableTests2x  ObservableTests and bugfixes.
+Added missing header and fixed javadoc link
+ObservableTests and bugfixes.
+Merge pull request #3279 from akarnokd/TestsToDoOnObservable2x  ConversionTest and DoOnTest
+ConversionTest and DonTest
+Merge pull request #3278 from akarnokd/GroupByMergeNotificationTest2x  Simplest tests of groupBy, merge and Notification
+Simplest tests of groupBy, merge and Notification
+Merge pull request #3277 from akarnokd/ErrorHandlingTests2x  ErrorHandlingTests and EventStream
+ErrorHandlingTests and EventStream  I've changed them to use `safeSubscribe` because plain RS subscribers are not expected to throw.
+Merge pull request #3276 from akarnokd/ConcatTests2x  Simplest concat test from 1.x
+Simplest concat test from 1.x  I've also added convenience overloads to concat 2-9 sources because `concat(Publisher...)` causes overload resolution conflict with `concat(Publisher<Publisher>)`
+Merge pull request #3275 from akarnokd/CombineLatestTest2x  Simplest combineLatest tests and fix to groupBy.
+Simplest combineLatest tests and fix to groupBy.   Forgot to deliver the value inside the GroupedUnicast drain loop.
+Merge pull request #3273 from akarnokd/FirehoseTestFixAttempt2x  Fix attempt to the firehose test.
+Sleeping instead of computational waiting.
+Fix attempt to the firehose test.
+Merge pull request #3271 from akarnokd/UnitTestsPreparation  First unit test and fixes to operators.
+First unit test and fixes to operators.
+Merge pull request #3270 from akarnokd/UnicastSubjectExpansion2x  UnicastSubject javadoc, support for onCancelled notification.
+UnicastSubject javadoc, support for onCancelled notification.   The cancellation notification will come in handy with window (and in groupby). It helps with the case when the main source has been cancelled but the individual windows/groups are still being consumed. If those get cancelled by their single Subscribers, this notification will reach the source and once all windows/groups get cancelled, the main source can be cancelled.  Fix to generator production accounting.
+Merge pull request #3268 from akarnokd/Disposables2x  Standard disposables, changes to resource containers to support them.
+Standard disposables, changes to resource containers to support them.
+2.x: Added plugin handler for creating and receiving the new thread scheduler.
+generate: don't wrap the counter when cancelling a max value.

@@ -1,0 +1,200 @@
+Implement catch-error-value  Automating "rx.exceptions.OnErrorThrowable/addValueAsLastCause" idiom when user code is invoked in onNext. Other minor cleanup.
+Cleaned up naming of observable operator definition fns
+fix gradle spec in README  presumably the group ID should be the same for gradle as for the other dependency managers.
+Update Clojure README
+Experimental warnings
+Update blocking stuff
+Some more core operators
+Clean up future stuff and docs
+Got rid of base. It was weird.
+Replace chain with operators. General core cleanup
+Initial import of indigena-rx  Imported code, fixed namespaces and adusted one test for changes since 0.14.1.
+Merge pull request #924 from benjchristensen/lift-error-handling  Localized Operator Error Handling
+Localized Operator Error Handling  - use the lift function rather than try/catch in subscribe since this catches at the operator level rather than for an entire sequence - unit tests with onErrorResumeNext demonstrating the use cases
+Merge pull request #922 from abersnaze/debug-updates  Changes made while integrating it with our internal system
+Changes made while integrating it with our internal system
+customize diagram/javadocs for doOnTerminate()
+[Gradle Release Plugin] - new version commit:  '0.17.0-RC5-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.0-RC4'.
+Merge pull request #920 from benjchristensen/delete-deprecated-hook-method  Delete Deprecated onSubscribeStart That Doesn't Work
+Delete Deprecated onSubscribeStart That Doesn't Work  - It's messy to make this work so deleting it instead. - Better to move forward in the 0.17 release than try and make this work for the very small percentage (probably only Netflix) that uses it.
+Merge pull request #919 from benjchristensen/zip-bugfix-868  BugFix: Zip Never Completes When Zero Observables
+BugFix: Zip with 0 Observables  Fixes bug reported at https://github.com/Netflix/RxJava/pull/868
+Added additional test to prove issue
+Merge pull request #918 from benjchristensen/doOnTerminate  Operator: doOnTerminate
+Operator: doOnTerminate  Like finallyDo but before emitting the terminal state instead of after.
+[Gradle Release Plugin] - new version commit:  '0.17.0-RC4-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.0-RC3'.
+Merge pull request #910 from benjchristensen/groupBy-selector  Remove groupBy with selector.
+Merge pull request #909 from benjchristensen/scheduler-plugin  Scheduler Plugin Refactor
+Scheduler instances should be or behave like singletons  - remove the Func0 factory signature for Scheduler creation.
+Deprecate Direct Access to Scheduler Implementations  This enforces the convention of using `Schedulers.*` and then makes the RxJavaDefaultSchedulers plugin more reliable.
+Remove groupBy with selector.  Use groupBy.map instead.
+Merge pull request #905 from benjchristensen/scheduler-defaults-plugin  RxJavaSchedulers Plugin
+Rename RxJavaSchedulers to RxJavaDefaultSchedulers  Clearer semantic naming.
+Merge pull request #904 from benjchristensen/merge-subscriptions  Merge: Unsubscribe Completed Inner Observables
+Merge pull request #903 from benjchristensen/scheduler-visibility  Scheduler.Recurse fields should be private
+RxJavaSchedulers Plugin  Allow setting different default schedulers for use by system.
+Merge: Unsubscribe Completed Inner Observables
+Scheduler.Recurse fields should be private
+Merge pull request #902 from johanhaleby/master  Fixed NullPointerException that may happen on timeout
+Fixed NullPointerException that may happen on timeout
+Merge pull request #901 from benjchristensen/groupBy-unit-test  GroupBy Unit Test from #900
+GroupBy Unit Test from #900  https://github.com/Netflix/RxJava/issues/900
+[Gradle Release Plugin] - new version commit:  '0.17.0-RC3-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.0-RC2'.
+Merge pull request #898 from benjchristensen/safe-subscriber-plugin-error-handling  Handle illegal errors thrown from plugin
+Handle illegal errors thrown from plugin
+Merge pull request #892 from benjchristensen/onErrorFlatMap  onErrorFlatMap + OnErrorThrowable
+Refactor to more descriptive name: OnErrorThrowable.addValueAsLastCause
+Attach Value Without Wrapping  I found a way to pass the value down the chain without wrapping the Throwable. This way it only shows up if using `onErrorFlatMap` or looking at the final cause on any given Throwable.  A final cause will be added so Throwables end up like this:  java.lang.RuntimeException: Forced Failure 	at rx.operators.OperatorMapTest$5.call(OperatorMapTest.java:164) 	at rx.operators.OperatorMapTest$5.call(OperatorMapTest.java:1) 	at rx.operators.OperatorMap$1.onNext(OperatorMap.java:54) 	at rx.operators.OnSubscribeFromIterable.call(OnSubscribeFromIterable.java:43) 	at rx.operators.OnSubscribeFromIterable.call(OnSubscribeFromIterable.java:1) 	at rx.Observable$2.call(Observable.java:269) 	at rx.Observable$2.call(Observable.java:1) 	at rx.Observable$2.call(Observable.java:269) 	at rx.Observable$2.call(Observable.java:1) 	at rx.Observable.subscribe(Observable.java:7022) 	at rx.Observable.subscribe(Observable.java:6945) 	at rx.operators.OperatorMapTest.testMapWithError(OperatorMapTest.java:177) 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) 	at java.lang.reflect.Method.invoke(Method.java:606) 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45) 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42) 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20) 	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28) 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263) 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68) 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47) 	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) 	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) 	at org.junit.runners.ParentRunner.run(ParentRunner.java:300) 	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50) 	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38) 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467) 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683) 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390) 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197) Caused by: rx.exceptions.OnErrorThrowable$OnNextValue: OnError while emitting onNext value: fail 	at rx.exceptions.OnErrorThrowable.decorate(OnErrorThrowable.java:55) 	at rx.operators.OperatorMap$1.onNext(OperatorMap.java:56) 	... 33 more  Note the final cause: Caused by: rx.exceptions.OnErrorThrowable$OnNextValue: OnError while emitting onNext value: fail  Then when onErrorFlatMap is used, it retrieves that final cause out to create an OnErrorThrowable so people don't have to go fetch it from the cause chain.
+Merge pull request #895 from zsxwing/android-operator  Rewrite OperationObserveFromAndroidComponent to OperatorObserveFromAndro...
+Merge pull request #883 from zsxwing/swing-thread-safe  Make Subscriptions of SwingObservable thread-safe
+Make Subscriptions of SwingObservable thread-safe
+Rewrite OperationObserveFromAndroidComponent to OperatorObserveFromAndroidComponent
+Merge pull request #896 from abersnaze/observable-string-remove-7  removing java 7 dep
+removing java 7 dep
+Merge pull request #885 from abersnaze/observable-string-from  Fixed an issue with the from(Reader) added a bunch of unit tests.
+Merge pull request #894 from benjchristensen/synchronize-isTerminated  Synchronized Operator Check for isTerminated
+Synchronized Operator Check for isTerminated  As per https://github.com/Netflix/RxJava/issues/872 make Synchronized reject events after terminal state. This class should not unsubscribe though. That is only for SafeSubscriber at the end.
+Merge pull request #893 from benjchristensen/parallel  Change Parallel to use Long instead of Int
+Change Parallel to use Long instead of Int
+onErrorFlatMap + OnErrorThrowable
+Refactor OnErrorResumeNextViaFunction to Operator
+Merge pull request #881 from benjchristensen/lift-performance  Lift Performance
+Fix DebugHookTest as per direction from @abersnaze
+Lift Performance  Using `f.lift()` directly instead of `subscribe` improves ops/second on the included test from 5,907,721 ops/sec to 10,145,486 ops/sec
+Merge pull request #891 from benjchristensen/rx-util  Eliminate rx.util.* dumping grounds
+rx.util.functions deprecated proxies
+Remove rx.util usage from sub-modules  All sub-modules and tests building and passing
+Move rx.util.functions to rx.functions  Eliminate dumping ground of rx.util
+Update sub-modules
+Move time based util classes to rx.schedulers  Eliminate dumping ground of rx.util
+Move Exception Classes to rx.exceptions  Eliminate dumping ground of rx.util
+Merge pull request #890 from benjchristensen/subscribeOn-subscriptions  Split SubscribeOn into SubscribeOn/UnsubscribeOn
+Split SubscribeOn into SubscribeOn/UnsubscribeOn  Working with @headinthebox based on discussions at https://github.com/Netflix/RxJava/pull/869 and https://github.com/Netflix/RxJava/pull/880#issuecomment-35163539 we determined that there are times when `unsubscribeOn` behavior is needed.  The `subscribeOn` operator can not mix `subscribe` and `unsubscribe` scheduling behavior without breaking the `lift`/`Subscriber` behavior that allows unsubscribing synchronous sources. The newly added `unsubscribeOn` operator will not work with synchronous unsubscribes, but it will work for the targeted use cases such as UI event handlers.
+Merge pull request #888 from benjchristensen/observeOn-bounded-unbounded  Revert Bounded ObserveOn
+Revert Bounded ObserveOn
+Merge pull request #887 from benjchristensen/filter-cleanup  Remove Bad Filter Logic
+Remove Bad Filter Logic  This code was accidentally committed during exploration of groupBy/subscribeOn.
+Fixed an issue with the from(Reader) added a bunch of unit tests.
+Merge pull request #880 from zsxwing/android-unsubscribe-thread-safe  Force ViewObservable be subscribed and unsubscribed in the UI thread
+Force ViewObservable be subscribed and unsubscribed in the UI thread
+fixing javadoc layout bugs
+0.17.0-RC2-SNAPSHOT
+[Gradle Release Plugin] - pre tag commit:  '0.17.0-RC1'.
+Merge pull request #877 from pyrtsa/patch-1  Correct synchronization guard in groupByUntil
+Merge pull request #878 from benjchristensen/scheduleRecursive  Scheduler.scheduleRecursive
+Scheduler.scheduleRecursive  Make recursive scheduling a first-class citizen without needing to refer to "this" which doesn't work inside lambdas (Java8/Scala/etc).          Schedulers.newThread().scheduleRecursive(new Action1<Recurse>() {             @Override             public void call(Recurse r) {                 System.out.println("do stuff on thread: " + Thread.currentThread() + " Time: " + System.nanoTime());                 r.schedule(100, TimeUnit.MILLISECONDS);             }         });
+Merge pull request #876 from benjchristensen/751-merge  Manual Merge of #750
+Correct synchronization guard in groupByUntil  Can't see how `synchronized (key) { ... }` could have been correct here; `key` will hardly ever be the same instance for different invocations of `keySelector`, and the comment on line 73 clearly states `gate` to be the guard for `map`.
+Merge branch 'issue750' of github.com:vigdorchik/RxJava into 751-merge  Conflicts: 	language-adaptors/rxjava-scala/src/test/scala/rx/lang/scala/ObservableTest.scala
+Merge pull request #869 from benjchristensen/subscribeOn+groupBy  subscribeOn + groupBy
+Revert to 1.8 as 1.10 is causing the build to fail  ... complicated build server issues ... apparently isn't going to be resolved until Gradle 1.12.
+Merge pull request #7 from zsxwing/subscribeOn+groupBy  Add timeout to CoundDownLatch, ignore InterruptException and fix the tes...
+Merge pull request #874 from davidmoten/master  Update CompositeSubscriptionTest.java
+Update CompositeSubscriptionTest.java  Fix apparent typo, unsubscription of s2 was not checked and should have been.
+Add timeout to CoundDownLatch, ignore InterruptException and fix the test to be consistent with the new subscribeOn
+0.17.0-RC1-SNAPSHOT
+Fix Unit Tests related to SubscribeOn  - timeout test could be interrupted when unsubscribed - groupBy.subscribeOn needs blocking buffer
+SubscribeOn Scheduler/Unsubscribe Behavior
+javadoc: document more exception throwing
+Comment on Parallel  - the previously performed observeOn changes appear to have resolved the non-determinism
+Hide Buffer/Blocking SubscribeOn Behavior  - I want to have it for internal usage but am not ready to publicly expose it.
+javadoc changes: add nest() diagram, make some 0.17-related corrections, fix typos, make formatting consistent & 112-column
+Merge pull request #870 from zsxwing/timeout-scala  Add the selector variants of timeout in RxScala
+Add the selector variants of timeout in RxScala
+GroupBy and SubscribeOn Tests Passing
+TestSubscriber.awaitTerminalEventAndUnsubscribeOnTimeout
+Merge branch 'BlockingBufferUntilExperiment' of github.com:akarnokd/RxJava into subscribeOn-blockingBuffer
+Merge pull request #866 from benjchristensen/operator-touchup  Update OperationScan to OperatorScan
+Update OperationScan to OperatorScan  Migrate to use updated conventions of Operator* classes that implement rx.Observable.Operator
+Merge pull request #790 from abersnaze/scan  Convert to scan to use lift
+Convert to scan to use lift
+Merge pull request #862 from zsxwing/timeout-docs  Update the timeout docs
+Merge pull request #863 from Acardiac/swing-rel-mouse-motion  Optimize SwingMouseEventSource.fromRelativeMouseMotion
+Merge pull request #860 from abersnaze/merge-generics  Fixing the generics for merge and lift
+Check child unsubscription status more eagerly.
+Added bounded buffering capability to SubscribeOn
+Optimize Swing-RelativeMouseMotion pipeline
+Fixing the generics for merge and lift
+Proposed solution to the time gap, using unbounded buffering.
+Update the timeout docs
+Merge pull request #859 from Acardiac/fragment-host  Add 'Fragment-Host' to rxjava-contrib/debug module for OSGi
+Add 'Fragment-Host' to rxjava-contrib/debug module for OSGi
+Merge pull request #857 from benjchristensen/operator-type  Change Lift to use rx.Observable.Operator
+Change Lift to use rx.Observable.Operator  The generics insanity has to stop.
+Merge pull request #854 from abersnaze/oncreate  The onCreate hook disappeared
+Merge pull request #855 from benjchristensen/observeOn+queue  Move InterruptibleBlockingQueue Inside ObserveOn
+The onCreate hook disappeared
+Move InterruptibleBlockingQueue Inside ObserveOn  I decided I'm not ready to commit to this in the public API so am leaving it an implementation detail of ObserveOn. While working on groupBy, parallel and subscribeOn this queue was not the right solution.
+Fix import org.apache.http.protocol.HttpContext;
+Merge pull request #763 from chrisgrimm/master  Added support for custom functions in combineLatest.
+Merge pull request #853 from benjchristensen/string-observable  StringObservable Update
+Merge branch 'update-string' of github.com:abersnaze/RxJava into string-observable
+Merge pull request #852 from benjchristensen/rxjava-debug  rxjava-debug
+Merge branch 'debug' of github.com:abersnaze/RxJava into rxjava-debug  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #777 from akarnokd/NextTestFix  Fixed testSingleSourceManyIterators
+Merge pull request #846 from johanhaleby/master  Added overloaded createRequest method that takes an HttpContext instance
+Merge pull request #851 from zsxwing/timeout  Reimplement the timeout operator and fix timeout bugs
+Merge pull request #849 from Acardiac/fragment-host  Add 'Fragment-Host' to rxjava-contrib modules for OSGi
+Add the missing License
+Rename the files
+Reimplement the timeout operator and fix timeout bugs
+Add 'Fragment-Host' to rxjava-contrib modules for OSGi
+Add timeout unit tests
+Merge pull request #847 from benjchristensen/groupby-and-friends  Various Changes While Fixing GroupBy
+Comment Out "Time Gap" Tests on GroupBy  See https://github.com/Netflix/RxJava/issues/844
+Remove Stray Println
+Further TestSubscriber Functionality
+More Parallal Unit Tests  - stressing it further while hunting down non-determism
+InterruptibleBlockingQueue.size()
+Revert to OperationMergeMaxConcurrent  The new OperatorMerge class still exists, but reverting this one. I messed up the thread safety and don't have time to figure it out.
+Added overloaded createRequest method that takes an HttpContext instance
+Revert Observable.Range to support 0 for count.  It had been changed to only support >0, put it back to >=0
+Migrate from Deprecated Notification Constructors
+IllegalStateException if Repeat receives an onError
+ObserveOn using InterruptibleBlockingQueue
+GroupBy Fixes  - There were bugs in the implementation, this fixes some of them. In particular, it was unsubscribing from the parent when all children were completed, and that would unsubscribe even if new groups were going to come. - There are still problems related to `subscribeOn` and the "time gap" that are being played with. Unit tests related to that are still failing.
+Observable.nest()  Make this public so that operator chaining can use it. Usage would be someObservable.nest().lift(f) for lifting a function that expects Observable<Observable<T>> such as `repeat`.
+InterruptibleBlockingQueue  - used in MergeMaxConcurrent and ObserveOn - allows for blocking onNext calls when full while still supporting unsubscribe.
+Split Merge and MergeMaxConcurrent  - Splitting them allows clearer code and avoids use of queue for normal merge.
+OperatorFilter Migrated to Lift Operator  - support synchronous unsubscribe now
+Merge pull request #845 from MarioAriasC/master  Fix problem with Subscription
+Fix problem with Subscription
+Updating StringObservable to use lift And added from(InputStream) and from(Reader)
+Merge branch 'master' into debug  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #842 from benjchristensen/range-unittest  Test Unsubscribe
+Test Unsubscribe  - also cleaned up some stuff I remembered after merging last commits
+Merge pull request #841 from benjchristensen/operator-range  Range OnSubscribe
+OnSubscribeRange
+Rename OperatorFromIterable to OnSubscribeFromIterable
+Observer -> Subscriber
+Merge pull request #837 from abersnaze/perf_jmh  Perf with JMH
+Merge pull request #838 from samuelgruetter/OnCompletedScala  Make Scala OnCompleted Notification an object
+Merge pull request #835 from benjchristensen/observeOn  ObserveOn Operator with Backpressure
+ObserveOn with Buffer Size
+Performance Testing
+Test to prove non-blocking despite blocking onNext
+Changed to use SubscribeOn instead of ObserveOn for Async Behavior  The ObserveOn operator is for moving where it executes, not making it async. SubscribeOn makes it async.
+Custom InterruptibleBlockingQueue for ObserveOn  Since we are blocking the producer on* notifications we need to interrupt it on unsubscribe events. I need to do it on the data structure and not the thread as the thread could change for each onNext and that could have unexpected consequences.
+Fast Producer / Slow Consumer Backpressure Tests for ObserveOn
+GroupBy Test Improvement  ObserveOn was the wrong mechanism for delaying behavior as it was relying on the buffering of observeOn. Now using delay() to delay the group since observeOn no longer buffers.
+Make Parallel use NewThread until Computation Fixed  See https://github.com/Netflix/RxJava/issues/713 It was causing non-deterministic behavior, random test failures and poor performance.
+ObserveOn with Backpressure
+ObserveOn Merge from @akarnokd:OperatorRepeat2
+Merge pull request #839 from benjchristensen/error-handling  Error Handling: OnErrorNotImplemented and java.lang.Error
+Special Handling of java.lang.Error and OnErrorNotImplemented  - https://github.com/Netflix/RxJava/issues/748#issuecomment-32471495 - https://github.com/Netflix/RxJava/issues/771 - https://github.com/Netflix/RxJava/issues/789  - SynchronizedObserver is for synchronization, not error handling or contract enforcements, that's the job of SafeSubscriber - Removed some unit tests that were asserting unsubscribe behavior that relied on SynchronizedObserver. They were testing something they are not responsible for.
+Merge branch 'master' of github.com:Netflix/RxJava into OnCompletedScala
+make Scala OnCompleted Notification an object instead of a class
+Small change to convert from Caliper to JMH.
+Setting up the new subproject for debugging observable chains.
+Merge pull request #834 from daveray/update-clojure-for-0.17  Update clojure for 0.17
+Update Clojure examples to use new Observable/create
+Make rx/action implement new OnSubscribe interface
+Updated nrepl task
+Added the first of the perf tests
+get the perf source working
+Fixed testSingleSourceManyIterators
+Added support for custom functions in combineLatest.
+Provide Observable.timestamp(Scheduler) to be used in the tests.

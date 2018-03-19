@@ -1,0 +1,1 @@
+Remove empty list item from `io.reactivex.package-info.java` (#4874)

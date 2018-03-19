@@ -1,0 +1,200 @@
+Combine RefCountTest and RefCountTests
+Merge pull request #422 from ragalie/jruby  JRuby function wrapping support
+Merge pull request #420 from samuelgruetter/scalaadaptor  Scala Adaptor
+Merge pull request #415 from zsxwing/empty-with-scheduler  Implemented the 'Empty' operator with scheduler
+Merge pull request #414 from zsxwing/skip-last  Implemented the 'SkipLast' operator
+Merge pull request #413 from zsxwing/take-last  Fixed the issues of takeLast(items, 0) and null values
+Merge pull request #411 from petermd/fix-schedtests  update counter before triggering latch
+Merge pull request #410 from zsxwing/contains  Implemented the 'Contains' operator
+Merge pull request #425 from benjchristensen/pull-407-refCount  Manual Merge of Pull Request #407
+Unit Test while testing refCount submission
+Merge branch 'master' of github.com:johnhmarks/RxJava into pull-407-refCount
+JRuby README include usage instructions
+Up rspec version
+JRuby license headers
+JRuby README
+Handle OnSubscribeFuncs correctly in JRuby interop logic  OnSubscribeFunc#onSubscribe expects to return a Subscription. I am unable to successfully cast the return value of a RubyProc, even if that value _is_ an object that implements the Subscription interface, into a Subscription in Java-land (Java reports that ConcreteJavaProxy cannot be cast). Instead I allow JRuby to handle OnSubscribeFunc arguments through its default proxy logic, which works correctly.
+JRuby performance test
+JRuby wrapper specs
+Implement JRuby function wrapping support  Whenever a RubyProc is passed into an Observable method, wrap it in a Java class that implements the correct RxJava interfaces. This avoids ambiguous method errors and costly proxy instantiations by JRuby's default method delegation logic.
+update completeness test
+use Tuple instead of Timestamped
+remove takeWhileWithIndex
+rename fold to foldLeft
+improve scaladoc
+changes from review + scaladoc improvements
+head, headOrElse, zip(3), zip(4)
+apply review patch
+make defer implementation more explicit
+implicit function conversion hack just for nicer scaladoc
+allow to construct Observables ina similar way as futures
+Added missing license header
+Added MSDN links
+Implemented the 'Empty' operator with scheduler
+update TODO
+make all constructors private
+TestScheduler example
+add exists and isEmpty
+Optimize for 'count == 0'
+Fixed the issue about null values
+Updated the comments
+Implemented the 'SkipLast' operator
+Fixed the issue of takeLast(items, 0)
+Scheduler and TestScheduler
+work on Schedulers  rx.lang.scala.concurrency.UnitTest.testInterval fails
+start TestScheduler
+javadoc -> scaladoc translation  with the following replacements:  \{@link (\w+)#(\w+)\s+(\w+)\} [[$1.$2 $3]]  \{@link (\w+)#(\w+)\((.*)\)\} [[$1.$2($3)]]  \{@link #(\w+)\} [[Observable.$1]]  \{@link (\w+)#(\w+)\} [[$1.$2]]  <code> `  </code> `  \*\s*<p>\s*\n *\n  \{@link (\w+)\} [[$1]]  \{@link ((\w|\.)+)\} [[$1]]  \[\[rx\. [[rx.lang.scala.  \{@code\s*(([^}])+)\} `$1`  @param <(\w+)> @tparam $1  &lt;(\w+)&gt; [$1]  <(\w+)> [$1]  "timespan" argument `timespan` argument  "timeshift" argument `timeshift` argument  \[\[Action0\]\] function  plus some manual replacements
+update README and TODO
+improve scaladoc
+add rx.lang.scala.concurrency.Schedulers
+put unapply of Notifications into companions  no more scalac crash
+scaladoc for Observer, Subject, Scheduler, and  new Notification class with unapply (scalac crashes)
+Add one more unit test
+Implemented the 'Contains' operator
+Timestamped and its companion can now have the same name
+Version 0.14.2
+[Gradle Release Plugin] - new version commit:  '0.14.3-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.2'.
+Merge branch 'master', remote-tracking branch 'origin'
+update counter before triggering latch
+Removed static variant of refCount
+work around scalac bug by renaming companion object `Timestamped` to  `TimestampedObject`
+remove `implicit` from Timestamped
+Merge branch 'master' of github.com:johnhmarks/RxJava into pull-407-refCount
+Merge pull request #403 from zsxwing/cast  Implemented the 'cast' and 'ofType' operators
+Merge pull request #401 from zsxwing/default_if_empty  Implemented the 'DefaultIfEmpty' operator. See #34
+Opening/Closing, Timestamped with unapply, BlockingObservable with WithFilter
+Merge pull request #408 from samuelgruetter/idiomaticscala  Do not run RxScalaDemo on each build
+Merge pull request #409 from zsxwing/synchronize-lock  Implemented 'Synchronize' with 'lock'
+make Subscription an implicit value class
+how to add RxJava core to scaladoc input
+move MovieLibUsage.java from project rxjava-scala-java to project rxjava-scala and delete project rxjava-scala-java
+move examples from `src/main/scala` to `src/examples/scala`  and tweak build.gradle to make this work
+add Documentation section to README
+Implemented 'Synchronize' with 'lock'
+do not run RxScalaDemo on each build,  because it does not do automatic testing
+Implemented publishLast
+Minor tweak
+Removed classes dir
+Finished RefCount - all tests pass
+Merge branch 'master' of github.com:Netflix/RxJava
+Merge branch 'master' into default_if_empty
+Merge branch 'master' into cast
+Used 'isInstance' to replace 'isAssignableFrom' and added a unit test
+Used 'cast' to remove SuppressWarnings
+Implemented the 'ofType' operator
+Added a klass parameter
+Added the MSDN link
+Implemented 'cast' operator
+Update README.md
+Update README.md
+Version 0.14.1
+[Gradle Release Plugin] - new version commit:  '0.14.2-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.1'.
+Merge pull request #402 from benjchristensen/event-stream-http  Fixes to rxjava-apache-http
+Fixes to rxjava-apache-http  - made Content-Type inspection more reliable - other small improvments
+Update README.md
+Update README.md
+Update README.md
+Update README.md
+Create README.md
+Version 0.14.0
+Implemented the 'DefaultIfEmpty' operator. See #34
+[Gradle Release Plugin] - new version commit:  '0.14.1-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.0'.
+0.14.0-SNAPSHOT
+Update CHANGES.md
+Merge pull request #400 from benjchristensen/distinct-comparator  Removing 'comparator` overloads of `distinct`
+Removing 'comparator` overloads of `distinct`  Removing these fairly recently added overloads as they turn out to not be the best approach.  Discussion ongoing as to how to implement them at https://github.com/Netflix/RxJava/issues/395
+Merge pull request #397 from benjchristensen/apache-async-http  Observable API for Apache HttpAsyncClient 4.0
+Merge pull request #399 from benjchristensen/pull-390-element-at  Merge Pull #390 - elementAt
+Added missing license header
+Merge branch 'element_at' of git://github.com/zsxwing/RxJava into pull-390-element-at  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #398 from benjchristensen/merge-385-any  Merge 'any' Pull Request
+Change 'any' to 'isEmpty'/'exists'
+Merge branch 'any' of git://github.com/zsxwing/RxJava into merge-385-any
+[Gradle Release Plugin] - new version commit:  '0.13.6-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.13.5'.
+Merge pull request #396 from samuelgruetter/idiomaticscala  Add missing methods to Scala Adaptor
+Observable API for Apache HttpAsyncClient 4.0
+delete comparison.md because tooltips do not work on github
+add Scala/Java Observable comparison
+add markdown export to CompletenessTest
+update Scala TODO list
+add combineLatest, apply(java Future), remove docu without impl
+add mergeDelayError and flattenDelayError
+add `parallel` and example
+add concat, length, retry; rename replay()->replay, merge->flatten
+add distinct and distinctUntilChanged, but  those with custom equality are not yet there because of issue #395
+first and firstOrElse
+add methods and examples
+add merge operation and examples  and try to make Olympics groupBy work with timing, but did not work due to problems with RxJava groupBy, see pull #289
+Merge branch 'master' into idiomaticscala
+Version 0.13.4
+[Gradle Release Plugin] - new version commit:  '0.13.5-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.13.4'.
+0.13.4-SNAPSHOT  Discarding 0.13.3 as the build upload to Sonatype failed so 0.13.3 will be skipped.
+Merge pull request #394 from benjchristensen/issue-388  Change Interval and Sample default Scheduler
+Merge pull request #393 from benjchristensen/parallel-operator  Parallel Operator & ObserveOn/ScheduledObserver Fixes
+Change Interval and Sample default Scheduler  Change to use built-in thread-pools rather than creating a new Executor on each invocation. The built-in ones are shared across all operators, have threads ready, are marked as daemon threads so don't prevent system shutdown, and are named for clarity when looking at thread dumps and debuggers.
+Merge pull request #391 from brad-uk/master  remove scalatest packages from OSGI imports
+Reorg fields
+Making Observable.synchronize an instance method rather than static
+Parallel Operator  This operator came out of discussions and work with @headinthebox to allow explicit and composable declaration of blocks of work that can be scheduled for parallel execution.  An Observable event stream will be sharded using groupBy using a value from Scheduler. degreeOfParallelism() (defaulting to number of CPU cores) and perform the defined work in parallel.  Instead of having various parallel operators like parallelMap, parallelFilter parallelScan etc this can work generically for any operators or sequence of operators.
+Fix ObserveOn, NewThreadScheduler and ScheduledObserver bugs  @headinthebox and I were working on some code and found differences in behavior between Rx.Net and RxJava with observeOn. This commit should fix that.
+Adding marble diagrams
+Adding marble diagrams
+add zipWithIndex, sum, product, and an explanation why no average
+all move explanations why methods are not present in Observable to CompletenessTest
+completeness test now also checks static methods
+extract static methods in completeness test
+Merge branch 'master' of github.com:Netflix/RxJava into completenesstest
+completeness test for instance methods in Scala adaptor
+Version 0.13.2
+[Gradle Release Plugin] - new version commit:  '0.13.3-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.13.2'.
+Merge pull request #382 from mattrjacobs/remove-old-rximplicits  Removing deprecated RxImplicits from rxjava-scala
+Merge pull request #389 from samuelgruetter/idiomaticscala  Scala Adaptor Improvements
+Implemented the 'elementAt' and 'elementAtOrDefault' operators. see #41
+remove scalatest packages from OSGI imports
+start completeness test
+add methods to BlockingObservable
+add multicast, publish, replay
+use Java Subject<T, R> as contravariant in T and covariant in R
+add comment to ImplicitFunctionConversions and reformat it  to use indent of 2 spaces, as all other files in rx.lang.scala
+move ImplicitFunctionConversions out of internal package
+finish groupBy example
+more examples/tests in RxScalaDemo
+make Olympics example data timed
+Follow the correct logic of 'any' operator. See #385
+Solve the conflict of 'any' method name in unit tests
+Add 'any' operator to Observable
+update scala README
+Implemented the 'any' operator
+Merge branch 'master' of github.com:Netflix/RxJava into groupBy
+Merge pull request #381 from jmhofer/mapWithIndex  Implemented `mapWithIndex`
+start groupBy examples
+first Scala groupBy implementation
+Removing deprecated RxImplicits from rxjava-scala
+Merge pull request #380 from jmhofer/distinct-with-comparator  Implemented `distinct` and `distinctUntilChanged` variants using a comparator
+Merge pull request #379 from jmhofer/interval-multiple-subscribers  Make `interval` work with multiple subscribers
+simplified error handling as this is already done on the outside
+implemented mapWithIndex
+added tests against multiple subscriptions, just to be on the safe side
+added comparator versions of distinct operation, too
+added both new variants to observable
+added test against comparator usage
+initial introduction of an equality comparator into distinct implementation, still needs test
+wrapped subscription so that interval works for multiple subscribers and added a test for staggered subscriptions with publish/connect, too
+added another test against multiple staggered subscribers
+added missing mock
+added test with multiple subscribers
+Version 0.13.1
+[Gradle Release Plugin] - new version commit:  '0.13.2-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.13.1'.
+Merge pull request #378 from benjchristensen/tests  UnitTests while working on EventStream use cases
+Merge and work on RefCount
+Merge and work on RefCount
+Merge and work on RefCount
+RefCount work in progress
+RefCount work in progress

@@ -1,0 +1,203 @@
+Merge pull request #3077 from ReactiveX/PLP  Add "since" annotations to javadocs for new Experimental/Beta methods
+Merge pull request #3079 from davidmoten/foreach-javadoc  fix forEach javadoc
+Merge pull request #3085 from davidmoten/on-drop-test-fix  break tests as approach timeout so that don't fail on slow machines
+Merge pull request #3086 from davidmoten/exec-sched-test-timing  improve ExecutorSchedulerTest.testOnBackpressureDrop
+window() behavior changed, so did marble diagram & thus its size
+Merge remote-tracking branch 'origin/1.x' into PLP
+Merge pull request #3093 from akarnokd/MergeAsyncTest  Fix request != 0 checking in the scalar paths of merge()
+Fix request != 0 checking in the scalar paths of merge()
+1.0.13
+Merge pull request #3092 from benjchristensen/single-toObservable  Single.toObservable
+Merge pull request #3091 from akarnokd/AutoConnectFix  Fix autoConnect calling onStart twice.
+Single.toObservable
+Private toObservable renamed to asObservable  - Making room for the public toObservable method.
+Fix autoConnect calling onStart twice.
+Merge pull request #3081 from abersnaze/cache-rollback  Revert of cache/replay
+Revert "cache now supports backpressure"  This reverts commit 18ff5afd380625f9157d9e9a3144baf845c09086.
+Revert "If cache() now supports backpressure, correct javadocs to indicate this."  This reverts commit ec3d522c826c3135b9f5e3a9bb34f62756ec95cc.
+Revert "Operator replay() now supports backpressure"  This reverts commit 82d7b9cca2efd0a8f36ec3b700bb8f34c445a093.
+Revert "No need to allocate a new head node."  This reverts commit 46f9138f509f22be61d435cfb79335396fc92c48.
+reduce probability of ExecutorSchedulerTest.testOnBackpressureDrop failing on slow machine
+break tests as approach timeout so that don't fail on slow machines
+fix forEach javadoc
+Add "since" annotations to javadocs for new Experimental/Beta methods
+Binary examples including SNAPSHOT
+Merge pull request #2928 from akarnokd/OperatorMergeFullRewrite  Merge and MergeMaxConcurrent unified and rewritten
+Merge fully rewritten and other related optimizations
+Merge pull request #3023 from akarnokd/AutoConnect  ConnectableObservable autoConnect operator
+Merge pull request #3039 from akarnokd/WindowFuncFix  Window with Observable: fixed unsubscription and behavior
+Merge pull request #3045 from akarnokd/ElementAtImprovement  ElementAt request management enhanced
+Merge pull request #3047 from akarnokd/OperatorReplayBackpressure  Operator replay() now supports backpressure
+Merge pull request #3048 from akarnokd/CompositeExceptionNull  CompositeException extra NPE protection
+Merge pull request #3055 from davidmoten/single-subscribe-fix  toSingle() should use unsafeSubscribe
+Merge pull request #3058 from davidmoten/subscriber-javadoc  add and improve javadoc in Subscriber
+Merge pull request #3065 from davidmoten/subscribers-wrap  add Subscribers.wrap
+add Subscribers.wrap
+Merge pull request #3069 from ReactiveX/PLP  Improve toSingle() javadoc (diagram, see also, since-annotation)
+Improve toSingle() javadoc (diagram, see also, since-annotation)
+add and improve javadoc in Subscriber
+toSingle should use unsafeSubscribe
+Merge pull request #3049 from tilal6991/1.x  single: add toSingle method to Observable
+single: add toSingle method to Observable  * closes ReactiveX/RxJava#3038 * this method allows an observable which is guaranteed to return exactly one   item to be converted to a Single * NOTE: the semantics of this function are very similar to that of single * i.e. errors are passed through, more than one item results in an   IllegalArgumentException, completion without emission results in a   NoSuchElementException and exactly one item is passed through the onSuccess   method of SingleSubscriber
+Merge pull request #3052 from akarnokd/FixSerializedObserverTest  Reduce test failure likelihood of testMultiThreadedWithNPEinMiddle
+Reduce test failure likelihood of testMultiThreadedWithNPEinMiddle
+CompositeException extra NPE protection
+No need to allocate a new head node.
+Operator replay() now supports backpressure
+ElementAt request management enhanced
+Merge pull request #3042 from davidmoten/default-if-empty-backp-2  add backpressure support for defaultIfEmpty()
+Merge pull request #3043 from davidmoten/test-subscriber-javadoc  TestSubscriber javadoc cleanup
+add backpressure support for defaultIfEmpty()
+TestSubscriber javadoc improvements
+Merge pull request #3028 from akarnokd/DelayErrorCutaheadFix  Delay: error cut ahead was not properly serialized
+Merge pull request #3033 from davidmoten/take-last-javadoc  takeLast() javadoc fixes, standardize parameter names (count instead of num)
+Window with boundary observable: fixed unsubscription and behavior.
+Merge pull request #3034 from davidmoten/empty-2  Instantiate EMPTY lazily
+instantiate EMPTY lazily
+takeLast javadoc fixes, standardize on parameter names (count instead of num), improve message in OperatorTakeLast exception
+Merge pull request #3031 from benjchristensen/fix-flatMapIntPassthruAsync  Fix OperatorFlatMapPerf.flatMapIntPassthruAsync Perf Test
+Fix OperatorFlatMapPerf.flatMapIntPassthruAsync Perf Test  This test was reported broken in https://github.com/ReactiveX/RxJava/pull/2928#issuecomment-113229698  Fixing by adding the use of LatchedObserver.  Previously broken test results:  ``` r.o.OperatorFlatMapPerf.flatMapIntPassthruAsync         1  thrpt         5   363615.622   115041.519    ops/s r.o.OperatorFlatMapPerf.flatMapIntPassthruAsync      1000  thrpt         5      350.204      125.773    ops/s r.o.OperatorFlatMapPerf.flatMapIntPassthruAsync   1000000  thrpt         5        0.319        0.184    ops/s ```  Fixed results:  ``` r.o.OperatorFlatMapPerf.flatMapIntPassthruAsync         1  thrpt         5   102109.681     8709.920    ops/s r.o.OperatorFlatMapPerf.flatMapIntPassthruAsync      1000  thrpt         5      403.071      130.651    ops/s r.o.OperatorFlatMapPerf.flatMapIntPassthruAsync   1000000  thrpt         5        0.355        0.070    ops/s ```
+Merge pull request #3029 from akarnokd/TabsReplacedWithSpaces  Replaced tabs with spaces for good.
+Replaced tabs with spaces for good.
+Delay: error cut ahead was not properly serialized
+If cache() now supports backpressure, correct javadocs to indicate this.
+ConnectableObservable autoConnect operator
+Merge pull request #2997 from davidmoten/redo-fix-2  Fix retry() race conditions
+Merge pull request #2969 from akarnokd/OperatorCacheRewrite2  Operator cache() now supports backpressure
+Merge pull request #2995 from davidmoten/switch-overflow  switchOnNext - ensure initial requests additive and fix request overflow
+cache now supports backpressure
+Merge pull request #2982 from davidmoten/test-sub-factory-methods  TestSubscriber - add factory methods
+Merge pull request #2975 from abersnaze/interval  Deprecate and rename two timer overloads to interval
+Merge pull request #2970 from akarnokd/BackpressureBlockDeprecated  Deprecated onBackpressureBlock
+Merge pull request #2972 from akarnokd/WindowUnsubscribeToComplete  Fixed window(time) to work properly with unsubscription, added
+Merge pull request #3018 from davidmoten/ts-await-bug  TestSubscriber - fix awaitTerminalEventAndUnsubscribeOnTimeout
+Merge pull request #2983 from akarnokd/MultiOnStartFix  Fixed multiple calls to onStart.
+Merge pull request #3019 from ReactiveX/PLP  Javadoc improvements for new Single class
+A handful more javadoc changes (misnamed @params and such)
+Javadoc improvements.
+Add marble diagrams for Single operators.
+fix awaitTerminalEventAndUnsubscribeOnTimeout
+Merge pull request #3012 from benjchristensen/single-type  rx.Single
+rx.Single  Adds `rx.Single` as an "Observable Future" for representing work with a single return value.  See https://github.com/ReactiveX/RxJava/issues/1594 rx.Future/Task/Async/Single  This provides a type similar to `Future` in that it represents a scalar unit of work, but it is lazy like an `Observable` and many `Single`s can be combined into an `Observable` stream. Note how `Single.zip` returns `Single<R>` whereas `Single.merge` returns `Observable<R>`.  Examples of using this class:  ```java import rx.Observable; import rx.Single;  public class TaskExamples {      public static void main(String... args) {         // scalar synchronous value         Single<String> t1 = Single.create(t -> {             t.onSuccess("Hello World!");         });          // scalar synchronous value using helper method         Single<Integer> t2 = Single.just(1);          // synchronous error         Single<String> error = Single.create(t -> {             t.onError(new RuntimeException("failed!"));         });          // executing         t1.subscribe(System.out::println);         t2.subscribe(System.out::println);         error.subscribe(System.out::println, e -> System.out.println(e.getMessage()));          // scalar Singles for request/response like a Future         getData(1).subscribe(System.out::println);          // combining Tasks into another Task         Single<String> zipped = Single.zip(t1, t2, (a, b) -> a + " -- " + b);          // combining Singles into an Observable stream         Observable<String> merged = Single.merge(t1, t2.map(String::valueOf), getData(3));         Observable<String> mergeWith = t1.mergeWith(t2.map(String::valueOf));          zipped.subscribe(v -> System.out.println("zipped => " + v));         merged.subscribe(v -> System.out.println("merged => " + v));         mergeWith.subscribe(v -> System.out.println("mergeWith => " + v));     }      /**      * Example of an async scalar execution using Single.create      * <p>      * This shows the lazy, idiomatic approach for Rx exactly like an Observable except scalar.      *      * @param arg      * @return      */     public static Single<String> getData(int arg) {         return Single.create(s -> {             new Thread(() -> {                 try {                     Thread.sleep(500);                 } catch (Exception e) {                     e.printStackTrace();                 }                 // deliver value                     s.onSuccess("Data=" + arg);                 }).start();         });     }  } ```
+Merge pull request #2990 from davidmoten/subscriber-readability  Improve Subscriber readability
+1.0.12
+Merge pull request #3009 from davidmoten/from-iter-bug  Observable.from(iterable) - ensure it.hasNext() is not called unnecessarily #3006
+ensure iterator.hasNext is not called unnecessarily as per #3006
+add two unit tests for issue #3008
+Merge pull request #3001 from davidmoten/use-subscribers-from  use Subscribers.from()
+Merge pull request #3000 from zsxwing/java6  Replace the Java 7 AssertionError(message, cause) with RuntimeException
+Use initCause to initialize AssertionError
+use Subscribers.from()
+Replace the Java 7 AssertionError(message, cause) with RuntimeException
+Merge pull request #2999 from zsxwing/assert-error  Fix a wrong assertion in assertError
+Fix a wrong assertion in assertError
+Merge pull request #2996 from davidmoten/switch-if-empty-request-bug  switchIfEmpty - fix backpressure bug and lost requests
+fix request processing in OperatorSwitchIfNext
+fix OnSubscribeRedo race conditions
+add request overflow checking to OperatorSwitch
+Merge pull request #2993 from davidmoten/take-while-cause  takeWhile(predicate) - include last value in error cause
+add value as last cause to error in takeWhile(predicate)
+Merge pull request #2992 from davidmoten/error-cause-primitives  Fix value rendering in error last cause for primitive types
+Merge pull request #2991 from davidmoten/take-until-predicate-last-cause  takeUntil(predicate) - include last value in error cause
+fix render value in error last cause for primitive types
+include last value in cause when error occurs in takeUntil(predicate)
+improve Subscriber readability and don't perform unnecessary test in request method
+Merge pull request #2989 from davidmoten/take-request-bug  prevent take() from requesting more than needed
+prevent OperatorTake from requesting more than needed
+Merge pull request #2988 from davidmoten/any-backp  Operator exists() - implement backpressure and include last value in exception cause
+add backpressure support for OperatorAny and include last value in exception cause
+Merge pull request #2987 from davidmoten/skip-bug  fix skip() race condition and request overflow
+fix skip race conditions and request overflow
+Merge pull request #2986 from davidmoten/all-backp  OperatorAll  - implement backpressure and include last value in exception cause
+implement backpressure for OperatorAll and include last value in cause if exception occurs
+Merge pull request #2985 from davidmoten/serialize-fix  improve OperatorSerializeTest.testMultiThreadedWithNPEinMiddle
+make OperatorSerializeTest.testMultiThreadedWithNPEinMiddle fail less often
+Merge pull request #2960 from davidmoten/concat-race  fix OperatorConcat race condition where request lost
+fix OperatorConcat request race conditions with ProducerArbiter
+Merge pull request #2961 from davidmoten/amb-bug  fix Amb backpressure bug
+Fixed multiple calls to onStart.
+add factory methods to TestSubscriber
+fix Amb backpressure problems
+Deprecate and rename the timer methods that take initial delay and period to interval.
+Fixed window(time) to work properly with unsubscription, added backpressure support to window(size, skip).
+Deprecated onBackpressureBlock.
+Merge pull request #2966 from ReactiveX/javadocs  The usual anally-retentive javadoc edits.
+Merge pull request #2963 from ReactiveX/StandardProducers  Set of standard producers and updated queue implementations with some
+1.0.11
+The usual anally-retentive javadoc edits.
+Added links to the source of the new queue classes.
+Merge pull request #2948 from ReactiveX/TestSubscriberPlus  More assertions for TestSubscriber
+Standard producers and some more (platform-safe) queues from JCTools
+Merge pull request #2956 from davidmoten/observe-on-unsub  OperatorObserveOn should not request more after child is unsubscribed
+OperatorObserveOn should not request more after child is unsubscribed
+Merge pull request #2951 from davidmoten/concat-request-overflow  OperatorConcat - prevent request overflow and fix race condition
+OperatorConcat - use BackpressureUtils to prevent request overflow and add n > 0 check to prevent race condition
+Merge pull request #2950 from davidmoten/group-by-request-overflow  OperatorGroupBy - check for request overflow and don't decrement when at Long.MAX_VALUE
+add request overflow checks and prevent Long.MAX_VALUE requests being decremented in OperatorGroupBy, added unit test that failed with previous code
+Javadocs: adding marble diagram, return value for onBackpressureLatest
+Merge pull request #2949 from davidmoten/jacoco-disable  Remove findbugs+jacoco from build.gradle
+remove findbugs and jacoco because are run with default build, will figure out later
+More assertions for TestSubscriber
+Merge pull request #2923 from akarnokd/OnBackpressureLatest  OnBackpressureLatest: Non-blocking version of the toBlocking().latest() operator.
+Merge pull request #2871 from davidmoten/explicit-version  Use explicit versioning for gradle-rxjava-project-plugin
+Merge pull request #2872 from rspieldenner/sonatype_sync  Use the correct accounts for sonatype sync
+Merge pull request #2907 from akarnokd/SchedulerFromFix  Fixed schedule race and task retention with ExecutorScheduler.
+Merge pull request #2929 from davidmoten/observe-on-race  OperatorObserveOn onComplete can be emitted despite onError being called
+Merge pull request #2937 from davidmoten/findbugs  Add code quality plugins to build.gradle (jacoco, findbugs)
+don't reduce requested by produced if requested is Long.MAX_VALUE
+use new pollQueue from @akarnokd
+fix OperatorObserveOn race condition where onComplete could be emitted despite onError being called
+Merge pull request #2940 from tomrozb/localHasValue-always-true  Remove unnecessary localHasValue check
+Remove unnecessary localHasValue check  Due to !hasValue check localHasValue field is always true
+Merge pull request #2939 from akarnokd/OperatorPublishFix0508  publish: Fix another race between terminalEvent and the queue being empty.
+Fixes another race between terminalEvent and the queue being empty.
+Merge pull request #2938 from jacek-marchwicki/combine-last-overflow  Fixed Observable.combineLatest overflow bug on Android
+Fixed Observable.combineLatest overflow bug on Android  RxRingBuffer size is not a constant and on Android is less then 128 (16). So it causing silent issues when there were given 16 < Observers < 128.
+Merge pull request #2936 from jacek-marchwicki/fix-observer-bug  Fix TestSubject bug
+add code quality plugins to build.gradle (jacoco, findbugs)
+Fixed TestSubject bug in onError and onCompleted
+Fixed TestSubject bug in onNext
+Test that finds a TestScheduler bug
+Merge pull request #2934 from akarnokd/OperatorPublishRaceFix  Fix termination race condition in OperatorPublish.dispatch
+Fix termination race condition in OperatorPublish.dispatch
+Fixed schedule race and task retention with ExecutorScheduler.
+Merge pull request #2912 from akarnokd/FixEventLoopsPerfDegradation  Fix the performance degradation due to different schedule execution and
+Merge pull request #2820 from akarnokd/WindowWithSizeBackpressure  Backpressure for window(size)
+Merge pull request #2814 from akarnokd/OperatorPublishRewrite  Operator Publish full rewrite
+Javadocs: adding @since annotations to new public methods, cleaning up Subject javadocs a bit
+Non-blocking version of the toBlocking().latest() operator.
+Merge pull request #2921 from davidmoten/observe-on-request-overflow  OperatorObserveOn - handle request overflow correctly
+ensure this does not escape from ObserveOnSubscriber constructor by moving code to an init() method and calling after construction
+Merge pull request #2901 from akarnokd/ToSortedListBackpressure  Operators toList and toSortedList now support backpressure
+Merge pull request #2883 from akarnokd/ExtendedSubjectAPI  Proposal: standardized Subject state-peeking methods.
+prevent request overflow in OperatorObserveOn and add unit test that fails on original codebase but passes with change
+Merge pull request #2915 from davidmoten/ignore-elements-singleton  Observable.ignoreElements - optimize
+improve perf of OperatorIgnoreElements
+Merge pull request #2914 from davidmoten/take-last-one  Optimization - use OperatorTakeLastOne for takeLast(1)
+add OperatorTakeLastOne
+Fix the performance degradation due to different schedule execution and SubscriptionList.add() and thread unparking.
+OperatorPublish full rewrite with comments + its perf fix
+Merge pull request #2911 from akarnokd/OperatorPublishPerf  OperatorPublish benchmark
+OperatorPublish benchmark
+Merge pull request #2909 from akarnokd/RxRingBufferTestFix  Fix the drainer to check if the queue is empty before quitting.
+Fix the drainer to check if the queue is empty before quitting.
+Merge pull request #2905 from davidmoten/single-singleton  Use singleton Operators where we can
+reduce gc pressure by using singleton Operators for single, distinct, distinctUntilChanged, onBackpressureBuffer, isEmpty
+Merge pull request #2904 from davidmoten/take-last-queue-producer-request-overflow  TakeLast - add request overflow check
+TakeLastQueueProducer add request overflow check
+Merge pull request #2897 from alexwen/window_overlap  Fix for overlapping windows.
+Fix for #2896 overlapping windows. Source was emitting t multiple times while holding queue.
+Merge pull request #2902 from davidmoten/exceptions-test  Prevent ExceptionsTest from hanging when testing stack overflow
+stack overflow test can hang build, simplify the tests and ensure don't hang
+Merge pull request #2880 from davidmoten/reduce-optimization  Use singleton reduction functions in count and countLong
+Operators toList and toSortedList now support backpressure
+Merge pull request #2894 from akarnokd/ConcatOverflowFix  Concat: fixed reentrancy problem in completeInner
+Merge pull request #2899 from davidmoten/from-iter-eager-complete  Observable.from(empty) to emit onComplete even when 0 requested
+Observable.from(iterable) should emit onCompleted even if none requested when iterable is empty
+Concat: fixed reentrancy problem in completeInner
+Proposal: standardized Subject state-peeking methods.
+use singleton reduction functions in count and countLong
+Use the correct accounts for sonatype sync
+use explicit versioning for gradle-rxjava-project-plugin
+Changed javadoc regarding backpressure
+Backpressure for window(size)

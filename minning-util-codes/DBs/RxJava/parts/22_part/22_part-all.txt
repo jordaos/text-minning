@@ -1,0 +1,197 @@
+Forgot the parameter null check.
+Merge pull request #3267 from akarnokd/OperatorGenerate2x  Operator generate: create an observable that generates values by calling
+Operator generate: create an observable that generates values by calling  a function and handling backpressure/resource cleanup automatically.  The logic is based on @stealthcode 's SyncSubscriber proposal from 1.x but using only the lambda-form.
+Forgot static modifier on unlock in Plugins.
+Merge pull request #3265 from akarnokd/RxJavaPluginsPerfFix  RxJavaPlugins performance enabling fix & lockdown.
+RxJavaPlugins performance enabling fix & lockdown.  By using null checks and direct returns we can avoid a dynamic dispatch on a volatile variable which always more expensive.  I've also added the `lockdown()` method to prevent any further changing of the plugin handlers. There is a `unlock` package-private method to allow testing the plugin in the locked state and then return to the unlocked state as other tests may want to install custom plugins.
+Merge pull request #3264 from akarnokd/AsyncObserver2x  AsyncObserver
+AsyncObserver  It is meant to be somewhat a replacement for 1.x rx.Subscriber, but it doesn't support Subscriber chaining.  I call it Observer because one only needs to implement onNext, onError and onComplete as with rx.Observer
+Merge pull request #3263 from akarnokd/SubjectNullSafe2x  Subjects onNext and onError null safety
+Subjects onNext and onError null safety
+Merge pull request #3262 from akarnokd/WindowBoundary2x  Operator window with boundary (exact, selector, exact + supplier).
+Operator window with boundary (exact, selector, exact + supplier).  I'm not 100% certain about the state management: when to let the main source keep running and when to stop. I.e., the in the selector version, if the other completes, it means no new window will be opened but the active should keep receiving values until their closer fires. If all such closers have fired, the main can be stopped.
+Merge pull request #3261 from akarnokd/SubjectFixes0901  Fixes to ReplaySubject and BehaviorSubject.
+Fixes to ReplaySubject and BehaviorSubject.
+Merge pull request #3260 from akarnokd/BehaviorSubject2x  BehaviorSubject
+BehaviorSubject
+Merge pull request #3259 from akarnokd/RxJavaPlugins2x  RxJavaPlugins extended with handler registration and reset support
+RxJavaPlugins extended with handler registration and reset support
+Merge pull request #3258 from akarnokd/ReplaySubject2x  ReplaySubject
+ReplaySubject  Has full backpressure support (replays as many elements as requested).
+Merge pull request #3257 from akarnokd/OperatorTimeout2x  Operator timeout, onBackpressureBuffer(onOverflow), fixes to parameter
+Operator timeout, onBackpressureBuffer(onOverflow), fixes to parameter types.  + FullArbiter and FullArbiterSubscriber to work with total-ordered notifications across sources.
+Merge pull request #3256 from akarnokd/OperatorDebounceFix2x  Fixed debounce behavior, added throttleFirst, throttleLast alias
+Fixed debounce behavior, added throttleFirst, throttleLast alias
+Merge pull request #3255 from akarnokd/OperatorScan  Operator scan, reduce. Fixes to TestSubscriber async behavior.
+Operator scan, reduce. Fixes to TestSubscriber async behavior.
+Merge pull request #3254 from akarnokd/OperatorDebounce2x  Operator debounce (time, selector), throttleWithTimeout (alias)
+Operator debounce (time, selector), throttleWithTimeout (alias)
+Merge pull request #3253 from akarnokd/OperatorWindowTimed2x  Operator window timespan, timespan + count, timespan + timeskip
+Operator window timespan, timespan + count, timespan + timeskip  The timed buffer and window operators are quite complicated in terms of concurrency. I'm not sure if all corner cases are covered.
+Merge pull request #3251 from akarnokd/OperatorWindowSized2x  Window with count, count + skip.
+Window with count, count + skip.  Luckily, there is no need to count the emission per subject but just use arithmetic.
+Merge pull request #3250 from akarnokd/OperatorBufferWithPublisher2x  Operator buffer with boundary and open-close, fixes to the timed
+Operator buffer with boundary and open-close, fixes to the timed variants.  Added QueueDrain and QueueDrainSubscriber for common queue-drain operations. Not applied outside the buffer()s as of now.
+Merge pull request #3248 from akarnokd/OperatorBuffer2x  Operators buffer: size, time, size + time
+Operators buffer: size, time, size + time
+Merge pull request #3247 from akarnokd/UnicastSubject2x  UnicastSubject, onBackpressureBuffer-like behavior for a single
+UnicastSubject, onBackpressureBuffer-like behavior for a single subscriber only
+Merge pull request #3246 from akarnokd/OperatorRefCount2x  Operator refCount
+Operator refCount
+Merge pull request #3245 from akarnokd/BlockingObservablePart2x  BlockingObservable, next, latest, mostRecent, first, last, single,
+BlockingObservable, next, latest, mostRecent, first, last, single, subscribe, stream, forEach, iterator
+Merge pull request #3244 from akarnokd/OperatorsDerivedPack2x  Operators delay, delaySubscription, share.
+Operators delay, delaySubscription, share.
+Merge pull request #3243 from akarnokd/OperatorMaterialize2x  Operator materialize, dematerialize, minor notification fix.
+Operator materialize, dematerialize, minor notification fix.
+Merge pull request #3242 from akarnokd/OperatorUsing2x  Operator using, some internal refactorings.
+Operator using, some inernal refactorings.
+Merge pull request #3241 from akarnokd/PublisherCombineLatest2x  Operator combineLatest
+Operator combineLatest
+Merge pull request #3240 from akarnokd/OperatorSequenceEquals2x  Operator sequenceEqual
+Operator sequenceEqual
+Merge pull request #3239 from akarnokd/OperatorTakeWhile2x  Operator takeWhile
+TakeWhile: forgot to push new class.
+Operator takeWhile
+Merge pull request #3238 from akarnokd/OperatorRedo  Operator retryWhen, repeatWhen; Notification
+Operator retryWhen, repeatWhen; Notification
+Merge pull request #3237 from akarnokd/OperatorOnErrorNext  Operators onErrorReturn, onErrorResumeNext, onExceptionResumeNext
+Operators onErrorReturn, onErrorResumeNext, onExceptionResumeNext
+Merge pull request #3235 from akarnokd/OperatorAmb2x  Operator amb, ambWith
+Operator amb, ambWith
+OperatorSwitchMap accidental main method.
+Merge pull request #3234 from akarnokd/OperatorSwitchMap2x  Operator switchMap, switchOnNext, added missing merge and concat
+Operator switchMap, switchOnNext, added missing merge and concat overloads, some refactorings
+Merge pull request #3232 from akarnokd/OperatorFirstLast2x  Operators first, last, multi-offer for SpscLinkedArrayQueue
+Operators first, last, multi-offer for SpscLinkedArrayQueue
+Merge pull request #3231 from akarnokd/OperatorTimedLastSkipTake2x  Operator takeLast time + size, skipLast time
+Operator takeLast time + size, skipLast time
+Operator fromFuture with plain future, blocking by nature.
+Merge pull request #3230 from akarnokd/OperatorSwitchIfEmpty2x  Operato switchIfEmpty, defaultIfEmpty
+Operato switchIfEmpty, defaultIfEmpty
+Merge pull request #3229 from akarnokd/OperatorSample2x  Operator sample with time or with another publisher
+Operator sample with time or with another publisher
+Merge pull request #3228 from akarnokd/ConditionalSubscriber2x  ConditionalSubscriber to help fusing filter-like operators into
+ConditionalSubscriber to help fusing filter-like operators into emission/drain loops.
+Merge pull request #3227 from akarnokd/Collect2xJavacWorkaround  collect: javac is unable to select the right overload for some reason
+collect: javac is unable to select the right overload for some reason
+Merge pull request #3226 from akarnokd/OperatorCollect2x  Operator collect, toMap and toMultimap based on it.
+Operator collect, toMap and toMultimap based on it.
+Merge pull request #3225 from akarnokd/OperatorDoOn2x  Operations doOnX.
+Operations doOnX.
+Merge pull request #3224 from akarnokd/OperatorDistinct2x  Operator distinct, timeInterval, common Timed container.
+Operator distinct, timeInterval, common Timed container.
+Merge pull request #3223 from akarnokd/OperatorPack2x1  Fixes to classes, convenience operators mostly.
+Fixes to classes, convenience operators mostly.
+Merge pull request #3222 from akarnokd/WithLatestFrom2x  Operator WithLatestFrom, PublishLift to help with operator fusing,
+Operator WithLatestFrom, PublishLift to help with operator fusing, SubscriptionHelper for common validation logic.
+Merge pull request #3220 from akarnokd/FixesForReactiveSocket2x  Strenghtening flatMap against misbehaving sources, TestSubscriber +
+Strenghtening flatMap against misbehaving sources, TestSubscriber + methods
+Merge pull request #3215 from akarnokd/OperatorZip2x  Operator zip plus Function3..Function9.
+Operator zip plus Function3..Function9.
+Merge pull request #3212 from akarnokd/OperatorGroupBy2x  Operator groupBy
+Operator groupBy.
+Merge pull request #3209 from akarnokd/OperatorOnBackpressure2x  Operators onBackpressure(Drop|Buffer|Latest)
+Operators onBackpressure(Drop|Buffer|Latest)
+Merge pull request #3208 from akarnokd/IntervalSource2x  Operators interval and intervalRange
+Operators interval and intervalRange
+Merge pull request #3207 from akarnokd/OperatorRepeat2xPart1  Some Repeat + Retry methods, fix to SubscriptionArbiter.
+Some Repeat + Retry methods, fix to SubscriptionArbiter.
+Merge pull request #3206 from akarnokd/TestSubscriber2x  TestSubscriber implemented
+TestSubscriber implemented
+Merge pull request #3205 from akarnokd/LambdaSubscribe2x  Lambda-based subscribe and lifecycle tracking methods
+Lambda-based subscription and lifecycle tracking methods
+Merge pull request #3204 from akarnokd/OperatorConcatMap2x  Operator concatMap and related convenience methods
+Operator concatMap and related convenience methods
+Merge pull request #3202 from akarnokd/ScheduleOn2x  Operators observeOn, subscribeOn and unsubscribeOn
+Operators observeOn, subscribeOn and unsubscribeOn
+Merge pull request #3200 from akarnokd/SchedulersRest2x  All standard schedulers ported and cleaned up.
+All standard schedulers ported and cleaned up.
+Merge pull request #3199 from akarnokd/OperatorsAnyAllCount2x  Operators all, any, count, elementAt, single
+Operators all, any, count, elementAt, single
+Merge pull request #3198 from akarnokd/OperatorsPublishReplay  Operators publish, replay and cache.
+Workaround for another javac 1.8 bug.
+Operators publish, replay and cache.
+Merge pull request #3197 from akarnokd/OperatorToList2x  Operator toList and toSortedList
+Operator toList and toSortedList
+Merge pull request #3196 from akarnokd/OperatorSkip2xMethods  The skips and filter operators added to Observable
+The skips and filter operators added to Observable
+Merge pull request #3195 from akarnokd/OperatorSkip2x  Operators of skip (untimed), filter; fix to takeUntil
+Operators of skip (untimed), filter; fix to takeUntil
+Merge pull request #3194 from akarnokd/OperatorTake2x  Operators of take (untimed), plugin error reporting fix for other
+Operators of take (untimed), plugin error reporting fix for other operators
+Merge pull request #3193 from akarnokd/ConnectableObservable2x  ConnectableObservable and autoConnect
+ConnectableObservable and autoConnect
+Merge pull request #3191 from akarnokd/OperatorFlatMap2x  Operators map and flatMap
+Operators map and flatMap
+Merge pull request #3190 from akarnokd/BasicSubscribers  Basic Subscribers and plugin class
+Basic Subscribers and RxJavaPlugin
+Merge pull request #3189 from akarnokd/BasicPublisherSources  Added a bunch of basic event sources and helper Subscription
+Added a bunch of basic event sources and helper Subscription implementations.
+Merge pull request #3188 from akarnokd/SchedulersBaseAPI  Schedulers (a few) + API, slight modifications to other classes,
+Schedulers (a few) + API, slight modifications to other classes, incomplete.
+Merge pull request #3186 from akarnokd/InternalDisposables  Disposable interface and a bunch of general resource containers.
+Disposable interface and a bunch of general resource containers.
+Merge pull request #3185 from akarnokd/PublishSubject2x  PublishSubject, AsyncSubject and a few helper classes
+PublishSubject, AsyncSubject and a few helper classes
+Merge pull request #3172 from akarnokd/RsDependency  RS dependency, some basic Observable/Observer methods.
+Merge pull request #3175 from akarnokd/InternalInfrastructure  2.x: Some safe queue implementations
+Some safe queue implementations
+Javac workaround.
+RS dependency, some basic Observable/Observer methods.
+Update gradle.properties
+2.0.0-DP0  Override inferred version.
+2.0.0-DP0-SNAPSHOT  Trying to make the build pick up this version for snapshots on the 2.x branch.
+Java 8
+Java 8
+Clear for 2.x
+Travis 2.x Branch
+2.x Initialization  - clearing out rx.* packages to start building 2.x in io.reactivex - starting fresh since the fundamental design will change to adopt ReactiveStreams interfaces and require touching virtually every file
+Version 1.0.14
+Merge pull request #3142 from artem-zinnatullin/actions-redundant-final  Remove redundant final modifier from static method in Actions
+Remove redundant final modifier from static method in Actions
+Merge pull request #3138 from akarnokd/RangePerf  Range overhead reduction.
+Merge pull request #3137 from akarnokd/FromIterablePerf  FromIterable overhead reduction.
+Merge pull request #3078 from davidmoten/switch-fix  switchOnNext() - fix lost requests race condition
+Merge pull request #3112 from akarnokd/TestCoverageObservers  Observers package test coverage and fixes.
+Merge pull request #3123 from jacek-rzrz/1.x  Remove redundant type parameter in EmptyAction
+Merge pull request #3104 from davidmoten/synchronized-queue-equals  Fix SynchronizedQueue.equals
+Merge pull request #3147 from artem-zinnatullin/unnecessary-static-modifier  Remove unnecessary static modifier
+Merge pull request #3144 from artem-zinnatullin/remove-redundant-cast-in-exceptions  Remove redundant cast in Exceptions
+Merge pull request #3143 from artem-zinnatullin/backpressure-utils-javadoc-fix  Fix for BackpressureUtils method javadoc
+Range overhead reduction
+Remove unnecessary static modifier
+Remove redundant cast in Exceptions
+Fix for BackpressureUtils method javadoc
+Merge pull request #3141 from akarnokd/SchedulerLeakCheck  Improved Scheduler.Worker memory leak detection
+Correct scheduler memory leak test for from(Executor) and added check for periodic tasks retention as well.
+FromIterable overhead reduction.
+eliminate javadoc compiler warnings, add "since" stub
+Merge pull request #3082 from stealthcode/conversion  Observable.x(ConversionFunc) to allow extensions to Observables
+Implemented Observable.x(ConversionFunc) to allow external extensions to Observables.
+Add links to page that explains The Observable Contract
+Merge pull request #3103 from davidmoten/materialize-backp  materialize() - add backpressure support
+Merge pull request #3129 from akarnokd/RetryPredicateFix  Fix retry with predicate ignoring backpressure.
+Fix retry with predicate ignoring backpressure.
+Merge pull request #3121 from artem-zinnatullin/android-setRemoveOnCancelPolicy  Improve performance of NewThreadWorker, disable search for setRemoveOnCancelPolicy() on Android API < 21
+Improve performance of NewThreadWorker.tryEnableCancelPolicy(). Disable search for ScheduledExecutorService.setRemoveOnCancelPolicy() on Android API < 21
+Merge pull request #3120 from ypresto/no-interrupt-for-sync  No InterruptedException with synchronous BlockingObservable
+Remove redundant type parameter in EmptyAction
+No InterruptedException with synchronous BlockingObservable
+Test coverage for the observers package.
+Merge pull request #3117 from akarnokd/OperatorReplayRewrite4  Operator replay() now supports backpressure (again)
+Merge pull request #3116 from akarnokd/OperatorCacheRewrite4  cache() now supports backpressure (again)
+Movet LinkedArrayListTest to the test section.
+Operator replay() now supports backpressure (again)
+cache() now supports backpressure (again)
+Merge pull request #3110 from akarnokd/TestCoverageFunctions  Test coverage of rx.functions utility methods.
+Test coverage of rx.functions utility methods.
+add backpressure to OperatorMaterialize
+Merge pull request #3101 from akarnokd/TakeErrorHandlingFix  Fix take swallowing exception if thrown by exactly the nth onNext call to it.
+Merge pull request #3109 from akarnokd/InternalUtilAtomicTests  Unit tests and cleanup of JCTools' queues.
+Unit tests and cleanup of JCTools' queues.
+Merge pull request #3108 from davidmoten/remove-operator-on-error-flatmap  remove OperatorOnErrorFlatMap because unused
+remove OperatorOnErrorFlatMap because unused
+Fix take swallowing exception if thrown by the exactly the nth onNext call to it.
+fix SynchronizedQueue.equals
+OperatorSwitch - fix lost requests race condition using ProducerArbiter

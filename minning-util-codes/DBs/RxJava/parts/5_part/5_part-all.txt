@@ -1,0 +1,200 @@
+UnitTests while working on EventStream use cases
+Merge pull request #377 from benjchristensen/distinct-merge  Distinct operator
+Merge branch 'distinct' of git://github.com/jmhofer/RxJava into distinct-merge  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #374 from jmhofer/distinctUntilChanged  Implemented distinctUntilChanged operation
+Merge pull request #373 from jmhofer/throttle-debounce-fix  a few warnings, javadoc, and one missing scheduler parameter
+Merge pull request #376 from samuelgruetter/idiomaticscala  Idiomatic Scala Adaptor
+add license headers
+add more methods and type aliases
+update README
+TODO list for Scala adaptor
+complete WithFilter
+mark RxImplicits and RxImplicitsTests as old
+restore old RxImplicits and RxImplicitsTests
+added javadoc comments to Observable.distinct
+implemented distinct operator
+add apply() which takes Java Observable  new Observable(...) can be replaced by Observable(...)
+fixed javadoc descriptions in the operator
+BlockingObservable: add foreach and make it extend AnyVal
+remove sleep() from RxScalaDemo
+refactor package structure  package object scala and package scala now can coexist
+fixed all the javadoc build warnings
+Added distinctUntilChanged member methods to Observable
+added methods taking key selectors
+initial version of a distinctUntilChanged operator
+a few warnings, javadoc, and one missing scheduler parameter
+add debounce/throttle methods
+fix reduce to work with new no-wildcards Java reduce
+Merge branch 'master' of github.com:Netflix/RxJava into idiomaticscala
+Version 0.13.0
+[Gradle Release Plugin] - new version commit:  '0.13.1-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.13.0'.
+0.13.0-SNAPSHOT
+Merge pull request #368 from benjchristensen/throttle-and-debounce  Operators: Throttle and Debounce
+Merge pull request #369 from benjchristensen/reduce-and-scan-covariance  Remove covariance of scan/reduce
+Simplify reduce/scan generics  Updates based on discussion at https://github.com/Netflix/RxJava/pull/369#issuecomment-24255958
+replace cast in window() by ascription  see https://issues.scala-lang.org/browse/SI-7818 for details
+Merge branch 'master' of github.com:Netflix/RxJava into idiomaticscala
+add a int-version of buffer and window...  ...and detect another compiler bug
+add operation merge (as instance method)
+add usability tests
+IntervalDemo
+Java example using Scala Observable code
+Merge pull request #371 from benjchristensen/retry  Operator: Retry
+Operator: Retry  https://github.com/Netflix/RxJava/issues/72
+Merge pull request #370 from benjchristensen/zip-collection-to-iterable  Change zip method signature from Collection to Iterable
+Change zip method signature from Collection to Iterable  Fix javadoc typos.
+Javadoc with images
+Remove covariance of scan/reduce since consumer/producer are the same <T, T, T>  See https://github.com/Netflix/RxJava/issues/360#issuecomment-24203016
+Use 'debounce' as proper name for ThrottleWithTimeout which unfortunately is the poorly named Rx Throttle operator.  http://drupalmotion.com/article/debounce-and-throttle-visual-explanation  Debounce: Think of it as "grouping multiple events in one". Imagine that you go home, enter in the elevator, doors are closing... and suddenly your neighbor appears in the hall and tries to jump on the elevator. Be polite! and open the doors for him: you are debouncing the elevator departure. Consider that the same situation can happen again with a third person, and so on... probably delaying the departure several minutes.  Throttle: Think of it as a valve, it regulates the flow of the executions. We can determine the maximum number of times a function can be called in certain time. So in the elevator analogy.. you are polite enough to let people in for 10 secs, but once that delay passes, you must go!  http://unscriptable.com/2009/03/20/debouncing-javascript-methods/ http://www.illyriad.co.uk/blog/index.php/2011/09/javascript-dont-spam-your-server-debounce-and-throttle/
+Operators: throttleWithTimeout, throttleFirst, throttleLast  - javadocs explaining differences - link between throttleLast and sample (aliase) - refactored throttleFirst to be a more efficient implementations - concurrency changes to throttleWithTimeout
+refactoring package structure
+Merge branch 'throttleFirst' into throttle  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'throttleLast' into throttle  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java 	rxjava-core/src/main/java/rx/operators/OperationThrottle.java
+Merge branch 'throttleWithTimeout' into throttle  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+(does not compile!) refactoring of package structure  Compiles in eclipse, but not with gradle, because there are package objects and packages with the same name.
+Merge branch 'operation-throttle' of git://github.com/michaeldejong/RxJava into throttle  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java 	rxjava-core/src/main/java/rx/concurrency/TestScheduler.java
+add methods to Scala Wrapper (7)
+make dematerialize infer everything
+add methods to Scala Wrapper (6)  includes typesafe dematerialize
+get rid of wrapper around Observer
+Update javadoc for throttleWithTimeout
+Update javadoc for throttleLast
+Operator: throttleFirst  Another take on `throttle` ��� this delivers the first value in each window.
+Operator: throttleWithTimeout  Another take on `throttle` ��� I believe this matches Rx.Net behavior.  This will wait until timeout value has passed without any further values before emitting the received value.
+Merge branch 'master' of github.com:Netflix/RxJava into idiomaticscala
+Merge branch 'operation-throttle' of git://github.com/michaeldejong/RxJava into throttle-merge  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java 	rxjava-core/src/main/java/rx/concurrency/TestScheduler.java
+Merge pull request #364 from benjchristensen/tests  additions to tests
+additions to tests
+Merge pull request #363 from benjchristensen/reduce-covariance  unit tests for covariance
+unit tests for covariance  - refactoring so not everything for the entire Observable ends up in a single class
+Merge pull request #362 from benjchristensen/operator-first-merge  Merge 'first' Operator
+Merge branch 'first-firstDefault' of git://github.com/jmhofer/RxJava into operator-first-merge  Conflicts: 	rxjava-core/src/test/java/rx/ObservableTests.java  This merges pull request https://github.com/Netflix/RxJava/pull/357  Also aliased first with takeFirst to match takeLast.
+Merge pull request #361 from benjchristensen/issue-359-varargs  Fix vararg issues reported in https://github.com/Netflix/RxJava/issues/359
+Vararg change unit tests in Groovy
+Observable.mergeDelayError: refactor varargs to overloads  https://github.com/Netflix/RxJava/issues/359 Varargs cause compiler warnings
+Generic covariance of concat.  See https://github.com/Netflix/RxJava/issues/360#issuecomment-24125591
+Observable.startWith: refactor varargs to overloads  https://github.com/Netflix/RxJava/issues/359 Varargs cause compiler warnings
+Observable.merge: refactor varargs to overloads  https://github.com/Netflix/RxJava/issues/359 Varargs cause compiler warnings
+Observable.concat: refactor varargs to overloads  https://github.com/Netflix/RxJava/issues/359 Varargs cause compiler warnings  As part of this I also changed this:  ```java public static <T> Observable<T> concat(Observable<Observable<? extends T>> observables) ```  to  ```java public static <T> Observable<T> concat(Observable<Observable<T>> observables) ```  I documented the reasoning of this at https://github.com/Netflix/RxJava/issues/360#issuecomment-24121217
+Observable.from: refactor varargs to overloads  https://github.com/Netflix/RxJava/issues/359 Varargs cause compiler warnings
+Update README.md
+Update README.md
+Create README.md
+add Observer wrapper to make subscribe(Observer[T]) work
+Merge pull request #356 from jmhofer/interval  Added interval methods to Observable, where they were still missing
+Merge pull request #355 from jmhofer/skip-while  implemented skipWhile and skipWhileWithIndex (#80)
+Merge pull request #354 from jmhofer/count-sum-average  Count, Sum, Average implementations
+Added link urls to the msdn descriptions
+Added FirstOrDefault operation
+Added the two variants of the first operator.
+removed unused imports
+added interval methods to Observable, where they were still missing
+implemented skipWhile and skipWhileWithIndex (#80)
+implemented average operation (#25)
+added test against long sum, too (#83)
+added sum operations
+implemented count operator (#32)
+Merge pull request #353 from benjchristensen/take-unit-test  Take Operator Error Handling
+Take Operator Error Handling  Unit test for https://github.com/Netflix/RxJava/issues/217
+Version 0.12.1 and 0.12.2
+[Gradle Release Plugin] - new version commit:  '0.12.3-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.12.2'.
+Merge pull request #352 from abersnaze/groovy-wrapper  Adding Func5-9 and N to the wrapper
+adding Func5-9 and N to the wrapper
+add methods to Scala Wrapper (5) (window)
+Merge branch 'master' of github.com:Netflix/RxJava into idiomaticscala
+add methods to Scala Wrapper (4)
+[Gradle Release Plugin] - new version commit:  '0.12.2-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.12.1'.
+Merge pull request #350 from jmhofer/swing  A little Swing wrap-up
+Merge pull request #351 from benjchristensen/window-fix  Fix Observable.window static/instance bug
+Fix Observable.window static/instance bug  - reported at https://github.com/Netflix/RxJava/pull/349#issuecomment-23946707
+add methods to Scala Wrapper (3) and find interesting questions  They are marked with TODO
+work around scalac bug by giving explicit type parameter to Observable constructor
+work around scalac bug by removing `extends AnyVal`
+removed a few unused imports
+Pulled in all the changes from master that happened in the meantime...
+add methods to Scala Wrapper (2) and find scalac bug
+add methods to Scala Wrapper (1)
+set up stubs for Scala Observable and its testing
+Version 0.12.0 Changes
+Version 0.12.0
+[Gradle Release Plugin] - new version commit:  '0.12.1-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.12.0'.
+0.12.0-SNAPSHOT
+Merge pull request #349 from benjchristensen/window-operator  Window Operator
+made the public window methods more generic via the basic (lol) super/extends fluff; also simplified api by removing a few useless super definitions (there's no super of Opening and Closing)
+removed raw Func0s from the chunks
+made WINDOW_MAKER typed
+Merge pull request #348 from benjchristensen/switchOnNext  switchDo to switchOnNext
+Merge branch 'OperationWindow' of https://github.com/RallySoftware/RxJava  - updated to use new OnSubscribeFunc - updated to use super/extends generics
+Merge window operator commit to master  This is from commit http://github.com/RallySoftware/RxJava/commit/71335e4ed1531b1542c7b304a6d3337145e0b2df
+SwitchDo  - remove instance method - rename to switchOnNext (leaving behind deprecated switchDo for now)  See https://github.com/Netflix/RxJava/issues/342
+Cleanup Javadocs
+Merge pull request #347 from benjchristensen/scala-unit-tests  Fixing Scala unit tests after previous commits accidentally broke them
+Fixing Scala unit tests after previous commits accidentally broke them
+Merge pull request #346 from benjchristensen/BlockingObservable  BlockingObservable Refactor
+BlockingObservable Refactor  No longer extends from Observable. If someone chooses to use BlockingObservable the intent is to leave the Observable so it shouldn't show the non-blocking operators. Remove duplicate static methods, similar to how done on Observable in earlier commit.
+Merge pull request #344 from daveray/covariant-support-clj  Update Clojure interop to support new OnSubscribeFunc with rx/fn.
+Merge pull request #345 from benjchristensen/unit-test-cleanup-with-create  Remove unnecessary Observable constructor
+Remove unnecessary Observable constructor  - fixed unit tests that relied on it
+Update Clojure interop to support new OnSubscribeFunc with rx/fn.
+Merge pull request #343 from benjchristensen/covariant-support  Covariant Support with super/extends and OnSubscribeFunc
+Change OnSubscribeFunc.call to OnSubscribeFunc.onSubscribe  Avoid name collions for `call` method with Func* interfaces to simplify interop with Clojure etc.
+Adding implicit for OnSubscribeFunc
+Add OnSubscribeFunction and refactor to support it  This is related to ongoing work related to covariant support at https://github.com/Netflix/RxJava/pull/331
+Merge branch 'super-extends' of git://github.com/jmhofer/RxJava into covariant-support
+[Gradle Release Plugin] - new version commit:  '0.11.4-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.11.3'.
+Fixing Maven orgId (accidentally got camel-cased)
+Merged in master so that the gradle pull request build has a chance to work again
+removed some <? super Throwable>s because that's rather unnecessary
+Version 0.11.2
+Version 0.11.2
+Version 0.11.2
+[Gradle Release Plugin] - new version commit:  '0.11.3-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.11.2'.
+Scala 2.10.+  Our internal build system should be capable of picking up the latest now (2.10.2) so reverting the pinning I did earlier.
+Merge pull request #341 from quidryan/update-gradle-wrapper-Aug2013  Update gradle wrapper to latest
+Update to Gradle 1.6 to match what was already in RxJava, but this version hasn't been tested thoroughly.
+Move githubProjectName earlier and set explicitly.
+Merge remote-tracking branch 'build/multi-project' into update-gradle-wrapper-Aug2013  Conflicts: 	gradle/wrapper/gradle-wrapper.properties
+added a few 'compiler' tests
+generalized BlockingObservable and the execution hook further
+Generalized all the operators, too
+added an unnecessary explicit cast because the Jenkins java compiler is unhappy otherwise?
+Timestamped, Notification and Future are now also treated as covariant
+generalized everything in Observable that deals with covariance of observables
+Merge pull request #332 from benjchristensen/issue-329-unit-tests  Issue 329: Fix non-deterministic unit tests
+Make Materialize.testMultipleSubscribes test deterministic  Refactored to use BlockingObservable instead of non-blocking subscribe and waiting on the underlying thread (it was only waiting on one of two threads running). This should resolve one of the issues reported in http://github.com/Netflix/RxJava/issues/329
+Improve determinism of GroupBy.testUnsubscribe  Increased delta value from 2 to 10 to try and resolve issue reported in issue https://github.com/Netflix/RxJava/issues/329
+Improve testRecursiveScheduler2 determinism  Removed use of Thread.sleep and changed assertion to allow for the expected race condition between the counter loop and unsubscribe event to fix non-determinism issue reported in https://github.com/Netflix/RxJava/issues/329
+Improve testNoBufferingOrBlockingOfSequence determinism  Removed use of Thread.sleep to fix non-determinism issue reported in https://github.com/Netflix/RxJava/issues/329
+RxJavaPlugin Unit Tests  Attempt to fix non-determinism https://github.com/Netflix/RxJava/issues/329 Made unit tests work on private instances in each test rather than against static global.
+Merge pull request #330 from daveray/issue-327-clojure-build  Make DummyObservable visible to clojureTest classpath.
+Make DummyObservable visible to clojureTest classpath.  RxJava issue #327. Moved DummyObservable into main so that it's compiled and available when the clojureTest task executes. Perhaps someone with stronger Gradle skills can figure out how to put this Java class in src/test and get things to work out. Correctly. For the time being, several clean/build cycles worked fine for me.
+Adding mavenLocal() for local resolution
+Fixing aggregateJavadoc
+Added a helper for computing relative mouse motion.
+Fixed javadoc warnings.
+Improved key press observable to filter out events of type KEY_TYPED completely.
+Fixed a typo the UnitTest class of OperationThrottle.
+Cleaned up imports and removed unnecessary final keywords in the OperationThrottle class.
+No longer using Notification<T> for scheduling throttled events.
+Ensure static star imports are used for test cases.
+Created and wired an implementation for the throttle operation on Observables.
+Passing status to Artifactory builds
+Verify before we can't take it back, use preferredVersion variable
+Handle unavailable sonatype properties
+Make uploadMavenCentral task, that encompasses other tasks
+Automatically aggregate and publish docs (java,groovy,scala)
+Matching wrapper to 1.5
+Upgrading release process
+Using latest features of release plugin
+Add sonatype snapshot repository
+Use newer version of license-gradle-plugin that fixes skipExistingHeaders field
+Move gradle-release dependency to bintray
+Switching to bintray for dependencies (same as Maven Central)
+Upgrading to Gradle 1.4
+Update codequality/checkstyle.xml  Removing as it appears to no longer be available in the latest version of checkstyle that comes with gradle 1.4

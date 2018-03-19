@@ -1,0 +1,200 @@
+2.x: make parallel() a fusion-async-boundary (#5677)
+2.x: Add PublishProcessor JMH perf comparison (#5675)
+2.x: coverage, add SingleToFlowableTest (#5673)
+2.x: fix PublishProcessor cancel/emission overflow bug (#5669)
+Fix a misleading documentation of Observable.singleElement() (#5668)  * Fix a misleading documentation of Observable.singleElement()  * Reduce the first part of Observable.singleElement() JavaDoc to a single sentence.  * Update the Marble diagram of Observable.singleElement()
+2.x: improve Flowable.timeout() (#5661)  * 2.x: improve Flowable.timeout()  * Remove the now unused FullArbiter(Subscriber)  * Don't read the volatile twice
+Fix broken license link (#5662)
+Upgrade testng to get method names to show up in gradle console when skipping, and in testng html output. (#5653)
+Fix mistakes in observers package info, fix generics
+2.x: inline disposability in Obs.concatMap(Completable) (#5652)
+2.x: update Obs.just(2..10) & switchOnNextDelayError marbles (#5651)
+2.x Add concatMapCompletable() to Observable (#5649)  * Initial implementation of Observable.concatMapCompletable()  * Update serialVersionUID  * Fix javadoc and verify prefetch is positive  * Put back auto-changed whitespace  * Put back more whitespace intellij is removing  * More javadoc fixes  * switch from testng to junit  * Add experimental annotation and change prefetch to capacityHint
+2.x: Fix subscribeWith documentation examples (#5647)
+2.x: improve package JavaDoc (#5648)
+Release 2.1.5 changes.md update
+2.x: Readme.md update snapshot links (#5645)  * 2.x: Readme.md update snapshot links  * Use plain link and only the current snapshot dependency
+2.x: additional warnings for fromPublisher() (#5640)  * 2.x: additional warnings for fromPublisher()  * Add "that is" to the sentences
+Added Automatic-Module-Name instruction in build.gradle (#5644)
+Fixing JavaDoc warnings (#5637)
+2.x: RC4 fix maven-POM generation again
+2.x: fix bintray repo and name config
+2.x: fix "full" mode gradle code
+2.x: Upgrade to Gradle 4.2, remove nebula, custom rls (#5633)
+2.x: add onTerminateDetach to Single and Completable (#5624)  * 2.x: add onTerminateDetach to Single and Completable  * Improve coverage, fix lack of nulling out the downstream
+2.x: fix incorrect error message at SubscriptionHelper.setOnce (#5623)
+2.x: Add Single.delay overload that delays errors (#5616)
+2.x: Fix Observable.delay & Flowable.delay javadoc (#5617)
+Add missing license headers (#5615)
+Release 2.1.4
+2.x: Fix Observable.concatMapEager queueing of source items (#5609)
+Updating JavaDoc with correct return types (#5600)
+Implement LambdaConsumerIntrospection (#5590)  * Implement HasDefaultErrorConsumer  Followup from #5569, and allows you to introspect if the resulting observer has missing error consumption and subsequently supplies a default (throwing) one.  * Add `@since`  * Add tests  * Add support in relevant completable observers  * Add support in ConsumerSingleObserver  * Add support in MaybeCallbackObserverTest  * Add support in LambdaSubscriber  * Switch to CompositeObserver and onErrorImplemented()  * Update wording to use Introspection  * Update tests and flip implementation logic to match naming
+2.x: fix assertValueSequence reversed error message (#5594)  * 2.x: fix assertValueSequence reversed error message  * Fix variable naming instead  * Adjust according to the feedback
+2.x: fix Single.timeout unnecessary dispose calls (#5586)  * 2.x: fix Single.timeout unnesessary dispose calls  * Route to RxJavaPlugins.onError
+implement Maybe.switchIfEmpty(Single) (#5582)  * implement Maybe.switchIfEmpty(Single)  * switchIfEmpty(Single) returns single; remove all changes unrelated to the PR  * add 'experimental' annotation
+Add NullPointerException comment (#5578)
+Remove unnecessary git command from build instructions (#5572)
+Added formatting to license section (#5571)  * Added formatting to license section  * Update README.md
+2.x: Add assertValuesOnly to BaseTestConsumer. (#5568)  * 2.x: Add assertValuesOnly to BaseTestConsumer.  * Address comments.
+2.x: fix Obs.combineLatestDelayError sync initial error not emitting (#5560)  * 2.x: fix Obs.combineLatestDelayError sync initial error not emitting  * Remove unused method.
+Release 2.1.3
+Update Schedulers.java (#5552)
+2.x: upgrade Reactive-Streams dependency to 1.0.1 (#5546)
+2.x: Fix flaky MaybeFromCallableTest.noErrorLoss (#5541)  * 2.x: Fix flaky MaybeFromCallableTest.noErrorLoss  * Fix the same error in 2 other Maybe tests.
+Add assertValueAt(int, value) to TestObserver (#5529)  * Add assertValueAt(int, value) to TestObserver  * Fix test to call correct method  * David's comments  * Artem's comments  * 2.x: Try fixing Travis CI lack of java (#5531)  * 2.x: Try fixing Travis CI lack of java  * Force dist: precise  * Oracle JDK 8 is then
+2.x: Try fixing Travis CI lack of java (#5531)  * 2.x: Try fixing Travis CI lack of java  * Force dist: precise  * Oracle JDK 8 is then
+2.x: add/update Observable marbles (07/30) (#5524)
+2.x: add missing null check to fused Observable.fromCallable (#5517)
+Release 2.1.2
+Remove unnecessary generic type parameters for delaySubscription methods in Single (#5511)
+2.x: fix SpscLAQ nepotism, FlowableRefCountTest.testRefCountAsync flaky (#5507)
+2.x: make withLatestFrom conditional subscriber, test cold consumption (#5495)  * 2.x: make withLatestFrom conditional subscriber, test cold consumption  * Cleanup internal logic, improve coverage
+Merge branch '2.x' of https://github.com/ReactiveX/RxJava.git into 2.x
+2.x: fix Schedulers.io() javadoc {link missing the @ symbol
+2.x: fix ReplayProcessor backpressure and NotificationLite emission bug (#5493)  * 2.x: fix ReplayProcessor backpressure and NotificationLite emission bug  * Restore coverage
+FlowableWithLatestFrom forgets request (#5494)  * FlowableWithLatestFrom forgets request  * Add unit test and correct testBackpressure  * Revert indentation change  * Revert import change
+Indent comments (#5492)  * Indent comments  * Remove unused ignored file
+2.x: small note on Maybe.defaultIfEmpty regarding toSingle (#5486)
+Fix a typo in the changelog (#5481)
+Corrected return type in doc for F.reduce(seed, reducer), F.reduceWith(seedSupplier, reducer) and O.reduce(seed, reducer) (#5478)
+Fix Javadoc for Flowable and Observable reduce. (#5476)
+2.x: See if sudo required results in consistent build times (#5457)
+removing commented code from tests (#5467)
+2.x: fix wording of toList, fix a/an in subscribeOn (#5465)
+use a mutable field in FlowableTimeoutTimed instead of an AtomicReference (#5466)
+Refactoring SingleSchedulerTest. Now it extends AbstractSchedulerTests, so redundant tests could be removed in favor of abstract tests. (#5462)
+2.x: fix Javadoc mistakes and some style (#5460)
+[REF] replace duplicate calling method setAccessible on the same object (#5454)
+2.x: add missing 'the' to the changed sentences of 5413
+2.x: Add empty source clauses to javadocs of combineLatest operators accepting unspecified number of sources. This commit resolves #5412 (#5413)
+Remove the @NonNull annotation from Function (#5449)  As per per the discussion in #5447
+2.x: fix periodic scheduler purging config not honored (#5441)
+2.x: concat to report isDisposed consistently with termination (#5440)
+Remove @NonNull annotation in Consumer method parameter (#5447)  This fixes #5442
+2x: Fix wording in Async and Publish processors javadoc. (#5444)
+Gradle to use less memory, missed an export command (#5436)
+Run GC before the TestNG to avoid kill 137, hopefully
+2.x: fix/clarify the Observable class' javadoc (#5432)  * 2.x: fix/clarify the Observable class' javadoc  * extends -> implements
+2.x: fix time bounded replaySubject getValue() inconsistency with getValues() on old items (#5434)  * Add breaking test for expected peek behavior in a time bound replay subject.  * Add possible fix for fixing peek behavior.  * Add test & fix for ReplayProcessor::getValue.  * Roll-back auto-formatted imports.
+Release 2.1.1
+2.x: fix buffer(time, maxSize) duplicating buffers on time-size race (#5427)
+2.x: more eager cancellation in flatMapX (#5422)  * 2.x: more eager cancellation in flatMapX  * Add more eager check to Observable.flatMapX
+2.x: fix periodic scheduling with negative period causing IAE (#5419)
+2.x: attempt to fix a few time-sensitive tests. (#5421)  * 2.x: attempt to fix a few time-sensitive tests.  * Add more time to a merge test, always cancel
+2.x: fix doOnNext failure not triggering doOnError when fused (#5415)  * 2.x: fix doOnNext failure not triggering doOnError when fused  * Remove whitespace
+2.x: Fix a small typo in Single.delay
+#5382 Corrected Single.delay documentation (#5409)  * #5382 Corrected Single.delay documentation  Corrected Single.delay documentation that says that success or error signals will be delayed by the specified amount, but in fact errors are not delayed, only successes.  * #5382 Corrected Single.delay documentation  Corrected Single.delay documentation that says that success or error signals will be delayed by the specified amount, but in fact errors are not delayed, only successes.
+Fix javadoc for Observable.reduce() and Observable.reduceWith() (#5406)  * fix javadoc sample code for Observable.reduce() to compile  * update javadoc for Observable.reduceWith()  * fix javadoc sample code for Flowable.reduce() to compile  * update javadoc for Flowable.reduceWith()  * remove one more word to be similar to Observable.reduce()  * fix Publisher.defer() to Flowable.defer()  * add example using reduceWith() to Observable.reduce() and Flowable.reduce()  * add @see reduceWith() to reduce()
+DefaultSubscriber javadoc sample fix (#5407)  * change sample such that it compiles  * fix: remove assignment
+DefaultObserver javadoc fix: use subscribe, remove disposable code (#5405)
+Fix documentation. (#5403)
+Update README.md (#5395)  * Update README.md  Reordered and regrouped communication channels. (Grouped by type) Added Gitter.im chat for support.  * Update README.md
+2.x: add subscribeOn overload to avoid same-pool deadlock with create (#5386)
+Changed minimum value of rx2.buffer-size to 1 (#5391)  Before the minimum value you could set with the system variable `rx2.buffer-size` was 16. With this commit, that is changed to 1.
+2.x: add missing null checks on values returned by user functions (#5379)
+Fixed Javadoc for SingleFlatMapIterableObservable. (#5383)
+2.x: make SingleMap not allow map function return null (#5378)
+2.x: make sure interval+trampoline can be stopped (#5367)
+2.x: Replace Action1 with Consumer in docs
+2.x: Fix typo in error message. (#5354)
+2.x: update some marbles of Observable (#5351)
+Fix javadoc for FunctionX (#5347)
+2.x: add tryOnError to create/XEmitter API (#5344)  * 2.x: add tryOnError to create/XEmitter API  * Fix indentation.
+Fix Javadoc for Maybe.toSingle (#5343)
+Add missing bracket (#5326)  Difficult to count those with all the java 7 boilerplate!
+Mark VolatileSizeArrayList as RandomAccess list (#5324)
+Release 2.1.0
+2.x: improve coverage of some classes (no functional changes) (#5310)
+2.x: Fix Javadoc of Flowable.toObservable (#5309)
+2.x: Apply promotions for v2.1 (#5307)
+2.x: Change ObservableSource.defer to Observable.defer in Observable.scan() documentation. (#5306)
+Release 2.0.9
+2.x: more detailed no-multi-subscribe with std consumers error message (#5301)  * 2.x: more detailed no-multi-subscribe with std consumers error message  * Improve coverage of the new content
+Correct documented return type of Single#flatMapObservable Function argument (#5304)
+2.x: add Single.unsubscribeOn() (#5302)  * 2.x: add Single.unsubscribeOn()  * Fix experimental marker location
+Fix JavaDoc image for Single#flatMapObservable (#5297)  `Single.flatMapObservable.png` should be used for `Single#flatMapObservable` instead of `Single.flatMap.png`.
+Improve doOnDispose JavaDoc (#5296)  * correct javadoc note in Observable.doOnDispose()  The note was claiming Observable.doOnDispose() would be called for terminal events of the Observable, which is not the case  * small improvement to .doOnDispose javadocs to refer to Actions  * add @throws mentions to doOnDisposed javadocs
+2.x: add/remove empty lines in ConnectableObservable and Observable (#5288)  * Multiple lines  * Less line of space
+2.x: fix Flowable.flatMapMaybe/Single maxConcurrency not requesting more (#5287)
+2.x: cleanup for text and javadoc 04/15 (#5286)
+2.x: BehaviorProcessor & Subject terminate-subscribe race (#5281)  * 2.x: BehaviorProcessor & Subject terminate-subscribe race  * Use assertFailure.
+2.x: Single.subscribe(BiConsumer) consistent isDisposed (#5277)
+2.x: enable link to external JDK, fix Schedulers style (#5271)
+remove commented out code from IoScheduler (#5268)
+Fixed broken links (#5262)  Fixed broken links for @Beta and @Experimental annotations
+2.x: fix whitespaces
+Remove @NonNull annotations in BiConsumer (#5257)
+More nullability annotations (#5251)  * More nullability annotations  * Refactored imports  * Changes based on akarnokd's review  * A few more annotations  * Changes based on akarnokd's 2nd review
+2.x: fix flatMapIterable appearing to be empty when fused (#5256)
+Add nullPointerException comments and ObjectHelper test code. (#5255)  * Add NullPointerException comments for doc.  * Add test code for ObjectHelper.java
+2.x: fix Flowable.toList() onNext/cancel race (#5247)
+2.x: fix DisposableX copy-paste error in javadoc
+Release 2.0.8
+2.x: fix CallbackCompletableObserver calling onError, ResourceX wording (#5240)
+Add TimeUnit null check test case in Timed (#5231)  * Add TimeUnit null check test case in Timed  * Correct ugly formatting in BasicIntQueueDisposable  * Reformatting line  * Add blockingIterable���s negative buffer size fail test  * Modify BlockingMultiObserver field���s modfier to private  * revert style, modifier  * Remove duplicated test case.  * Remove no need annotation and variable
+Fix wrong comments in Functions.java ���Function3��� -> ���BiFunction��� (#5230)  * Fix wrong comments in Functions.java ���Function3��� -> ���BiFunction���  * Add ���toFunction��� fail test from Bifurcation to Function9  * Update FunctionsTest.java  Fix interface naming  * Change comments ���BiFunction..Function9��� - > ���BiFunction, Function3..Function9���  * Add @SuppressWarnings({"unchecked", "rawtypes"}) into Functions fail test
+2.x: Fix whitespaces
+2.x UnicastProcessor fail-fast support (#5226)  * [2.x] UnicastProcessor fail-fast support  * follow-up: remove constructor, add onTerminate non-null checks to factory methods, fixed typo
+2.x: cleanup based on IntelliJ 2017.1 inspections (#5222)  * 2.x: cleanup based on IntelliJ 2017.1 inspections  * Restore indexed for-loop and make other loops indexed as well.
+2.x: improve the documentation of Schedulers utility class. (#5223)
+Fix grammar, add imports to some examples.
+2.x: Minor checkstyle fixes
+2.x: safeguard against building with v1 tags (#5219)
+2.x: add resilient versions of parallel map(), filter() & doOnNext() (#5202)
+[2.x] UnicastSubject fail fast support (#5217)  * [2.x] Unicast subject fail fast support  * follow up: mark new factory methods experimental, remove excessive constructor, fix typos  * follow up: test coverage  * follow up: add @since for new methods
+2.x: fix window() with time+size emission problems (#5213)
+2.x: prevent tasks to self interrupt on the standard schedulers (#5207)
+2.x: better documentation on the abstract consumer classes (#5210)
+2.x: fix images of firstElement, flattenAsX, flatMapIterable (#5208)  * 2.x: fix images of firstElement, flattenAsX, flatMapIterable  * +UnicastSubject, +UnicastProcessor
+Fix a small typo in ParallelFlowable
+2.x: increase timeout on parallel & completable tests (#5199)
+2.x: add ParallelTransformer interface, params-validation (#5197)  * 2.x: add ParallelTransformer interface, params-validation  * Add explicit requireNonNull calls.
+2.x: Add a few more @Nullable & @NonNull annotations to public interfaces. (#5196)
+Correct java doc for refCount() return type. (#5191)
+2.x: add offer() method to Publish & Behavior Processors (#5184)  * 2.x: add offer() method to Publish & Behavior Processors  * Sleep instead of yield.
+2.x: fix flatMap emitting the terminal exception indicator on cancel (#5188)
+2.x: fix concatMapEager should accept 0 for prefetch (#5189)
+2.x: reflection-based parameter validator & fixes (#5187)
+2.x: test to disallow anonymous inner classes (#5183)
+2.x: fix replay().refCount() leaking items between connections (#5182)
+2.x: Minor generics fix to Functions
+removes all anonymous inner classes (#5177)
+2.x: fix private field access, few generics problems (#5176)
+2.x: WIP removes anonymous inner classes. (#5174)  * removes anonymous inner classes from flowable  * address comments  * remove remaining private classes  * cleanups in observable  * cleanups in operators
+2.x: fix LambdaObserver not cancelling the upstream (#5170)
+add Observable.switchMapSingle (#5161)
+2.x: Single.subscribe() to report isDisposed() true on success/error (#5163)
+Fix JFrog broken link, also trigger snapshot build
+Release 2.0.7
+2.x: add missing <T> javadoc
+2.x: improve BaseTestConsumer with awaitCount & timeout (#5155)  * 2.x: improve BaseTestConsumer with awaitCount & timeout  * Improve diff coverage
+Add @NonNull to the methods of Emitter (#5156)
+2.x: Java 9 compatibility fixes (March 3) (#5153)
+2.x: fix timed replay-like components replaying outdated items (#5140)
+2.x: add TestSubscriber.withTag (#5137)
+2.x: fix repeatWhen and retryWhen signatures (#5136)
+2.x: fix flatMap not cancelling the upstream eagerly (#5133)
+2.x: update javadoc of flatMap() overloads (#5127)
+2.x cleanup: add missing override annotations.
+2.x: add ParallelFlowable.sequentialDelayError (#5117)  * 2.x: add ParallelFlowable.sequentialDelayError  * Fix javadoc, make sure failed rails are ignored.
+2.x: improve coverage, remove unused code (#5119)
+2.x: fix Observable.zip to dispose eagerly (#5121)
+Add more prominent javadoc links
+2.x: fix Obs.combineLatest to dispose eagerly (#5114)
+2.x: benchmark the new strict/interop mode (#5115)  * 2.x: benchmark the new strict/interop mode  * consider CPU usage
+2.x: Flowable as a Publisher to be fully RS compliant (#5112)
+2.x: fix window(time, size) not completing windows on timeout (#5106)
+2.x: fix doOnSubscribe signalling Undeliv.Exception instead of onError (#5103)
+Added missing @NonNull attribute to Function7. (#5102)
+2.x: fix Maybe.concat() subscribe-after-cancel, verify others (#5101)
+Release 2.0.6
+Add doAfterTerminate callback to the Single type. (#5093)  * Add doAfterTerminate callback to the Single type.  * Mark the doAfterTerminate() experimental since 2.0.6
+2.x: fix scan(seed, f) to emit accumulated values asap (#5090)
+2.x: fix CI load sensitive BlockingNextTests retry with backoff (#5088)  2.x: fix CI load sensitive BlockingNextTests, XFlatMapTest
+Correct marble diagram dimensions (#5087)  2.x: Correct marble diagram dimensions
+2.x: wrap undeliverable errors (#5080)  * 2.x: wrap undeliverable errors  * Add CompositeException to isBug, add test for isBug
+2.x: measure performance of 0-1 length inner source to flatMap
+Fix javadoc sentence warning
+Removed documentation leftover (#5076)  That wrongly states that the error will be swallowed
+2.x: fix imports and raw type usage.

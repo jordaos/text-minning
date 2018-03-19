@@ -1,0 +1,205 @@
+Merge branch 'master' of github.com:Netflix/RxJava into scalaadaptor
+fix one scaladoc link
+update TODO
+do not import things from the same package
+replace `work{ t1 }` by `work{ t1.call() }`
+Merge pull request #506 from akarnokd/AndPattern2  Operators: And, Then, When
+reactivate Observable.withFilter
+Merge pull request #510 from benjchristensen/pull-495-zip  BugFix: Zip
+Unit Tests and SuppressWarnings  Added tests while validating pull request.  This fixes issue https://github.com/Netflix/RxJava/issues/387
+move rx.lang.scala.subscriptions.Subscription to rx.lang.scala.Subscription (mirror Java package structure)
+replace Assert.assertXxx by assertXxx
+examples to examples, tests to tests
+restore CompletenessTest
+private vars in Scala do not start with underscore
+@Ignore RxScalaDemo
+PublishSubject.apply() does not take a parameter
+update package objects
+restore package.scala files (mainly for scaladoc)
+move commented-out example from TestScheduler to separate file TestSchedulerExample
+mention Rationale.md in README.md
+restore original README.md
+rename README.md to Rationale.md
+Merge pull request #508 from benjchristensen/empty-subscribe  Empty subscribe
+Empty subscribe
+Update Observable.java  Correcting for overzealous search-and-replace in javadoc comments
+Operators: And, Then, When Issue #23, Issue #88, Issue #100
+Update Observable.java  Javadoc changes: * add links to RxJava wiki * correct obsolete <img> urls * remove unneeded version string from Linq URLs * standardize javadoc formatting * a few other minor javadoc corrections
+Version 0.15.0
+[Gradle Release Plugin] - new version commit:  '0.15.1-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.15.0'.
+0.15.0-SNAPSHOT
+Merge pull request #503 from Applied-Duality/scala-bindings  New Scala Bindings
+Updated README
+Reorg Scala Structure  - make Eclipse and Java/Scala interop happy
+Scala Bindings Refactor
+Merge pull request #502 from benjchristensen/observeOn-parallelMerge  Fix ObserveOn and add ParallelMerge Scheduler overload
+Fix ObserveOn and add ParallelMerge Scheduler overload  - ObserveOn was not correctly recursing when the source was async. It would create a new scheduler (i.e. a new thread) each time. - Also added unit tests to ParallelMerge
+Merge pull request #501 from benjchristensen/parallelMerge  ParallelMerge Operator
+ParallelMerge Operator
+Merge pull request #499 from benjchristensen/observeOn-refactor  ObserveOn Refactor
+Refactored ObserveOn without ScheduledObserver
+Update Observable.java  from(scheduler) -> add diagram, standardize javadoc comments range(scheduler) -> add diagram, standardize javadoc comments startWith(scheduler) -> add diagram, standardize javadoc comments
+Unit test to assert correct scheduler thread
+Merge pull request #492 from zsxwing/scheduler-overloads  Implement the scheduler overloads for Range, From, StartWith
+ZipMany with conformance changes
+Implement the scheduler overloads for Range, From, StartWith
+Merge pull request #496 from zsxwing/min-max-contravariant  Add contravariant for min and max
+Add contravariant for min and max
+Merge remote-tracking branch 'origin/master'
+Version 0.14.11
+Merge branch 'docs'
+[Gradle Release Plugin] - new version commit:  '0.14.12-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.11'.
+Merge pull request #486 from benjchristensen/bugfix-async-subject  BugFix: AsyncSubject
+BugFix: AsyncSubject  - it was not emitting values to observers that subscribed after onCompleted/onError
+adding marble diagrams to javadocs; standardizing formatting & terminology
+Remove a doOnEach overload  See https://github.com/Netflix/RxJava/pull/483 for more info
+Merge pull request #483 from benjchristensen/onEach-fix  DoOn Tweaks
+DoOn Tweaks  - do not have 2 method overloads with similar method signatures, dynamic languages can not negotiate method dispatch using function arity - add doOnCompleted and doOnError methods instead of different doOnEach overloads
+Version 0.14.10
+[Gradle Release Plugin] - new version commit:  '0.14.11-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.10'.
+Merge pull request #481 from zsxwing/using  Implement the 'Using' operator
+Merge pull request #480 from zsxwing/issue-423-average  BugFix: Emit an IllegalArgumentException instead of ArithmeticException if the observable is empty
+Merge pull request #479 from nullstyle/add_doOnEach  Adds doOnEach operator
+Merge pull request #478 from zsxwing/min-max  Implemented the "Operator: Min and MinBy" and "Operator: Max and MaxBy"
+Merge pull request #463 from zsxwing/timeout-overload  Added the rest overloads of Timeout operator
+Wraps DoOnEach in a SafeObserver  This commit leverages the SafeObserver facility to get the desired behavior in the face of exceptions.  Specifically, if any of the operations performed within the doOnEach handler raises an exception, that exception will propagate through the observable chain.
+Use the '+1/-1' way to implement the min and max operators
+Implement the 'Using' operator
+BugFix: Throw an IllegalArgumentException instead of ArithmeticException if the observable is empty
+Version 0.14.9
+Adds scala adapters for doOnEach operator
+Separating unit tests out and update the comments
+Adds other overrides for doOnEach
+Adds beginnings of doOnEach operator
+Added the min and max operators in Observable and comments
+Implemented the 'min' and 'max' operators
+[Gradle Release Plugin] - new version commit:  '0.14.10-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.9'.
+Merge pull request #477 from benjchristensen/subscription-bugfixes  CompositeSubscription bugfixes
+Unsubscribe Idempotence Test
+CompositeSubscription  - remove now also unsubscribes the removed subscription - added clear method
+Merge pull request #476 from benjchristensen/bugfix-asyncsubject-empty  Don't emit null onComplete when no onNext received in AsyncSubject
+Don't emit null onComplete when no onNext received
+Merge pull request #475 from benjchristensen/issue-423-reduce-empty-observable  Additional unit test for reduce
+Additional unit test for reduce
+Merge pull request #474 from benjchristensen/issue-423-reduce-empty-observable  BugFix: Reduce an empty observable
+BugFix: Reduce an empty observable  This fixes issue https://github.com/Netflix/RxJava/issues/423  The fix is based on this comment by @headinthebox: https://github.com/Netflix/RxJava/issues/423#issuecomment-27642532
+Merge pull request #473 from benjchristensen/fix-nondeterministic-unit-test  Fix non-deterministic unit test
+Fix non-deterministic unit test  - the latch was before onError is called - use BlockingObservable and expect the IllegalArgumentException to be thrown
+Merge pull request #472 from benjchristensen/issue-431-newThreadUnsubscribe  BugFix: Issue 431 Unsubscribe with Schedulers.newThread
+BugFix: Unsubscribing does not work when using subscribeOn(Schedulers.newThread())  I believe this fixes https://github.com/Netflix/RxJava/issues/431
+Merge pull request #471 from benjchristensen/error-handling  Unit Test Tweaks
+Add and clarify unit tests in map
+Fix unit test after last() changed behavior
+Merge pull request #470 from benjchristensen/operator-last  Operator: Last
+Fix behavior of BlockingObservable.last  It now throws an IllegalArgumentException instead of returning null if no elements are emitted.  This is based on feedback from @headinthebox confirming this expected behavior:  var xs = Observable.Range(1,0);                       		// empty sequence int x = xs.Last().Dump();                             		// throws ���sequence contains no elements���       RxJava => BlockingObservable.last() IObservable<int> ys = xs.TakeLast(1).Dump();          // OnCompleted()                                                RxJava => Observable.takeLast(1) IObservable<int> zs = xs.LastAsync().Dump();          // OnError(���sequence contains no elements���)    RxJava => Observable.last()
+Last operator  Equivalent to lastAsync in Rx.Net.
+Version 0.14.8
+Added the rest overloads of Timeout operator
+[Gradle Release Plugin] - new version commit:  '0.14.9-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.8'.
+Merge pull request #467 from benjchristensen/amb-merge  Merge Amb Operator in PR https://github.com/Netflix/RxJava/pull/460
+Separating unit tests out due to https://github.com/Netflix/RxJava/pull/466
+Merge pull request #466 from benjchristensen/unit-test-refactor  Refactor Unit Tests from Inner Classes to /src/test
+Add missing license headers.
+Move last 6 remaining unit tests out.
+Organize, Format, Comments and Cleanup  Also included comment => /* package accessible for unit tests */  for private classes made package public to enable unit testing.
+Fix ambiguous imports  Mockito.* and Observable.* both have a never() method in them.
+moving tests to test source folder #439
+creating test classes on test source folder
+Removed the 'vararg' overload and added 2-9 args overloads
+Implemented the 'Amb' operator
+Version 0.14.7
+[Gradle Release Plugin] - new version commit:  '0.14.8-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.7'.
+Update httpasyncclient to 4.0 from 4.0-beta4
+Merge pull request #433 from zsxwing/issue-383  Fixed testOnErrorViaHasNext in issue #383
+Merge pull request #452 from zsxwing/return  Implemented the scheduler version of the 'Return' operator
+Merge pull request #450 from zsxwing/time-interval  Implemented the 'TimeInterval' operator
+Merge pull request #453 from zsxwing/issue-417  Fixed issue #417
+Merge pull request #455 from samuelgruetter/scalaadaptor  Scala Adaptor: TODO list and documentation
+Merge pull request #458 from soundcloud/android-ui-component-operator  [rxjava-android] OperationObserveFromAndroidComponent
+Merge pull request #459 from zsxwing/issue454  Fixed issue #454
+Singularize AndroidObservables, move to observables package
+Renamed the log tag as it was too long
+Fixed issue #454
+some documentation for CompletenessTest
+Force 'hasNext' and 'next' throw the error once they have already thrown it before
+Followed the iterator contract
+Blocked 'hasNext' instead of 'next' until any notification arrives
+Removed the unnecessary 'catch' and 'fail'
+Fixed testOnErrorViaHasNext in issue #383
+add one TODO
+Merge branch 'master' of github.com:Netflix/RxJava into scalaadaptor
+Fixed issue #417
+Updated the comments
+Implemented the scheduler version of the 'Return' operator
+Implemented the 'TimeInterval' operator
+Merge pull request #449 from mattrjacobs/remove-merge-println  Removing println from OperationMerge
+Removing println from OperationMerge
+Update CHANGES.md
+[Gradle Release Plugin] - new version commit:  '0.14.7-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.6'.
+Merge pull request #447 from mattrjacobs/internal-impl-cache  Caching the result of 'isInternalImplementation'
+Merge pull request #434 from johnhmarks/Timeout  Implemented SerialSubscription and Timeout operator
+Merge pull request #443 from ylecaillez/master  OperationSwitch notify onComplete() too early.
+Merge pull request #441 from zsxwing/issue-417  Fixed the issue that 'take' does not call 'onError'
+Caching the result of 'isInternalImplementation' so that reflection doesn't get invoked on every subscribe
+Do not unsubscribe from child once parent has been completed.  Child should not be unsubscribed when the parent complete because it may not be completed.
+Fix OperationSwitch so that it does not onComplete() before inner and outer subscription completes.
+Fix OperationSwitch so that it does not onComplete() before inner and outer subscription completes.
+Fixed the issue that 'take' does not call 'onError' when 'onNext' throws any error
+Version 0.14.5
+[Gradle Release Plugin] - new version commit:  '0.14.6-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.5'.
+Added kotlin to internal build system.  Impressive that it only needed 2 jars.
+Merge pull request #438 from MarioAriasC/master  Kotlin Language Adaptor
+Exclude rxjava-kotlin from internal Netflix build until dependencies exist
+Comments on Test classes
+Delete examples
+Kotlin Version
+License and README
+Kotlin Examples
+Basic Kotlin tests completed
+Initial Kotlin support
+Gradle changes for Kotlin Support
+Initial Kotlin support
+merge
+Version 0.14.4
+[Gradle Release Plugin] - new version commit:  '0.14.5-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.4'.
+Merge pull request #437 from benjchristensen/bug-fixes  Fixes: Scheduler and Merge
+BugFix: unsubscribe was not propagating to parent Observable on merge(Observable<Observable<T>>)
+Scheduler overload with recursive support
+Merge pull request #435 from mattrjacobs/http-chunked  rx-apache-http recognizes "Transfer-Encoding: chunked" as an HTTP stream
+Merge pull request #430 from zsxwing/issue-428  Fixed issue #428
+Merge pull request #432 from codecurve/master  Fixed path to RxScalaDemo.scala
+rx-apache-http now recognizes "Transfer-Encoding: chunked" as an HTTP stream
+Fixed a couple of warnings and reverted change to imports
+Improved efficiency of SerialSubscription and unit tested Timeout
+Fixed path to RxScalaDemo.scala
+SerialSubscription and Timeout operator
+SerialSubscription and Timeout operator
+Remove isFinishing check when calling back to activities  We decided it's sufficient for the callback to be safe as long as the caller unsubscribes in onDestroy
+Add guards around log statements
+Only release references in unsubscribe  We decided it's better to leave it to the caller when it's appropriate to release, cf. #1
+Drop volatile in favor of failing fast if not subscribed from UI thread
+Fixed issue #428
+update TODOs according to meeting
+Update CHANGES.md
+[Gradle Release Plugin] - new version commit:  '0.14.4-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.14.3'.
+Update build.gradle  Commenting out rspec until until internal Netflix build system can handle ruby gems so that I can build and release 0.14.3
+Drop use of WeakReferences and use a custom subscription instead
+Version 0.14.3
+Revised version of Android UI component operator
+Merge pull request #426 from benjchristensen/publish-subject-resubscribe  PublishSubject ReSubscribe for publish().refCount() Behavior
+Merge pull request #416 from zsxwing/throw  Implemented the 'Throw' operator with scheduler
+Merge pull request #424 from zsxwing/ignore-elements  Implemented the 'IgnoreElements' operator
+Used 'subscribeOn' instead of 'observeOn'
+Implemented the 'Throw' operator with scheduler
+Implemented the 'IgnoreElements' operator
+Remove PublishSubject Terminal State Behavior  The PublishSubject implementation was performing onError/onCompleted unsubscribe logic that was put in place long ago and I am now pretty sure it was wrong.  This was revealed while playing with `refCount` which intends on allowing a re-subscription to the source once new Observers arrive. PublishSubject was preventing that.  The one use case that I'm still wondering about though is if someone subscribes to a PublishSubject after it has emitted onCompleted and isn't "restarted". That Observer would wait forever if it is a "single-shot" PublishSubject use case. I'm not sure if that's just a bad use and fits into the "don't do that" scenario, or if it's a legit issue that has a solution.  Rightn now this code is "thread-safe" in the visibility sense, but it's not atomic and could have race conditions between adding/removing Observers and event notifications. I don't think that's an issue as if someone is concurrently adding/removing it's always a race, but am not 100% sure if there's a use case I'm missing. This also assumes (as it always did) that someone is not invoking onNext concurrently as that would break the Rx contract.

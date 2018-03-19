@@ -1,0 +1,200 @@
+Make unit test more deterministic
+Migrating from 'toObservable' to 'from' and using toBlockingObservable() where needed
+Deprecating 'toObservable' duplications of 'from' methods
+Move blocking operators to BlockingObservable  - see https://github.com/Netflix/RxJava/issues/270 for background
+Moving "implementation detail" classes out of public API
+Gradle Release Plugin - new version commit:  'rxjava-0.8.5'.
+Merge pull request #269 from benjchristensen/observeOn  Fix concurrency bug in ScheduledObserver
+Fix concurrency bug in ScheduledObserver  This is a followup to https://github.com/Netflix/RxJava/commit/1fa6ae3be23200c787cc1c25c0bb8cac99ae0d17 that fixed one issue (concurrency) and created another (broke Rx contract by allowing concurrent execution of onNext).  I have reverted back to the previous implementatio and then attempted to fix the concurrency issue again.  I think it ended up being a simple fix ��� just re-ordering the `enqueue` method to remove the race-condition between the logic protected by the AtomicInteger and adding to the queue.  It's not an atomic operation (adding then processing) so we need to just add to the queue and treat it as an async data structure and keep the AtomicInteger portion to only protecting the "process or not process" logic.  ```java         // this must happen before 'counter' is used to provide synchronization between threads         queue.offer(notification); ```  This may still have issues but it's now working in all of my concurrency tests (the ones that broken with the original and then my modified version). The tests are not easy to build unit tests out of as they require running for many seconds and non-deterministically causing a race condition so I have not yet spend the time to try and figure out a deterministic unit test hence them not being committed.
+Gradle Release Plugin - new version commit:  'rxjava-0.8.4'.
+Merge pull request #268 from benjchristensen/observeOn-fixes  Fix concurrency bug in ScheduledObserver
+fix concurrency bug in ScheduledObserver  - found a concurrency bug while working on https://github.com/Netflix/Hystrix/issues/123 - the following code would lock up occasionally due to onCompleted not being delivered:  ```java public class RunTest {     public static void main(String[] args) {         System.out.println("Starting test...");          final ArrayList<String> strings = new ArrayList<String>(200000);          int num = 10000;         while (true) {             long start = System.currentTimeMillis();             final AtomicInteger count = new AtomicInteger();             for (int i = 0; i < num; i++) {                 new TestService1(2, 5).toObservable().forEach(new Action1<Integer>() {                      @Override                     public void call(Integer v) {                         count.addAndGet(v);                     }                 });                  new TestService2("hello").toObservable().forEach(new Action1<String>() {                      @Override                     public void call(String v) {                         strings.add(v);                     }                  });             }             long time = (System.currentTimeMillis() - start);             long executions = num * 2;             System.out.println("Time: " + time + "ms for " + executions + " executions (" + (time * 1000) / executions + " microseconds)");             System.out.println("   Count: " + count);             System.out.println("   Strings: " + strings.size());             strings.clear();         }     } } ```  - Also made OperationObserveOn not use ScheduledObserver if the `ImmediateScheduler` is chosen to allow an optimization. I believe this optimization is safe because ScheduledObserver does not require knowledge of a Scheduler (such as for now()) and all we do is emit data to the Observer on a scheduler and if we know it's Immediate we can go direct and skip the enqueuing step. This allows shaving off a noticable number of microseconds per execution in the loop above.
+Update README.md
+Version 0.8.2
+Gradle Release Plugin - new version commit:  'rxjava-0.8.3'.
+Merge pull request #266 from benjchristensen/junit-dep  change from junit to junit-dep
+change from junit to junit-dep  - removes Hamcrest dependencies (http://saltnlight5.blogspot.com/2012/10/whats-up-with-junit-and-hamcrest.html) - solves conflicts on our CI server (blocking release to Maven Central)
+Merge pull request #265 from jmhofer/swing  Swing - component event observables and minor cleanup
+fixing strange compilation problems by specifying the packages directly
+a few minor cleanups, renamings, javadoc additions
+Added observables for component events.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.8.2'.
+Merge pull request #264 from benjchristensen/pull-256-merge-BehaviorSubject  Merge BehaviorSubject from Pull 256
+Removing SynchronizedObserver usage from Subject implementations.  - We don't need to add synchronization as the subjects can trust their source Observables to comply with the Rx contract. - This optimization follows Rx Design Guidelines 6.8. Avoid serializing operators  This was discussed at https://github.com/Netflix/RxJava/pull/256
+Merge branch 'subject-implementations' of git://github.com/michaeldejong/RxJava into pull-256-merge-BehaviorSubject
+Merge pull request #262 from jmhofer/swing  A few basic Swing observables
+moved SwingObservable into the rx.observables package
+Merge pull request #263 from benjchristensen/publish-replay-cache  Publish, Replay and Cache Operators
+remove debug statements from unit tests
+Re-order count increment to make unit tests deterministic
+Cache operator  Cache operator as discussed in https://github.com/Netflix/RxJava/pull/209  Similar to `replay()` except that this auto-subscribes to the source sequence. This comes with the same cautions as `toList` when dealing with infinite or very large sequences.
+Replay operator on Observable  https://github.com/Netflix/RxJava/issues/71
+Publish operator on Observable  https://github.com/Netflix/RxJava/issues/15
+added a missing license header
+Merge pull request #257 from jmhofer/improved-scan  Improved scan, reduce, aggregate
+Added basic mouse event observables.
+Added observable for all currently pressed keys
+Merge branch 'improved-scan' into swing
+Merge branch 'master' into swing
+fixed method signatures and respective javadocs of various aggregate/reduce/scan overloads
+Merge branch 'master' into improved-scan
+Improved documentation of the BehaviourSubject.
+Merge pull request #255 from jmhofer/fix-build-warnings  Cleaning up - fixing a lot of build warnings (mostly javadoc)
+Merge pull request #254 from jmhofer/SwingScheduler  Swing scheduler
+Switched away from using take and skip again due to concurrency issues.
+Fixed a typo, added missing error and completion handling
+Also added aggregate (alias for reduce, see issue #20).
+also adapted type signatures of the reduce methods
+found drop (it's called skip here...) - finished with generalizing scan
+trying to generalize scan, however drop is still missing...
+Created the initial implementation of BehaviorSubject
+Added filtering for key codes.
+Added key events as source for Swing observables.
+Removed some unused code, fixed some (Eclipse) warnings
+Cleaned up all empty `@return` tags, too.
+Fixed everything but empty return tags.
+Fixed links in the javadocs, mostly.
+Moved Swing observables to new subfolder `rxjava-contrib` after merge.
+Merge branch 'SwingScheduler' into swing
+Renamed `extensions` to `rxjava-contrib`.
+Added some api documentation.
+Refactored implementation out from SwingObservable, as there will probably be lots more methods in the long run.
+Allow creating observables from `AbstractButton`s.
+Increased test delays.
+Tested whether the actions are really executed in the EDT.
+Created `extensions` subdirectory for non-core additions to RxJava and moved `SwingScheduler` into a new subproject `rxjava-swing`.
+Added tests against periodic scheduling. I hope the delays are stable yet fast enough...
+Merge pull request #249 from jmhofer/timestamp  Timestamp operation
+Merge pull request #248 from jmhofer/sample  Implemented Sample Operation
+Merge pull request #253 from Treora/master  Fix multiple subscription bug on operation filter
+Fix multiple subscription bug on operation filter  A new subscription must be created on every subscribe call, otherwise any subscribe call after the first directly fails.
+Update CHANGES.md
+Implemented periodic scheduling, too. Needs testing now.
+Merge branch 'master' into SwingScheduler
+Added sample methods to observable.
+Merge branch 'master' into sample
+Merged with master from Netflix repo.
+Merge remote-tracking branch 'parent/master' into timestamp
+Added `timestamp` method to `Observable`, too.
+Version 0.8.1
+Gradle Release Plugin - new version commit:  'rxjava-0.8.2-SNAPSHOT'.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.8.1'.
+Merge pull request #250 from michaeldejong/subject-implementations  Initial implementation of AsyncSubject
+Merge pull request #252 from benjchristensen/toFuture  Observable.toFuture
+Merge pull request #246 from jmhofer/schedulePeriodically  Scheduling actions periodically
+Merge pull request #245 from mairbek/multisubscribe  Moved state from Observable to Observer
+Merge pull request #247 from benjchristensen/flatMap-alias-to-mapMany  Add flatMap alias to mapMany
+Observable.toFuture
+Initial implementation of AsyncSubject
+Removed superfluous null check
+added copyright text to Timestamped class, added timestamp operation, reusing mapping
+Added toString to Timestamped
+Added value class wrapping timestamped values
+fixed formatting and removed superfluous checks
+minor renaming and removing unnecessary warning suppression again
+Add flatMap alias to mapMany  This is to match with what Java 8 is adding to Stream so we support the duality of Iterable/Collection to Observable.  http://download.java.net/lambda/b86/docs/api/java/util/stream/Stream.html#flatMap(java.util.function.Function)
+Removed unused imports.
+ExecutorScheduler now uses scheduleAtFixedRate instead of recursion when possible.
+switched OperationInterval implementation over to use periodic scheduling
+Tested unsubscription, too
+Fixed millisecond/nanosecond confusion in test scheduler, fixed schedulePeriodically to use now() instead of System.nanoTime() and added a test against scheduling periodically
+Fixed a bug in the test scheduler that happened when advancing time by a too little amount
+Merge branch 'master' into multisubscribe  Conflicts: 	rxjava-core/src/main/java/rx/operators/OperatorGroupBy.java
+Merge branch 'master' into multisubscribe  Conflicts: 	rxjava-core/src/main/java/rx/operators/OperatorGroupBy.java
+Fixed scheduler javadoc, and one single unnecessary cast in takeWhile
+adapted SwingScheduler to new Scheduler interface
+Merge branch 'master' into SwingScheduler
+added missing linebreak
+Merge branch 'master' into sample
+taken over default recursive implementation
+fixing the scheduler methods to fit the new pattern
+manually merging master in...
+Version 0.8.0
+Gradle Release Plugin - new version commit:  'rxjava-0.8.1-SNAPSHOT'.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.8.0'.
+0.8.0-SNAPSHOT
+Merge pull request #244 from benjchristensen/pre-release-changes  Pre 0.8.0 Release Changes
+Rename from Operator* to Operation* to match convention
+Rename DefaultSubject to PublishSubject  - https://github.com/Netflix/RxJava/issues/242
+Merge pull request #241 from benjchristensen/pull-218-merge-replay  ReplaySubject - Manual Merge of Pull 218
+Merge branch 'replay' of git://github.com/johngmyers/RxJava into pull-218-merge-replay  Conflicts: 	rxjava-core/src/main/java/rx/operators/OperationTake.java 	rxjava-core/src/main/java/rx/operators/OperationTakeWhile.java 	rxjava-core/src/main/java/rx/subjects/Subject.java  - moved UnsubscribeTester into a package private class as I'm still undecided on long-term placement of this and the OperatorTester class - merged DefaultSubject and PublishedSubject which were the same thing (lots more unit tests though from this pull request) - still not sure what the right name is for DefaultSubject/PublishSubject - renamed RepeatSubject to ReplaySubject to match .Net - tweaked unit tests with InOrder while reviewing them to understand behavior
+Merge pull request #240 from benjchristensen/fix-TestScheduler  Update TestScheduler to match merged Scheduler changes
+Update TestScheduler to match merged Scheduler changes  - I accidentally merged this code before fixing it to match the changes to AbstractScheduler/Scheduler
+Merge pull request #228 from jmhofer/interval  Interval
+Merge pull request #231 from mairbek/multicast  Multicast
+Merge pull request #239 from mairbek/sched-priorityqueue  CurrentThreadScheduler Delayed Execution Fix
+Merge branch 'master' into sched-priorityqueue  Conflicts: 	rxjava-core/src/main/java/rx/concurrency/SleepingAction.java
+CurrentThreadScheduler updates.  Unit test that mixes delayed and immediate scheduling. Added counter to resolve conflicts in case in time between enqueueing took less than 1 ms.
+Merge pull request #223 from billyy/concat-merge  Concat merge
+Merge pull request #238 from benjchristensen/pull-234-merge-ObserveOn  ScheduledObserver/ObserveOn - Manual Merge of Pull 234
+ObserveOn and SubscribeOn concurrency unit tests  - these are very rudimentary and may have a determinism problem due to the Thread.sleep
+Priority of the delayed actions in CurrentThreadScheduler
+Merge pull request #236 from mairbek/sleepingfix  Fixed Sleeping Action
+Merge branch 'master' into sleepingfix  Conflicts: 	rxjava-core/src/main/java/rx/concurrency/SleepingAction.java
+Refactor test to use CountDownLatch instead of Thread.sleep
+Merge branch 'schedulerf' of git://github.com/mairbek/RxJava into pull-234-merge-ObserveOn
+Merge pull request #235 from benjchristensen/schedulers-pull-229-merge  Schedulers Interface (Merging and Adding to Pull Request 229)
+Implement Scheduler method with dueTime  - added method: schedule(T state, Func2<Scheduler, T, Subscription> action, Date dueTime)
+Merge Scheduler/AbstractScheduler  - using abstract class for Scheduler for same reason Observable is concrete - discussed and decided upon at https://github.com/Netflix/RxJava/pull/235
+Fixed sleeping action
+Add unit tests for recursive scheduler usage  These tests came from @mairbek at https://github.com/Netflix/RxJava/pull/229#issuecomment-16115941
+Change Scheduler implementations to use primary methods  Work done in https://github.com/Netflix/RxJava/pull/229 added the following methods:  - Subscription schedule(T state, Func2<Scheduler, T, Subscription> action, long delayTime, TimeUnit unit)} - Subscription schedule(T state, Func2<Scheduler, T, Subscription> action)}  These are in fact the primary methods from RxNet (http://msdn.microsoft.com/en-us/library/hh211963(v=vs.103).aspx) and the others are just helper overloads.  It seems it is better to set the precedent to use these 2 methods for actual implementation logic while all other methods are just decorating and forwarding from AbstractScheduler to these methods.  I have updated the various implementations to achieve this.  Unit tests are passing ��� but we don't have enough unit test coverage so I won't be surprised if bugs are found.
+Add CompositeSubscription  - also a utility method for creating a Subscription around a Future
+Merge branch 'schedulers' of git://github.com/jmhofer/RxJava into pull-229-merge
+Merge pull request #230 from johngmyers/wrap-unsubscribed  An unsubscribed AtomicObservableSubscription.wrap() unsubscribes its argument
+Merge pull request #232 from mairbek/naming  Corrected naming
+Fixing UnitTest
+Trying to fix a build
+Non-blocking implementation of ScheduledObserver
+Blocking implementation of ScheduledObserver
+Corrected naming Operator -> Operation
+Moved state to Observer from Observable
+Removed annotation
+Added support for sever connect method calls
+Unit tests for multicast
+Multicast implemented
+Playing with Subject and ConnectedObservable
+initial attempt at implementing periodic schedulers as discussed in #228, needs some testing next...
+Added a unit test against the sample operator
+Switched sample from internal clock to using the interval operator
+Merge branch 'interval' into sample
+An unsubscribed AtomicObservableSubscription.wrap() unsubscribes its argument.
+Trying to extend the Scheduler interface according to the comments at #19.
+Added a scheduler for scheduling actions on the Swing event thread.
+First attempt at "sample" operator. Should probably use "interval" operator instead of an internal clock. Also still needs tests!
+Oops, the test scheduler has to go into the main sources.
+Fixed yet more indentation issues.
+Fixed indentation.
+Switched to a default scheduler that actually works together with this operator.
+Added a unit test. Fixed the implementation. Maybe still a bit naive when it comes to intervals that are too small to keep up with?
+Added a TestScheduler which collects actions in a queue and has adjustable time.
+Initial implementation for interval (#55). Needs a test scheduler...
+Version 0.7.0
+Gradle Release Plugin - new version commit:  'rxjava-0.7.1-SNAPSHOT'.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.7.0'.
+0.7.0-SNAPSHOT  Bumping to 0.7.0 because Schedulers is a big feature addition.
+Removing Scheduler overloads on operators (for now)  I have some outstanding questions on how these should be implemented (or even why we need them when the 'subscribeOn' operator is far cleaner) so want to remove them for now so they don't make it into the public incorrectly.
+Merge pull request #225 from benjchristensen/schedulers-merge  Schedulers (merge of pull #199)
+Fix non-deterministic unit test
+Use long instead of int   ��� considering very long running app with lots of IO events.
+Name the NewThreadScheduler threads
+Set threads to daemons so they don't prevent system from exiting  - This applies to any pools RxJava itself creates. It will be up to users to do this for Executors they inject.
+Scheduler overloads for Subscribe, ToObservable, From, Merge, Empty  - the list of operators to add overloads to was derived from the Rx.Net docs at http://msdn.microsoft.com/en-us/library/hh212048(v=vs.103).aspx
+Basic unit tests  - I plan on using this to expand unit testing around various aspects of schedulers - this is not done as an inner-class as it does not correlate with just one class but is cross-functional over many classes thus it fits best here
+Tweaks to Executor/ExecutorScheduler/IOScheduler and Javadocs  - added Javadocs - moved some classes to package-private until they are proven necessary for the public API - made ExecutorScheduler support Executor implementations and still work with time delays by using a system-wide scheduler/timer - made IO thread-pool unbounded with a cached thread pool
+Make ForwardingScheduler Internal  Until there is a use case other than unit testing I'm moving this to a non-public role so it's not part of the public API.
+1.  Update javadoc on subscribe() blocking if observables are running on the same thread. 2.  Add test case with infinity observable. 3.  Add test case to unsubscribe() with all observables running in different thread (non-blocking).
+Merge branch 'issue202' of https://github.com/abliss/RxJava into concat-merge
+Merge branch 'master' of git://github.com/Netflix/RxJava into issue202
+Resolve merge conflicts
+Merge branch 'master' into replay  Conflicts: 	rxjava-core/src/main/java/rx/operators/OperationTake.java
+Add unit tests to PublishSubject
+Beef up UnsubscribeTester some more
+Beef up UnsubscribeTester
+Extract UnsubscribeTester to top level
+Implement RepeatSubject
+Introduce Subject as analogue to RX ISubject
+Rename Subject to PublishSubject
+Merge branch 'upstream' into issue202
+Incorporate review feedback.  Also restore the errant change to settings.gradle.
+Reimplementation of Concat, improved handling of Observable<Observable<T>>.  The old version required all of the Observable<T>s to be generated and buffered before the concat could begin.  If the outer Observable was asynchronous, items could be dropped (test added).  The new version passes the test, and does the best job I could (after examining several possible strategies) of achieving clear and consistent semantics in accordance with the principle of least surprise.

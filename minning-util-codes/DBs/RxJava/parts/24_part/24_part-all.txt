@@ -1,0 +1,200 @@
+2.x: Enhance NPE messages (#4593)
+2.x: Add singleOrError, firstOrError, lastOrError & elementAtOrError to Observable and Flowable (#4589)  * 2.x: Add singleOrError, firstOrError, lastOrError & elementAtOrError to Observable and Flowable  * Address issues
+2.x: UnicastSubject fix onTerminate (#4592)
+2.x: Report errors from onError to Plugin when done (#4590)
+Highlight RC3 as done
+Update changes.md for RC3
+2.x: Add error assertion with predicate to TestSubscriber and TestObserver (#4586)  * Add error assertion with predicate (#4498)  * Add error assertion with predicate to TestObserver (#4498)
+2.x fix Flowable.create() not reporting null values properly, unify (#4583)  exception msg across
+Remove unused import
+2.x: Remove some dead code (#4581)
+2.x: Add missing Maybe tests for concatWith & onErrorResumeNext (#4582)
+2.x: convert the Observable operators to return Single/Maybe (#4579)
+2.x: count, elementAt, ingoreElements, last, single, reduce, reduceWith (#4576)  to return non-Flowable
+2.x: collect, toList, toSortedList, toMap, toMultimap to return Single (#4574)
+2.x: make any() and all() return Single, patch up tests (#4573)
+2.x: last() to return Single (#4570)
+Fix wrong upstream type.
+Add extra Maybe iterable Amb tests for overlapped emissions (#4567)  - Asserting that downstream will get the results of the first source that began emission, even if multiple sources have overlapped emissions - Testing Success and Error paths
+Fix flaky MaybeUnbsubscribeOnTest.normal
+2.x: Enhance NPE message in Create functions of all Base Reactive Types (#4561)
+2.x: Fix typo in Single + Maybe defer() (#4560)
+2.x: make internal naming consistent, refactor some classes 9/14-2 (#4554)
+2.x: cleanup of style and other minor things, 9/14-1 (#4552)  * 2.x: cleanup of style and other minor things, 9/14-1  * Disable the other checks
+2.x: cleanup of some javadoc errors and mentions of 'Nbp' (#4542)
+2.x: small cleanup and TCK fix (#4541)
+2.x: Add Create test with CancelAble for all types and add more MaybeCreateTest cases (#4540)
+2.x: add most relevant ~100 operators' Reactive-Streams TCK tests (#4538)
+2.x: last Maybe operators (#4537)
+Observable/Flowable should unsubscribe from underlying subscription on dispose (#4536)
+2.x: Fix MaybeTimber by using scheduler and unit (#4529)  * 2.x: Fix MaybeTimber by using scheduler and unit  * Address issues  * Use Star imports
+2.x: more cleanup and fixed checker, Maybe.takeUntil (#4533)
+2.x: cleanup 9/12-1, more Maybe operators, more source code checking (#4530)
+2.x: PublishSubject enhance NPE when onNext(null) is called (#4531)
+2.x: add Maybe operators, add annotation and source code checker tests (#4528)
+Fix compile warnings
+2.x: Remove unused declarations (#4527)
+2.x: More usage of ObjectHelper (#4526)
+2.x: Fix Generics T[] in Zip & CombineLatest (#4525)  * 2.x: Fix Generics T[] in Zip & CombineLatest  * Add Single zipIterableObject test  * Add combineLatestObject test to Flowable + Object  * Add Javadoc explanation  * Add it to Single too
+Fix compilation error in Eclipse
+Observable/Flowable/Completable/Single.delay should always call onError on the provided Scheduler (#4522)  * Provide failing test case for Observable/Flowable/Completable/Single.delay  * Call Observable/Flowable/Completable/Single onError on proper scheduler  * Fix CompletableTest.delayErrorImmediately
+2.x: Add missing Resource Observer for Maybe, Completable & Single and adjust some Javadoc (#4518)  * 2.x: Add missing Resource Observer for Maybe, Completable & Single and adjust some Javadoc  * Add empty test for Maybe  * Remove cancel methods
+2.x: add more Maybe operators 9/09-1 (#4519)
+2.x: fix Single.using, add unit tests and coverage (#4516)
+2.x: cleanup and coverage 9/08-1
+2.x: fix switchMap bad cancellation (#4513)
+Fix wrong javadoc tag.
+2.x: Adjust some JavaDoc in Emitters (#4509)  * 2.x: Adjust some JavaDoc in Emitters  * Fix one place  * Adjust another one  * Fix a/an
+2.x: add system properties to adjust thread priorities of Schedulers (#4503)
+2.x: add Reactive-Streams TCK infrastructure and couple of tests (#4507)
+2.x: Add exception message in SingleFromCallable (#4508)
+2.x: fix operator RefCount, disable FindBugs (due to Travis OOM) (#4506)
+Replace `finallyDo` references with `doAfterTerminate` (#4502)
+2.x: Add Disposable Observer for Maybe, Completable & Single (#4504)
+2.x: Ignore Checkstyle failures (#4505)
+Add Checkstyle for Trailing Whitespace (#4497)
+2.x: Remove trailing whitespace (#4496)
+2.x: more Maybe operators, minor cleanups 9/07-1 (#4493)
+2.x: reduce blockingX overhead, move internal observers to common pkg (#4491)
+rename emitters #isCancelled to #isDisposed (#4490)
+2.x: add new methods to Maybe, Observable and Single from 4481 (#4488)  * 2.x: add new methods to Maybe, Observable and Single from 4481  * Fix javadoc mistakes
+2.x: Flowable.reduce() to return Single, macro fusion (#4484)  * 2.x: Flowable.reduce() to return Single, macro fusion  * Fix javadoc copy-paste not updated to mention Observable  * Fix "a Observable"s
+2.x: Completable enhance doOnEvent to reduce allocations (#4486)
+2.x: Add doOnEvent to Single & Completable (#4479)
+Replace all occurrences 'TestSubscriber'  by 'TestObserver' in TestObserver class (#4478)
+Update changes.md and readme.md
+2.x: coverage and fixes 9/03-2 (#4469)
+2.x: coverage, bugfixes, 9/03-1 (#4468)
+2.x: add more Maybe operators, fix a few javadoc mistakes (#4467)
+rename Observable and Single #doOnCancel to #doOnDispose (#4458)  * rename Observable/Single #doOnCancel to #doOnDispose  * align naming of Completable onDispose arguments  * aligns javadoc
+2.x: start reimplementing Maybe with up-to-date javadoc, tests and algo (#4454)
+Add a maybe type as a lazy Optional type. (#4436)
+Merge pull request #4450 from akarnokd/CleanupFixes831  2.x: fixes, cleanup, coverage 8/31-1
+2.x: fixes, cleanup, coverage 8/31-1
+Fix FlowableOnBackpressureBufferStrategy (#4441)  * Fix buffered objects not propagated downstream in FlowableOnBackpressureBufferStrategy Fix drop strategy logic in FlowableOnBackpressureBufferStrategy Add unit test for FlowableOnBackpressureBufferStrategy, copied from FlowableOnBackpressureBufferTest, there is still some work needed to have a better coverage  * Fix FlowableOnBackpressureBufferStrategy  Move the call to drain out of the synchronized block Cleaned up unit tests to follow recommendations from akarnokd
+Fix FlowableOnBackpressureBufferStrategy  Move the call to drain out of the synchronized block Cleaned up unit tests to follow recommendations from akarnokd
+Fix buffered objects not propagated downstream in FlowableOnBackpressureBufferStrategy Fix drop strategy logic in FlowableOnBackpressureBufferStrategy Add unit test for FlowableOnBackpressureBufferStrategy, copied from FlowableOnBackpressureBufferTest, there is still some work needed to have a better coverage
+2.x: Subject/Processor improvements & small cleanup (#4437)
+2.x: cleanup, behavior clarifications, fixes, coverage 8/28-1 (#4435)
+2.x: cleanup, bugfixes, coverage 8/27-2 (#4434)
+Fix typo. (#4433)
+2.x: coverage, fixes, cleanup 8/27-1 (#4431)
+2.x Improve coverage, fix bugs (#4430)  * 2.x Improve coverage, fix bugs  * Update to ExceptionHelper.wrapOrThrow
+2.x - collect - handle post-terminal events for Observable (#4428)
+Fix link to 2.x javadoc
+Add missing css
+Fix bad javadoc link
+Update changes.md and readme.md
+2.x: add subscribeWith to get back the subscriber/observer fluently (#4422)
+2.x: fixes, cleanups, renames (#4421)  * 2.x: fixes, cleanups, renames  * Rename a few more parameters
+2.x: add assembly tracking, minor fixes and cleanup (#4417)  * 2.x: add assembly tracking, minor fixes and cleanup  * Add missing header, add more time to test
+2.x: API removals and renames (#4413)
+Fix missing javadoc type argument
+2.x: cleanup, enhancements 8/23-1 (#4410)
+2.x collect - handle post-terminal events properly (#4364)
+2.x: add missing ops, cleanup, fusion fixes (#4403)  * 2.x: add missing ops, cleanup, fusion fixes  * Fix scalar handling in flatMaps, rename Objects to ObjectHelper
+Avoid potential NPE when onError throws. (#4398)  t2 was only initialized if canceling threw an exception. In the happy path it would have never been initialized so when onError threw the call to suppress() would NPE.
+2.x: Completable.test cancel TestSubscriber when wanted (#4395)
+2.x: Single.test dispose TestSubscriber when wanted (#4394)
+Remove explicit StackOverflow check as its a VirtualMachineError. (#4391)  Looks like [the linked comment][1] was misinterpreted (but not in a way that affected the implementation) as Scala considered StackOverflowError as non-fatal but RxJava always considered it fatal. As such, its explicit check was redundant.   [1]: https://github.com/ReactiveX/RxJava/issues/748#issuecomment-32471495
+Remove unused test methods from safe observer/subscriber. (#4387)
+Move error consumer helper to internal API. (#4386)
+Free upstream resources when default observer/subscriber is canceled. (#4385)
+Remove reference counted Disposable public type. (#4388)  This is a very specific use case to provide as a first-party type which can always be added back later should there be sufficient demand.
+Do not promise a new instance where we return a singleton. (#4384)
+Remove double dash on RxThreadFactory thread names. (#4383)  Also optimize name creation to avoid StringBuilder having to expand its underlying char[].
+Correctly dereference subscription before comparing against null. (#4382)
+Correct factory method name for converting an RS Publisher. (#4381)
+Move single-use top-level type to nested class of its only use. (#4379)
+Remove test scheduler factory. (#4380)  This method is misleading in that it's a factory next to a bunch of accessor methods to shared resources. The TestScheduler constructor is public and can be used directly.
+2.x: implement ops, add javadoc, remove unused components 8/19-2 (#4378)
+2.x: added missing ops, cleanup 8/19-1 (#4375)
+Implement ObservableHide for also masking the Disposable. (#4372)
+2.x: move blocking operators into the base classes (#4371)
+2.x: remove Try+Optional, introduce Notification (#4370)
+2.x: add withLatestFrom many, cleanups and other enhancements (#4368)
+2.x: test sync, fix retryWhen/redoWhen/publish(Function) (#4361)  * 2.x: test sync, fix retryWhen/redoWhen/publish(Function)  * Fix spelling error, use common parameter validation at more places
+2.x: factor out inner classes from the base reactive types (#4360)
+Add missing @Test annotation (#4358)
+2.x: switch to throwing Action, switchMapDelayError (#4357)
+2.x: sync Completable javadoc and related changes (#4355)
+Accept subclasses of Throwable for asserting failure. (#4353)
+2.x: Sync Single javadoc with 1.x (#4352)
+2.x: Observable + Flowable fix some typos (#4349)
+2.x: sync Javadoc of Observable (copy&adjust Flowable's) (#4346)
+2.x: Fix some typos in Flowable + Observer documentation (#4344)
+2.x: sync javadoc of Flowable (#4342)
+Remove conditional resource management from async listeners. (#4338)  Rename them to have a 'Resource' prefix.
+2.x: move DisposableObserver to public area, add some javadocs (#4337)
+2.x: Clarify behavior of RxJavaPlugins.reset() in javadoc (#4298)
+Add 'WithUpstream' interfaces to connectable implementations. (#4333)
+Fix compilation warnings
+Extract 'WithUpstream' interfaces. (#4326)  This allows use with types that do not extend directly from their base stream types.
+Skip static factories when converting between stream types. (#4324)  Also rename Publisher->Completable factory method and operator implementation to match other stream types.
+No scheduler change happens for timeInterval() and timestamp(). (#4323)
+Switch (almost) all chain operators to ObservableWithUpstream. (#4319)
+Switch (almost) all chain operators to FlowableWithUpstream. (#4318)
+Rename create to unsafeCreate, add "safe" create methods. (#4317)  This change is built around one goal: make the `create` methods actually usable by developers!  Currently the advice given to most developers using 1.x is avoid `create` unless you are absolutely 100% sure you understand backpressure and cancellation, and even then avoid it if possible. This is a trap that most new developers fall into. _The method is named "create", after all, so it must be how I create these things!_ I want to make that not only correct, but advisable (at least when the still-convenient "from" methods are not suitable, such as when wrapping callback-based APIs).  Because `Observable`, `Single`, and `Completable` are backpressure-free, this amounts to just suppressing downstream notifications when disposed. This doesn't seem too controversial.  The most controversial part is that I have renamed `Flowable.fromAsync` to `Flowable.create` thus making it the canonical way for users to create `Flowable`s directly. I'm much less opinionated on this change, but it felt wrong to have an `Flowable.unsafeCreate` with no associated `create` and `fromAsync` is the "safest" version we have.
+Normalize empty and never sources. (#4316)
+Use ArrayListSupplier in more places, add HashMapSupplier. (#4315)
+2.x: Remove unused exceptions in public API (#4309)
+Rename FlowableSource to FlowableWithUpstream to match ObservableWithUpstream. (#4314)
+Hotfix compilation error and missing generics
+Rename source/publisher wrapper class to more semantic 'from' name. (#4305)
+Promote anonymous Observables to top-level types. (#4291)
+2.x: fix SubscriptionArbiter reentrancy/cancel bug (#4310)  * 2.x: fix SubscriptionArbiter reentrancy/cancel bug  * Use an infinite source with timeout as 1G element takes only 2 secs.
+Promote Observable to Single/Flowable adapters to top-level types. (#4308)
+Promote lift implementations to top-level types. (#4307)
+2.x: Add missing license headers (#4304)
+Move single and completable observers to correct package. (#4303)
+2.x: Rename Observable Base Interface Types for consistency (#4300)
+2.x: Rename Completable Base Interface Types for consistency (#4302)
+2.x: Rename ObservableSource to ObservableWithUpstream (#4301)
+2.x: Rename Flowable Base Interface Types for consistency (#4299)
+2.x: Rename Single Base Interface Types for consistency (#4297)
+2.x: Observable.range fix Exception message (#4296)
+Add serialized single subscriber wrapper. (#4295)
+Correct default subscriber name. (#4293)
+Inline generic-free runnable and long consumer method. (#4294)
+Actually apply custom scheduler when applying future. (#4292)  Correct annotatoin declaration as well.
+Elide more create/callback wrappers in favor of direct Observables. (#4289)
+2.x: move Exceptions to public area, + ExceptionHelper (#4288)
+Elide ObservableWrapper for empty and never. (#4287)
+Remove defunct 'Nbp' prefix from Observable interfaces. (#4285)
+2.x: Functional interfaces now throw (#4278)  * 1.x: use throwing functional interfaces + changes  * Fix remaining classes  * Fix mistakes.
+2.x: test sync and missing operators (8/02) (#4273)
+2.x: test sync and bugfixes (#4268)
+2.x: add dedicated concat for array of publishers (#4266)
+2.x: subscribeOn allow cancelling before the actual subscription happens (#4222)  (just like 1.x)
+2.x: Test sync, +groupJoin, +join, +onTerminateDetach (#4217)  * 2.x: test sync, +groupJoin, +join  * Finish up the observable variants
+2.x: use generic type instead of Object in combineLatest and zip (#4211)
+2.x: test sync + cleanup (#4204)  * 2.x: test sync + cleanup  * Adjust header copyright year  * Disable PMD; eats to much memory and prone to travis kill-9  * Add missing headers  * Trace scheduler leak  * Fix a scheduler leak in AbstractSchedulerTests
+2.x: sync unit tests of Completable, add missing features (#4195)  * 2.x: sync unit tests of Completable, add missing features  * Fix small documentation errors
+2.x: +fromAsync, distinctUC, skip, take overloads, fix TestSubscriber API (#4192)  * 2.x: +fromAsync,distinctUC,skip,take overloads, fix TestSubscriber API  * Address review comments
+2.x: implement concat(Map)Eager(DelayError) and expose concat(Map)DelayError overload (#4190)  * 2.x: implement concat(Map)Eager(DelayError) and expose concat(Map)DelayError overload  * Make sure cancel means cancel.  * Replenish main source  * Update if-structure  * Wrong expression
+2.x: introduce op-fusion to Observable + disposable-chaining fixes
+2.x: reduce overhead of blocking first/last/single (#4167)
+2.x: measure overhead of toBlocking() first and last (#4166)
+2.x: fix wrong reference check in FlattenIterable (#4165)
+2.x: enable op-fusion on GroupBy, doOnX, fix mistakes in map and filter (#4160)
+2.x: Enable fusion-consumers (#4157)  * 2.x: Enable fusion-consumers  * Fix observeOn leaking the worker  * Code cleanup
+2.x: enable scalar and async fuseable sources and intermediates (#4151)
+Observable direct rest (#4145)  * Switch the remaining Observable operators to direct impl.  * Last set of operators, test renames
+2.x: upgrade to Gradle 2.14 (#4141)  * 2.x: upgrade to Gradle 2.14  * Regenerate wrapper
+2.x update branch and year in contributing and readme md (#4135)  * 2.x update branch and year in contributing md  * Also (C) 2013-2016
+2.x: fix flaky tests (#4139)
+2.x: enable fuseable sources, adjust operators (#4136)
+2.x: cleanup and test renames (#4134)
+2.x: run Findbugs on main only (#4130)
+2.x: cleanup of PMD suggestions (#4129)
+Reduce the visibility of internal methods. (#4128)
+Correct method name for Flowable-->Observable. (#4127)
+Remove XResource classes (#4126)
+Switch some Observable ops to direct, map fuseable (#4124)
+Refactor ConditionalSubscriber, add base fuseable Subscribers (#4122)
+Parallelize unit test execution for speed! (#4113)
+2.x: provide an explanation why certain tests are ignored (#4120)
+2.x: Add Findbugs (#4116)
+Remove explicit cancel flags where it can be inferred. (#4110)
+Simplify boolean disposables which run code on dispose. (#4111)
+Case IO acronym like a word. (#4114)

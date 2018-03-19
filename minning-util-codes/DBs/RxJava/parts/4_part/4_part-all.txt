@@ -1,0 +1,200 @@
+adapted RxImplicits tests againt zip to new generics order, renamed two more reduceFunctions to zipFunction
+Merge pull request #1 from benjchristensen/super-extends-additions  Zip and CombineLatest Operators: Generic Order and More Arities
+Zip: Order of Generics and Artities 5-9  Changed order of generics on zip (and combineLatest) to match the rest of the project. Added arties 5, 6, 7, 8, 9 to zip operator.  https://github.com/Netflix/RxJava/issues/333 Order of Generics on Zip Operator https://github.com/Netflix/RxJava/issues/103 Add more arities to zip operator
+Need to stay pinned on Scala 2.10.1 still ���  I can't get through release process to maven central on 2.10.2 for some reason so pinning until that is solved.
+UnitTest confirming compilation failure without super/extends and success with them.  - only testing zip operator at this time
+updated to Scala 2.10.2 again, repaired Scala tests, generalized two more zip methods
+lots of Observer<? super X>
+added variance to Action*, too
+added variance to all other Func*; this breaks Scala for good, it seems, as long as Observable remains invariant
+added variance to Func2, too
+added variance to Func1 (hopefully) everywhere...
+making Func0 covariant in its return type, cleaning up a few warnings, removing a bit of unused code
+Update README.md
+Version 0.11.1
+Gradle Release Plugin - new version commit:  'rxjava-0.11.2-SNAPSHOT'.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.11.1'.
+Merge pull request #325 from daveray/clj-fn-metadata  Preserve metadata on fn and action macros
+Preserve metadata on fn and action macros  Because they're macros, rx/fn and rx/action would lose metadata attached to them, in particular type hints which are slightly important to disambiguate overloaded Observable methods. Fixed.
+Version 0.11.0
+Update README.md
+Update README.md
+Version 0.10.1
+Gradle Release Plugin - new version commit:  'rxjava-0.11.1-SNAPSHOT'.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.11.0'.
+Scala 2.10.1
+0.11.0-SNAPSHOT
+Gradle Release Plugin - pre tag commit:  'rxjava-0.11.0'.
+0.11.0-SNAPSHOT
+Comment on 'provided' scope
+Gradle Release Plugin - pre tag commit:  'rxjava-0.11.0'.
+Merge pull request #324 from benjchristensen/0.11-cleanup  0.11 Cleanup
+Fix build issues for rxjava-clojure examples
+Improve unit test determinism  ��� apparently the before/after was a race condition ��� adding @Before seems to have made it better for me.
+License/Copyright Headers
+Clojure Examples  - renamed file endings back to .clj
+Organize Imports
+Javadoc Cleanup
+Merge pull request #323 from mattrjacobs/static-core  Static core
+Merge pull request #4 from daveray/static-core-clj  Static core clj
+Update rxjava-clojure adaptor.  Added rx.lang.clojure.interop namespace with fn and action macros. Updated examples. Updated README.
+Merge pull request #3 from benjchristensen/static-core  Remove subscribe(Map<String, Object>) and cleanup Functions.from
+Remove subscribe(Map<String, Object>)  We considered it being <String, Action> but that is also awkward as it's not a real functional interface. Also because of type erasure extension methods aren't super helpful here as Map<String, Action> collides with Map<String, Closure>
+Make Functions.from typesafe
+Merge pull request #2 from benjchristensen/static-core  Groovy, Statics, Fixes
+Added dummy Clojure class and stopped compiling Clojure examples to get rxjava-clojure JAR generation unblocked
+Merge pull request #2 from jmhofer/reactivate-core-tests  Reactivate core tests and combineLatest
+repaired rxjava-swing to work with new scheduler and observable api
+Reactivated the rxjava-core tests
+re-added combineLatest methods that got lost due to too optimistic super/extends generics
+Fix RxJava Groovy Unit Tests after static method refactor
+Move Observable UnitTests  The Observable class is huge by nature as it is the facade for all operators. Due to this it represents all functionality and should not have it's tests inside it. They are moved to /src/test/ so as to allow breaking them up into lots of individual classes.
+Observable API reduction  - remove static methods that are not entry points (creators or combinatorial) - remove deprecated methods  This change was done to:  - Reduce the footprint of the API - Clarify the API so instance methods are preferred unless the static method is appropriate as an entry point - Remove duplicate method signatures (such as a buffer method) where the only difference was one was static. This actually causes issues at the bytecode level with dynamic languages since the only difference between them is a modifier making one of them static. Some dynamic languages have a hard time choosing between the two methods when both have the same signature.
+0.11.0-SNAPSHOT
+Groovy ExtensionModule to support groovy.lang.Closure  This adds support for the Groovy closure by adding extension methods that overload Action/Function.
+Remove repetitive Scheduler overloads.
+Action interfacesAction Marker Interface
+Cleaning up rxjava-android build.gradle
+Remove FunctionLanguageAdaptor from rxjava-core
+Cleaning up rxjava-swing
+Removing Java GroovyAdaptor - will be replaced by Groovy idiomatic version
+Removing Java ClojureAdaptor - will be replaced by an idiomatic Clojure version
+Removing JRuby adaptor (temporarily)
+Reworked Scala adaptor to use implicits in RxImplicits, rather than code generation
+Make rxjava-core typesafe  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java 	rxjava-core/src/main/java/rx/observables/BlockingObservable.java 	rxjava-core/src/main/java/rx/subjects/PublishSubject.java
+Merge pull request #322 from mttkay/master  Update Android README.md
+Update README.md  Added sample usage of Android Handler schedulers.
+Update README.md
+Create README.md
+Gradle Release Plugin - new version commit:  'rxjava-0.10.2'.
+Merge pull request #321 from benjchristensen/android-merge  AtomicObservableSubscription to SafeObservableSubscription
+AtomicObservableSubscription to SafeObservableSubscription
+Gradle Release Plugin - pre tag commit:  'rxjava-0.10.1'.
+Merge pull request #318 from mttkay/android  Initial support for scheduling on Android Handler threads
+Upgrade to Robolectric 2.0 and remove all the things...
+Removed the exclude from the javadoc task as it was breaking javadoc generation from the projects root folder
+Moved sources under main android package. Excluded the test support package from being included when building a jar or generating javadoc Javadoc comments added
+Add empty .gitignore file so that git checks out the values folder
+Reduce duplication by making "schedule now" the special case  Forwards to "schedule later" with delay of 0 now.
+Add unit tests for HandlerThreadScheduler
+Add support for running Robolectric tests
+Expose main thread scheduler through AndroidSchedulers class
+Add HandlerThreadScheduler which schedules actions on an Android Handler thread
+Add rxjava-android build module + config  Should this be shared with other contribs through the parent module? Lots of copy and paste here.
+Version 0.10.0
+Gradle Release Plugin - new version commit:  'rxjava-0.10.1-SNAPSHOT'.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.10.0'.
+0.10.0-SNAPSHOT  The `onError(Exception)` to `onError(Throwable)` change is breaking so must bump from 0.9 to 0.10
+Merge pull request #316 from benjchristensen/fix-slow-unit-test  Remove thread.sleep from unit test to speed it up
+Remove thread.sleep from unit test to speed it up  .. and apparently formatting and imports changed a bunch ...
+Merge pull request #315 from benjchristensen/onError-to-throwable  Change onError(Exception) to onError(Throwable) - Issue #296
+Test with Error instead of RuntimeException  ��� test the Throwable catch instead of Exception.
+Add Error propagation now that we use Throwable.
+Change hasException to hasThrowable
+Rename exception to throwable to be clear
+OnExceptionResumeNext  See https://github.com/Netflix/RxJava/issues/296#issuecomment-21358856 for context.
+Change onError(Exception) to onError(Throwable)  See issue "Observer#onError should use Throwable" for background => https://github.com/Netflix/RxJava/issues/296
+Clarify unittest for observeOn with ImmediateScheduler  - spying was removed since it wasn't being used and ImmediateScheduler results in no scheduling being done.
+Remove assertTrustedObservable  - Was no longer working once onError(Exception) changed to onError(Throwable) as the assertions throwing java.lang.Error no longer bypassed the composed Observables. - It was confusing while locally contextual JUnit verifications as used everywhere else are clear, readable and localized to each test
+Merge pull request #314 from benjchristensen/map-error-handling  Map Error Handling
+Better handling of map function errors  - Stop catching the error and passing to onError and instead let the SafeObserver handle it which will then prevent subsequent onNext calls and/or unsubscribe when a failure occurs. - This also solves the OnErrorResumeNext issue fixed in https://github.com/Netflix/RxJava/pull/312 but those changes still seem valid so I'll leave them.  Related to https://github.com/Netflix/RxJava/issues/216 and https://github.com/Netflix/RxJava/pull/312
+Rename AtomicObserver to SafeObserver  Rename to be more descriptive of what it has evolved to.
+Merge pull request #312 from petermd/fix-errorresumenext  Fix for OperatorOnErrorResumeNextViaObservable and async Resume
+Merge pull request #311 from daveray/update-javadoc  Various Javadoc improvements and corrections.
+Version 0.9.2
+Gradle Release Plugin - new version commit:  'rxjava-0.9.3-SNAPSHOT'.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.9.2'.
+handle multiple onError calls
+fix for case where resume is async and original is still emits events after onError
+Various Javadoc improvements and corrections.
+Remove stray HEAD line
+Merge pull request #281 from michaeldejong/operation-buffer  Operation: buffer
+Merge pull request #305 from jmhofer/master  Getting rid of one of the Gradle 1.6 deprecation warnings
+Merge pull request #308 from NorthNick/master  Ensure now() is always updated in TestScheduler.advanceTo/By
+Merge pull request #309 from josephwilk/typos  A little typo in a comment in the Clojure examples
+typos
+Ensure time is always updated
+adding marble diagram to combineLatest() javadoc  Adding a marble diagram that describes combineLatest() to the javadoc section for that method
+Merged master into buffer-operation branch
+Improved buffer operation test cases with checks for empty buffers.
+Trying to get rid of the Gradle warnings.
+Gradle Release Plugin - new version commit:  'rxjava-0.9.2-SNAPSHOT'.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.9.1'.
+Version 0.9.1
+Merge pull request #303 from benjchristensen/pull-267-combineLatest  Pull 267 - Merge combineLatest
+Merge branch 'combineLatest' of git://github.com/jmhofer/RxJava into pull-267-combineLatest  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java 	rxjava-core/src/main/java/rx/operators/OperationCombineLatest.java
+Merge pull request #290 from abersnaze/issue103  Issue 103
+Merge pull request #302 from rgerasimen/patch-1  Update Observable.isInternalImplementation, get rid of NullPointerExcept...
+Update Observable.isInternalImplementation, get rid of NullPointerException  NullPointerException has been encountered during my tests. It is because java.lang.Class.getPackage() may return null "... if no package information is available from the archive or codebase" (documented feature).
+Added JavaDoc and moved public helper classes of OperationBuffer class to rx.util package.
+Adding zip(Ob<Ob<?>>)
+diagram & description of combineLatest() operator
+Changed default scheduler used in buffer operation and removed printStackTrace call
+javadoc interlinkings and other javadoc improvements
+defer gets a diagram & javadoc + lots of javadoc changes in Observable  OperationDefer now has a javadoc explanation & marble diagram; I also made a number of changes to the Observable javadocs
+Add javadoc comments to individual OperationFoo files
+Unit testing what happens when the number of arguments doesn't match the number of observables.
+New BlockingObservable-specific diagram legend  A new diagram legend spells out the BlockingObservable-specific marble diagram iconography.
+Add zip of a collection of Observables
+Merge pull request #284 from benjchristensen/issue282-groupBy-fixes  GroupBy fixes as reported in Issue 282
+Give unit test some room for scheduler variability  - I specifically want to be testing with real threads here and not virtual time or a synchronous sequence so am giving it a range of counts that are acceptable
+Add Object overloads for dynamic language support.  Need these until we finish work at https://github.com/Netflix/RxJava/issues/204
+GroupBy unsubscribe logic  - support unsubscribing from parent and/or child - The following is now possible:  ``` groupBy().take(1).mapMany(group -> group.take(20)) ```  - the subscription on the parent will cause new groups to stop being sent, but it will keep sending events until all previously created groups are unsubscribed from
+GroupBy GroupedObservables should not re-subscribe to parent sequence  https://github.com/Netflix/RxJava/issues/282  Refactored to maintain a single subscription that propagates events to the correct child GroupedObservables.
+Merge pull request #288 from benjchristensen/issue282-PublishSubject  Fix PublishSubject non-deterministic behavior on concurrent modification
+Synchronize terminalState and subscription logic  - remove the race condition that existed between a subscription coming in while onError/onCompleted was being called
+Javadoc changes  Tuning up the Blocking Observable javadocs, and settling on a consistent set of terms throughout: Observers (not subscribers) subscribe to Observables which invoke (not call) the Observers methods (not closures or functions) in order to make notifications (e.g. error or complete) or to emit (not output or send) items (not elements or objects or emissions or values).
+Editing javadoc comments  Many changes to the javadoc comments, filling in blanks, making comments more accurate & precise, making formatting more consistent, etc.
+Merge pull request #287 from benjchristensen/error-handling-and-validation  Error handling and validation
+Fix PublishSubject non-deterministic behavior on concurrent modification  - changed to take snapshot of observers.values() before iterating in onNext/onError/onCompleted so that nested subscriptions that add to observers can't change the values() iteration - single-threaded nested subscriptions are now deterministic - multi-threaded subscriptions will no longer be allowed to race to get into an interating onNext/onError/onCompleted loop, they will always wait until the next - also improved terminal state behavior when subscribing to a PublishSubject that has already received onError/onCompleted  https://github.com/Netflix/RxJava/issues/282
+Merge pull request #285 from DavidMGross/master  Several new or more-precise marble diagrams
+Throw if no onError handler specified  https://github.com/Netflix/RxJava/issues/198  As per Rx Design Guidelines 5.2:   "when calling the Subscribe method that only has an onNext argument, the OnError behavior will be  to rethrow the exception on the thread that the message comes out from the observable sequence.  The OnCompleted behavior in this case is to do nothing."  A new OnErrorNotImplementedException was created so it is explicit as to where the exception is coming from and why.
+Common approach for IllegalArgumentException on subscribe methods  As brought up in https://github.com/Netflix/RxJava/issues/278 there were inconsistencies in how arguments were being validated on subscribe methods.  All arguments to subscribe are now validated correctly at the beginning of method invocation and IllegalArgumentException thrown if null arguments are injected.  According to Rx Guideline 6.5 a null argument is considered "a catastrophic error occurs that should bring down the whole program anyway" and thus we immediately throw. A null argument should be caught immediately in development and has nothing to do with subscribe invocation which is what guideline 6.5 is talking about (since a null Observer can't have onError called on it anyways).
+Prevent direct instantiation of BlockingObservable via no-arg constructor  - also questioning why to allow extending this and would like to make it a private constructor
+Commentary on constructing an Observable  - I would like to remove the no-arg constructor but not ready to pull the trigger
+Add to marble diagrams  Add several new or more-specific marble diagrams, correct two bad image links, correct some typos
+Added license header to OperationBuffer.
+Added static create methods to BufferOpenings and BufferClosings.
+Restored static imports in Observable.
+Initial implementation and wiring of the buffer operators.
+Merge pull request #280 from DavidMGross/master  Diagrams and some new javadoc content for Observable subclasses
+Diagrams and some new docs for Observable subclasses  Some marble or marblish diagrams and a bit of new documentation for the BlockingObservable and ConnectableObservable subclasses.
+Merge pull request #279 from DavidMGross/master  Adding marble diagrams
+adding several marble diagrams  several new marble diagrams for previously undiagrammed methods
+Version 0.9.0
+Version 0.9.0
+Gradle Release Plugin - new version commit:  'rxjava-0.9.1-SNAPSHOT'.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.9.0'.
+0.9.0-SNAPSHOT
+Merge pull request #275 from benjchristensen/forEach-BlockingObservable  Move forEach to BlockingObservable
+Move forEach to BlockingObservable  - was missed in previous refactoring
+Merge pull request #274 from benjchristensen/0.9-cleanup  0.9 cleanup
+Commenting out exclude until Scala build can be resolved  - this line causes rxjava-scala to fail building and I can't yet figure out why
+Fix unit tests  Not sure why the previous started having issues when removing UnitTests from jar. After spending 30+ minutes on it I just changed the test instead of trying to grok Groovy compile issues.
+Remove javadoc warnings
+stop using deprecated method
+exclude unit tests from jar
+Remove SLF4J dependency
+Merging OperationSwitch with new class location
+Merge pull request #259 from michaeldejong/operation-switch  Added the switch operator to Observable
+Merge pull request #273 from billyy/concat  Concat
+Merge pull request #272 from benjchristensen/BlockingObservable  BlockingObservable
+Add new unit test to check for non-blocking.
+Revert "Add new unit test to cover infinite observable being the first sequence."  This reverts commit 658d824b9f632f79a2b29979a6dfbb1a0a925783.
+Add new unit test to cover infinite observable being the first sequence.
+Replaced tabs with spaces.
+Switch operator should now propagate onError in subsequences.
+README on internal nature of rx.operators package
+Rewrite concat operation to not block on subscribe  The concat operator previously blocked on calling subscribe until all the sequences had finished. In quite some cases this results in unwanted (and unexpected) behaviour, such as when prefixing an infinite Observable with a fixed one, for example when using startWith (which calls concat): someInputStream.startWith(123).subscribe(x -> print(x)); This statement will block indefinitely if the input stream is infinite. Also on finite sequences it seems silly to have to wait for them to finish.  In this new approach the incoming observables are put into a queue, instead of waiting for the whole sequence to finish. When the first observable completes, the next one is taken from the queue and subscribed to, and so on. The queue can be extended while processing the observables, and onCompleted is only called when both the source of observables has completed and all observables in the queue have been read.
+Tried to adapt according to Ben's review comments.
+improved generics for combineLatest (PECS principle)
+Fixed a javadoc parameter.
+Got rid of the last remnants of synchronization in favor of a concurrent map.
+added combineLatest static methods to Observable
+handled combine functions that throw exceptions and added a test against this case
+Merge branch 'master' into combineLatest
+Removed synchronized block as per RxJava guidelines (6.7).
+Reverted changes to junit and mockito imports in the Observable class.
+Added support for the switch operation.
+Merge branch 'master' into combineLatest
+avoiding some synchronization on combineLatest

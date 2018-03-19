@@ -1,0 +1,196 @@
+Merge branch 'OperatorOnErrorReturn' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorOnErrorResumeNextViaObservable' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorMulticast' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'ReplaySubjectDoubleCompletionFix' of github.com:akarnokd/RxJava into merge-prs
+Merge branch 'OperatorMergeMaxConcurrent' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorMergeDelayError' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorGroupJoin' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorJoin' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorAsync' of github.com:akarnokd/RxJava into merge-prs
+Merge branch 'using' of git://github.com/zsxwing/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'to-map' of git://github.com/zsxwing/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorTimer' of github.com:akarnokd/RxJava into merge-prs
+Merge branch 'to-multimap' of git://github.com/zsxwing/RxJava into merge-prs
+Merge branch 'OperatorGroupByUntil' of github.com:akarnokd/RxJava into merge-prs
+OperatorUsing
+OperatorOnErrorReturn
+OperatorOnErrorResumeNextViaObservable
+OperatorMulticastAndReplay
+Fix ReplaySubject's double termination problem.
+OperatorMergeMaxConcurrent
+Fix last test case.
+OperatorMergeDelayError
+OperatorJoin
+Removed deprecated API
+OperatorAsync
+OperatorToMap
+OperatorToMultimap
+OperatorTimerAndSample
+OperatorGroupJoin
+OperatorGroupByUntil
+Removed localTerminate as it is never observed as true at that point.
+OperatorDebounce
+0.18.1
+0.18.1
+[Gradle Release Plugin] - new version commit:  '0.18.2-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.18.1'.
+Merge pull request #1092 from benjchristensen/ObservableExecutionHook-onCreate  Restore ObservableExecutionHook.onCreate
+Reconnecting ObservableExecutionHook.onCreate  Somehow this got lost in the refactorings over the past few weeks.
+Merge pull request #1091 from benjchristensen/unsafeSubscribe-error-handling  Handle Thrown Errors with UnsafeSubscribe
+Handle Thrown Errors with UnsafeSubscribe  ... oxymoronic commit here ... adding some safety to unsafeSubscribe. ... fixes https://github.com/Netflix/RxJava/issues/1090
+Merge pull request #1089 from benjchristensen/merge-prs  Manual Merge of Several PRs
+Method Signature Cleanup
+Merge branch 'to-observable-future' of git://github.com/zsxwing/RxJava into merge-prs
+Merge branch 'OperatorMergeMap' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorFinallyDo' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorDistinctUntilChanged' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorDistinct' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorDematerialize' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorDefer' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorDefaultIfEmpty' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorCombineLatest' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #1074 from akarnokd/OperatorConcat  OperatorConcat
+Merge pull request #1073 from akarnokd/OperatorBuffer  OperatorBuffer
+Merge pull request #1065 from zsxwing/skip-last-timed  Optimize OperatorSkipLastTimed
+OperatorToObservableFuture
+OperatorMergeMap
+OperatorFinallyDo
+OperatorDistinctUntilChanged
+OperatorDistinct
+OperatorDematerialize
+OperatorDefer
+OperatorDefaultIfEmpty
+OperatorCombineLatest
+Rename concat test
+OperatorConcat
+OperatorBuffer
+0.18.0
+[Gradle Release Plugin] - new version commit:  '0.18.1-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.18.0'.
+Merge pull request #1072 from benjchristensen/scheduler.worker  Scheduler.Inner -> Scheduler.Worker
+Scheduler.Inner -> Scheduler.Worker  As per decision at https://github.com/Netflix/RxJava/issues/997#issuecomment-40998613
+Merge pull request #1068 from davidmoten/retry-unit-test  add synchronous test of resubscribe after error
+Merge pull request #1066 from akarnokd/CompositeSubscriptionFix422  CompositeSubscription fix
+Merge pull request #1071 from benjchristensen/merge-asObservable  Manual Merge of AsObservable
+Merge branch 'OperatorAsObservable' of github.com:akarnokd/RxJava into merge-asObservable  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #1063 from zsxwing/Timestamped-bug  Fix bugs in equals and hashCode of Timestamped
+Merge pull request #1070 from benjchristensen/operator-any  Manual Merge of OperatorAny
+Simplify Subscription Chain
+OperationAnyTest -> OperatorAnyTest  Match new naming convention.
+Merge branch 'OperatorAny' of github.com:akarnokd/RxJava into operator-any  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #1069 from benjchristensen/operator-all  Manual Merge of OperatorAll
+Simplify Subscription Chain
+Merge branch 'OperatorAll' of github.com:akarnokd/RxJava into operator-all  Conflicts: 	rxjava-core/src/main/java/rx/operators/OperatorAll.java 	rxjava-core/src/test/java/rx/operators/OperatorAllTest.java
+Merge branch 'master' of github.com:MarkVanDerVoort/RxJava into operator-all  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java 	rxjava-core/src/main/java/rx/operators/OperationAll.java 	rxjava-core/src/test/java/rx/operators/OperatorAllTest.java
+add synchronous test of resubscribe after error
+CompositeSubscription fix
+Only cache the latest items in the time window
+OperatorAsObservable LF
+OperatorAsObservable
+Fix bugs in equals and hashCode
+OperatorAny
+OperatorAll
+Merge pull request #1058 from jaceklaskowski/javadoc  Typo in javadoc
+typo
+Merge pull request #1056 from zsxwing/scala-drop  Add drop(skip) and dropRight(skipLast) to rxscala
+Merge pull request #1057 from zsxwing/issue-1044  Fix issue #1044
+Merge pull request #1055 from puniverse/master  close #1054
+Deprecate Observable.apply
+Fix issue #1044
+Add drop and dropRight to rxscala
+close #1054
+Merge pull request #1053 from benjchristensen/deprecation-cleanup  Deprecation Cleanup
+Remove deprecated methods/classes from rxjava-core  Cleanup on path to 1.0: https://github.com/Netflix/RxJava/issues/1001#issuecomment-40888251
+Remove deprecated rx.util.functions.*  - organized imports and fixed few places that were still accidentally using the old package
+Merge pull request #1052 from benjchristensen/computation-scheduler  Scheduler Cleanup
+Restoring parallel() to using Schedulers.computation()  See https://github.com/Netflix/RxJava/issues/713 for background on this.
+ComputationScheduler -> EventLoopsScheduler  - This implementation is used by Schedulers.computation() but is actually a pool of event loops, so renaming.
+Merge pull request #1050 from zsxwing/skip-last  Reimplement the 'SkipLast' operator
+Merge pull request #1051 from benjchristensen/merge-967  Manual Merge #967
+Merge branch 'single' of git://github.com/zsxwing/RxJava into merge-967  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java 	rxjava-core/src/main/java/rx/operators/OperationSingle.java 	rxjava-core/src/test/java/rx/operators/OperatorLastTest.java
+Replace LinkedList with ArrayDeque
+Reimplement the "SkipLast" operator with time
+Rename OperationSkipLast to OperatorSkipLast
+Reimplement "SkipLast" operator
+Merge pull request #1049 from benjchristensen/joins-module  Move rx.joins to rxjava-joins module
+Move rx.joins to rxjava-joins module  Migrating rx.joins into a separate contrib module as part of roadmap to 1.0: https://github.com/Netflix/RxJava/issues/1001#issuecomment-40390984 This is being done until the rx.joins API has further time to mature as it is likely to change and we can't make breaking changes any further once we hit 1.0.
+Merge pull request #1048 from benjchristensen/executor-scheduler  Remove ExecutorScheduler - New ComputationScheduler
+Remove ExecutorScheduler - New ComputationScheduler  - see https://github.com/Netflix/RxJava/issues/711 and https://github.com/Netflix/RxJava/issues/713
+0.18.0-SNAPSHOT
+Merge pull request #1047 from benjchristensen/scheduler-0.18-with-inner  Scheduler Simplification
+degreeOfParallelism() -> parallelism()  https://github.com/Netflix/RxJava/issues/997#issuecomment-40819656
+inner() -> createInner()  See https://github.com/Netflix/RxJava/issues/997#issuecomment-40818768
+Scheduler.inner() for Language and Contrib Modules
+Scheduler.inner() for Core
+(#1045) clarify javadocs to accurately describe currently-intended behavior of sample()
+0.17.6
+[Gradle Release Plugin] - new version commit:  '0.17.7-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.6'.
+Merge pull request #1038 from Yarikx/android-view-observable  rxjava-android: parameterize OperatorViewClick by concrete view type
+Merge pull request #1020 from mttkay/android-samples-gradle-1-11  Upgrade Gradle wrapper for Android samples to Gradle 1.11
+Merge pull request #1009 from zsiegel/update-android-sample  Android - Adding a new RetainedFragment example
+Merge pull request #1035 from vigdorchik/scala_cleanup  Scala cleanup
+Merge pull request #1042 from MarioAriasC/master  Kotlin M7 and full compatibility with 0.17.0
+Merge pull request #1040 from benjchristensen/pull-972  Merge and Cleanup of #972
+Update README
+Update doc comments.
+Test with full compatibility with 0.17.0
+Kotlin M7, minor fixes, compatibility with 0.17.0
+Remove Redundant Action1 Observer Collection Argument  Since the collection is being returned we don't want to also inject it as an argument, so I migrated to Action0 from Action1 as per discussion at https://github.com/Netflix/RxJava/pull/972#issuecomment-38189145
+Simplify Subscription/Observer State
+Merge branch 'SubjectDeadlockFix320' of github.com:akarnokd/RxJava into pull-972  Conflicts: 	rxjava-core/src/main/java/rx/operators/OperatorCache.java  Updated OperatorCache to use `unsafeSubscribe` to fix merge conflicts.
+Merge pull request #1005 from suncelesta/scala-observable-update  add toMap from Java Observable
+Title -> RxJava: Reactive Extensions for the JVM
+Merge pull request #1036 from GeorgiKhomeriki/master  replaced FRP with RP in README title
+Merge pull request #1021 from mttkay/fix-operator-weak-binding  OperatorWeakBinding to not use WeakReferences anymore
+rxjava-android: parameterize OperatorViewClick by concrete view type
+improve javadocs for onErrorFlatMap( ) with link to wiki docs & marble diagram
+Simplify 'buffer' signature to be the same as 'window'.
+replaced FRP with RP in README title  Mentioning "Functional Reactive Programming" causes confusion and misconception. I think it's better to simply stick with "Reactive Programming".
+Move bindFragment call in sample to onCreate  Having it in onViewCreated is fine, but misleading, since we don't need to reattach retained fragments. (the referenced object remains the same.)
+OperatorWeakBinding -> OperatorConditionalBinding
+Merge pull request #1033 from benjchristensen/retry-1027  Manual Merge #1027
+Unit Test and Review of #1027
+Merge branch 'petermd/retry-timeout' of github.com:petermd/RxJava into retry-1027
+Merge pull request #1030 from daschl/subj-bench  Benchmarking: Add JMH benchmark for ReplaySubject.
+Merge pull request #1031 from benjchristensen/subject-npe  Fix NPE in SubjectSubscriptionManager
+exclude tests  try that again
+Fix NPE in SubjectSubscriptionManager
+Restore rxjava-scala  Accidentally commented out while doing Java 8 builds (since Scala has issues with Java 8)
+exclude tests  excluding out all tests until they stop hanging CloudBees
+Benchmarking: Add JMH benchmark for ReplaySubject.
+Updating the new sample to demonstrate UI binding  This commit binds the observable to a method where a user can update their UI accordingly.
+isolate subscriber used for retries, cleanup tests
+OperatorWeakBinding to not use WeakReferences anymore  related issues: https://github.com/Netflix/RxJava/pull/1008 https://github.com/Netflix/RxJava/issues/1006 https://github.com/Netflix/RxJava/issues/979
+Upgrade Gradle wrapper for Android samples to Gradle 1.11  Android Studio 0.5.4 refuses to build with 1.10
+Version 0.17.5
+[Gradle Release Plugin] - new version commit:  '0.17.6-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.5'.
+Merge pull request #1019 from benjchristensen/retry-1018  Fix: retry() never unsubscribes from source until operator completes
+Unsubscribe on retry using SerialSubscription
+unsubscribe before retry
+Merge pull request #1015 from benjchristensen/safe-subscribe  Remove Redundant protectivelyWrap Method
+Remove Redundant protectivelyWrap Method
+Merge pull request #1010 from benjchristensen/unsafe-subscribe  UnsafeSubscribe
+Fix BlockingOperator Subscribe Behavior  The blocking operators need to use 'subscribe', not 'unsafeSubscribe' since they need the SafeSubscriber behavior in the final subscribe step they perform. Renamed operators to BlockingOperator* for clarity and to match the Operation->Operator naming change.
+0.17.4
+[Gradle Release Plugin] - new version commit:  '0.17.5-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.4'.
+Merge pull request #1012 from akarnokd/SerializedObserverFix2  Removed window between the two synchronized blocks.
+Removed window between the two synchronized blocks.
+Ignore Unit Test until Delay is Fixed  See https://github.com/Netflix/RxJava/issues/1011
+UnsafeSubscribe  Migrate from reflection to unsafeSubscribe as per discussion at https://github.com/Netflix/RxJava/issues/676
+Adding a new RetainedFragment example
+corrected implementation  Implementation corrected to not raise exceptions
+add examples of toMap to RxScalaDemo  Added examples for all three overloads and removed newlines between methods and docs
+add toMap from Java Observable
+Fix typos
+Merge branch 'master' into single
+Fixed deadlock in Subjects + OperatorCache.
+Fix tests in rxjava-math
+Fix clojure test
+Rename OperationFirstOrDefaultTest and OperationLastTest to OperatorFirstOrDefaultTest and OperatorLastTest
+Throw NoSuchElementException in the first, last and single operators when the Observable is empty
+Add first, last, single to rxjava-scala
+Reimplement the 'single' operator
+OperationAll to OperatorAll

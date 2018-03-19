@@ -1,0 +1,200 @@
+Feature/#5045 more generics in RxJavaPlugins (#5058)  * widen bounds  * widen bounds  * add test to ensure generics  * use wildcard import for io.reactivex
+2.x: cancel upstream first, dispose worker last (#5075)
+2.x: compatibility fixes (JDK 9 & IntelliJ 2017.1 EAP) (#5069)
+Update README.md (#5068)  * Update README.md  Error:(13, 38) java: variable v is already defined in method main(java.lang.String[])  * Update README.md
+Update codecov.yml (#5066)
+2.x: increase sleep time in XFlatMapTest
+2.x: fix replay() cancel/dispose NPE (#5064)
+2.x: update readme parallel example (#5062)
+use bounded wildcards for errorHandler (fixes #5045) (#5049)  * use bounded wildcards for errorHandler (fixes #5045)  * add test to ensure signature
+2.x: Feature/#4876 more null checks (#5055)  * add NotNull annotations add assertion to help static code analysis  * avoid false positive  * add annotations and assert statement to help static code analysis  * remove redundant check  * mark parameter as nullable  * add test to reproduce npe  * add null check for avoid npe  * parameter time unit marked as @NonNull  * add annotations and assert to help static code analysis  * remove assert statements  * add missing annotation  * add comment for test case
+2.x: document (internal) SimpleQueue (#5056)
+Another adjustment to codecov.yml
+2.x: disable codecov-checks on PRs (#5057)  * 2.x: disable codecov-checks on PRs  * Try with different filename extension
+add nullable annotation to simple queue (fixes #5053) (#5054)
+Feature/#4876 nonnull annotations (#5051)  * add @Nullable annotations to RxJavaPlugins  * add @NonNull annotations to schedulers  * javadoc for NonNull/Nullable annotations
+Document and test amb subscription ordering. (#5047)
+Add StackOverflow links (#5046)
+2.x: add parallel hooks to RxJavaPlugins, add missing params validation (#5043)
+2.x: reintroduce OnErrorNotImplementedException for 0-1 arg subscribe() (#5036)
+Annotate function interfaces. (#5023)
+2.x: dedicated Single.zip implementation, no dispose on all-success (#5027)
+Release 2.0.5
+2.x: option to fail for using blockingX on the computation scheduler (#5020)  * 2.x: option to fail for using blockingX on the computation scheduler  * Increase sleep time in XFlatMapTest  * Add a custom RxJavaPlugins callback onBeforeBlocking
+2.x: Add scheduler creation factories (#5002)  * Add scheduler creation factories  Resolves #4993  This is a pretty vanilla copy from RxJava 1's implementation. Note that I had to tune NewThread scheduler to not be a singleton to support this.  We had talked about borrowing from project reactor's APIs for different overloads, let me know if you think we should add more fine-grained controls through these.  * Add `@since` info  * Change failure string to "is null"  * Move to RxJavaPlugins  * Remove no-arg overloads  * Rename to make it clearer about creation  Added scheduler because we're not in Scheduler anymore. Changed to "create" because "newNewThread" was weird  * Add tests (WIP)  * Remove unnecessary nullcheck  * Remove double try  * Fix tests, make them more robust with integration flow  * Shut down custom schedulers when done
+Give more time to delay tck test
+Fix copyright instructions (#5017)
+Override RS dependency to compile, replace owner info (#5015)
+2.x: improve the parallel() mode test coverage, improve its code (#5006)
+2.x: add Flowable.parallel() and parallel operators (#4974)  * 2.x: add ParallelFlowable  * Fix groupBy benchmark
+2.x: ExecutorScheduler.scheduleDirect to report isDisposed on complete (#5005)
+2.x: assertNever(T value) / assertNever(Predicate<T> valuePredicate) (#4994)  * 2.x: assertNever(T value) / assertNever(Predicate<T> valuePredicate)  * fixed Java compatibility issuesJ  * fixed Java type compatibility issues  * changes according to PR review  * changes according second PR review
+2.x: A.flatMapB to eagerly check for cancellations before subscribing (#4992)
+2.x: Update marble diagrams for sample overloads (#4990)  * 2.x: Update marble diagrams for sample overloads  * Add Maybe and switchIfEmpty diagrams
+2.x: Fix Observable.singleElement doc (#4989)
+2.x: make Obs.combineLatest consistent with Flowable + doc cornercase (#4987)  * 2.x: make Obs.combineLatest consistent with Flowable + doc cornercase  * early termination to cancel the other sources
+2.x: fix cross-boundary invalid fusion with observeOn & zip (#4984)
+2.x: fix Observable.concatMapEager bad logic for immediate scalars (#4982)  * 2.x: fix Observable.concatMapEager bad logic for immediate scalars  * Don't print-log
+Update copyright
+Update Copyright to 'RxJava Contributors' (#4980)  See https://github.com/ReactiveX/RxJava/issues/4978 for more information.
+Add newline to end of files missing a newline (#4979)  This is to get rid of the "No newline at end of file" warning.
+Fixed a typo and other cosmetics issues. (#4976)
+readme.md with links to 1.x and a quick guide
+2.x: fix withLatestFrom null checks, lifecycle (#4970)
+2.x: Add Completable.hide() (#4973)
+Improve compose() generics (#4972)  Resolves #4950
+2.x: Add @CheckReturnValue to create methods of Subjects + Processors (#4971)
+2.x: add subjects for Single, Maybe and Completable (#4967)  * 2.x: add subjects for Single, Maybe and Completable  * Add CheckReturnValue, rename local test vars
+2.x: add strict() operator for strong RS conformance (#4966)  * 2.x: add strict() operator for strong RS conformance  * Fix javadoc and annotation
+2.x: fix takeUntil() other triggering twice (#4962)
+2.x: add sample() overload that can emit the very last buffered item (#4955)
+2.x: fix LambdaObserver calling dispose when terminating (#4957)
+2.x: fix minor javadoc errors
+Release 2.0.4
+fix javadoc for BehaviorSubject (#4951)  -fix examples for creating BehaviorSubject with or without initial value.
+2.x: Fixed Javadoc for SingleToObservable, MaybeToObservable, CompletableToObservable (#4946)
+2.x: fix timeout with fallback not cancelling the main source (#4945)
+2.x: fix publish(Function) not replenishing its queue (#4943)
+2.x: add safeguards to generate() (#4932)  * 2.x: add safeguards to generate()  * Fix typo in the test name
+eaadb540dad556cb524a7376b5bc6f07f108b93d (#4930)
+2.x: fix timer() ISE due to bad resource mgmt (#4927)
+Release 2.0.3
+Update CHANGES.md  Release 2.0.3
+2.x: Change Completable to CompletableSource (#4924)
+2.x: fix TestSubscriber/Observer message texts (#4921)
+2.x: fix & update Observable.repeatWhen and redoWhen (#4911)
+Use t instead of value to allow for IDE naming (#4907)
+Whitespace fixes
+Observable.scan no seed fix post-terminal behaviour (#4904)
+doAfterNext - prevent post-terminal emission (#4903)
+FlowableScan - prevent multiple terminal emissions (#4901)
+2.x: Fix typo in DisposableHelper (#4900)
+FlowableScanSeed - prevent post-terminal events (#4899)
+2.0.2
+2.x: fix compilation errors when using Java 8 (#4893)  * Fix Java 8 compilation problems  * Suppress warnings for java 6
+2.x: Issue and PR "welcome" templates (#4891)
+2.x: fix firstOrError back conversions not signalling NSE
+Fix code style.
+2.x: dedicated reduce() op implementations (#4885)  * 2.x: dedicated reduce() op implementations  * Fix unnecessary duplicate assignment, remove trailing spaces  * Check for more terminal state
+Add CheckReturnValue annotation (#4881)  * Add CheckReturnValue method  * Add annotation to more methods  * Java 6 Compatibility
+2.x: Common test classes for Processors. (#4882)
+Add equals() to the unit test to satisfy checkstyle
+2.x: Apply missing RxJavaPlugins.onAssembly on ops (#4877)
+Remove empty list item from `io.reactivex.package-info.java` (#4874)
+Merge pull request #4873 from akarnokd/TestObserverFix  2.x: TestObserver shouldn't clear the upstream disposable on terminated
+2.x: TestObserver shouldn't clear the upstream disposable on terminated
+Merge pull request #4858 from akarnokd/FlatMapSingleElement  2.x: add Maybe.flatMapSingleElement returning Maybe
+2.x: add Maybe.flatMapSingleElement returning Maybe
+Release 2.0.1
+2.x: javadoc: fix wording of some operators, remove @throws implications (#4839)  * 2.x: javadoc: fix wording of some operators, remove @throws implications  * Fix some introduced mistakes
+2.x: add fluent requestMore to TestSubscriber (#4838)
+2.x: add doAfterNext & doAfterSuccess to the other types (#4835)
+2.x: add `Flowable.doAfterNext` operator + 3 doX TCKs (#4833)  * 2.x: add `Flowable.doAfterNext` operator + 3 doX TCK  * Fix operator name in the scheduler javadoc
+2.x: add doFinally to the rest of the reactive base classes (#4832)
+2.x: Fix javadoc and style errors
+Porting the Scheduler.when operator from 1.x to 2.x (#4827)
+2.x: add doFinally for handling post terminal or cancel cleanup (#4831)
+2.x: Observable.repeatWhen fix for onError (#4819)
+fix typo in javadoc of Maybe::toSingle (#4815)
+Subtle change in Completable's documentation for retryWhen. (#4810)
+Update ObservableEmitter.java (#4803)
+documentation updates (#4798)  * documentation updates  * Update Observable.java
+2.x: Fix exceptions in javaDoc (#4793)  * 2.x: correct exceptions in Flowable javaDoc  * 2.x: correct exceptions in Observable javaDoc  * 2.x: correct exceptions in Maybe javaDoc  * 2.x: correct exceptions in Single javaDoc
+2.x: fix Observable.repeatWhen & retryWhen not disposing the inner (#4783)
+Update readme and changes.md
+2.x: allow subscribeOn to work with blocking create (#4770)
+Rename BackpressureStrategy.NONE to MISSING (#4767)
+2.x: cleanup, fixes and coverage 10/25 (#4766)
+2.x: cleanup & coverage 10/24-2 (#4763)
+2.x: cleanup, fixes, coverage 10/24-1 (#4761)  * 2.x: cleanup, fixes, coverage 10/24-1  * Add missing default method.
+2.x: Add Single.fromObservable(ObservableSource) (#4760)  * 2.x: Add Single.fromObservable(ObservableSource)  * Add Null test
+2.x: fix window-timed test leaking an MBE that affects unrelated tests (#4755)
+2.x: Remove some unused fields (#4754)
+2.x: fix Flowable.concatMapEager hang due to bad request management (#4751)  * 2.x: fix Flowable.concatMapEager hang due to bad request management  * Missed negation of check
+Add more new marble diagrams & update old ones (#4752)
+New 2.x marble diagrams (#4749)
+2.x: distinctUntilChanged to store the selected key instead of the value (#4747)  * 2.x: distinctUntilChanged to store the selected key instead of the value  * Fix null test and whitespaces
+2.x: Fixed Javadoc for Disposables.fromFuture (#4744)  * Fixed Javadoc for Disposables.fromFuture  * Missed a runnable
+2.x: coverage, fixes, cleanup 10/21-1 (#4742)
+Update changes and readme
+2.x: coverage, fixes, cleanup 10/20-2 (#4738)  * 2.x: coverage, fixes, cleanup 10/20-2  * Fix Generate not saving the state
+2.x: cleanup, fixes, coverage 10/20-1 (#4736)
+2.x: coverage, minor fixes, cleanup 10/19-2 (#4732)
+2.x: Delegate null Collections down to onError in toList (#4731)
+2.x: fix warnings
+Remove checked exceptions from transformer interfaces. (#4710)  These functions are for transforming the stream shape, not doing work. Any operation that would throw a checked exception should happen inside the stream, not when shaping it.
+2.x: coverage, fixes, cleanup, copy to Flowable 10/19-1 (#4730)
+Merge FlowableEmitter.BackpressureMode into BackpressureStrategy (#4729)  * Merge FlowableEmitter.BackpressureMode into BackpressureStrategy  * Cleanup code
+Fix code coverage link
+2.x: coverage, fixes, enhancements, cleanup 10/18-1 (#4723)
+2.x: remove variance from the input source of retryWhen (#4720)
+2.x: Distinct Operator - delegate null Collection down to onError (#4718)
+2.x: coverage and cleanup 10/17-1 (#4717)
+2.x: test sync from Observable to Flowable 10/16-1 (#4714)
+2.x: coverage, cleanup, fixes 10/15-2 (#4712)  * 2.x: coverage, cleanup, fixes 10/15-2  * Add missing header
+Decouple stream operators from Function interface. (#4711)  This allows a single class to implement itself as an operator for all stream types. A similar change was recently made to the transformer types.
+2.x: coverage, fixes, cleanup 10/15-1 (#4708)  * 2.x: coverage, fixes, cleanup 10/15-1  * Fix error message.
+2.x: Fix Flowable.elementAt on empty sources. Plus sync tests (#4707)
+2.x: cleanup, coverage, fixes 10/14-2 (#4706)  * 2.x: cleanup, coverage, fixes 10/14-2  * Fix NPEs
+2.x: coverage, cleanup fixes 10/14-1 (#4705)
+2.x: coverage and cleanup 10/13-1 (#4701)
+Fix unnecessary import.
+2.x: Clean up null usages by using ObjectHelper.requireNonNull (#4699)
+2.x: coverage and cleanup 10/12-1 (#4696)
+2.x: CompositeException fix order of Exceptions (#4695)  * 2.x: CompositeException fix order of Exceptions  * Take out Completable classes
+2.x - improve timer javadoc (#4694)
+2.x: coverage, fixes and cleanup 10/11-2 (#4692)
+2.x: BaseTestConsumer add assertValueAt(index, Predicate<T>) (#4690)
+2.x: Add Observable.rangeLong & Flowable.rangeLong (#4687)  * 2.x: Add Observable.rangeLong & Flowable.rangeLong  * Clean up cast  * Adjust Long overflow checks  * Add test for rangeLong count 1  * Fix ObservableRangeLongTest.testRangeWithOverflow5
+2.x: coverage and cleanup 10/11-1 (#4689)
+2.x: Test static from methods and add Maybe.fromSingle & fromCompletable (#4685)
+2.: Fix flatMapX over-cancellation in case of an inner error (#4686)
+Update Mockito to 2.1.0 (#4682)
+2.x: Fix Flowable + Single elementAt and elementAtOrError operators on empty sources (#4681)
+Release 2.0.0-RC4
+2.x: fix flatMapX calling SpscLinkedArrayQueue.offer concurrently (#4678)
+2.x: add javadoc and unit test to the recently changed XTransformers (#4674)  * 2.x: add javadoc and unit test to the recently changed XTransformer  * Use uppercase F
+2.x Remove Function from transformer interfaces to allow a single obj��� (#4672)  * 2.x Remove Function from transformer interfaces to allow a single object to implement multiple transformers  * Fix missing Exception declarations from transformers
+2.x: Fix javadoc for Single.flatMapObservable (#4669)
+Limit gradle memory (#4668)
+2.x: flatMap{Completable, Maybe, Single} operators (#4667)  * 2.x: flatMapCompletable operator  * Jacoco to ignore TCK  * Add remaining flatMap{Single, Maybe} to Flowable/Observable  * Fix active counting race condition
+2.x: coverage and cleanup 10/04-1 (#4666)
+2.x: cleanup and fixes 10/03-2 (#4663)
+2.x: cleanup and coverage 10/03 (#4661)
+2.x: Observable.compose to use ObservableTransformer (#4658)
+Upcast ConcurrentHashMap to Map to avoid compatibility issue (#4654)  * Upcast ConcurrentHashMap to Map to avoid compatibility issue  Resovles #4653  See http://stackoverflow.com/a/32955708/61158  * Fix imports, remove now-unnecessary animalsniffer suppression
+Switch Maybe and Single to use their Transformers in compose() (#4651)  * Switch Maybe and Single to use their Transformers in compose()  Resolves #4650  * Update compose() tests
+2.x: Merge AmbArray and AmbIterable into Amb for Single, Maybe and Completable types (#4647)
+Signal NPE ObservableAmb FlowableAmb (#4645)
+2.x: fix Mockito 2.1 changes using deprecated API of its own (#4639)
+2.x: Remove unused methods in BasicFuseableObserver (#4637)
+Update Mockito to 2.1.0-RC.2 (#4636)
+Merge branch '2.x' of https://github.com/ReactiveX/RxJava.git into 2.x
+allow more graceful memory use in MaybeTest
+2.x: Clean up SingleFlatMap (#4632)
+Force cast to U again
+Cleanup warnings
+2.x: add flattenAs{Observable,Flowable} to Single and Maybe (#4604)
+Don't wrap with CompositeException when there is only one error (#4631)
+2.x: Add Completable.fromRunnable() (#4629)
+Replace 'resource' observers with plain 'disposable' observers in tests. (#4625)
+2.x: Use predicates in BaseTestConsumer assertError(Class/Throwable) to remove duplicate code, tests tweaks to remove few IDE warnings (#4627)  * BaseTestConsumer use predicates in assertError with class and exception to remove duplicate code  * TestObserver & TestSubscriber tests cleanup to remove IDE warnings
+2.x: enable operator fusion in onBackpressureBuffer (#4622)
+2.x: Make CompositeExcpetion thread-safe like 1.x and also fix some issues. (#4619)  Right now CompositeExcpetion has several issues:  - `CompositeException(Throwable... exceptions)` doesn't deduplicate exceptions and flatten CompositeExceptions like `CompositeException(Iterable<? extends Throwable> errors)` - If using `CompositeException(Iterable<? extends Throwable> errors)` to create CompositeException, `suppress` cannot be used. - `suppress` doesn't update `cause`. - `suppress` doesn't deduplicate exceptions and flatten CompositeExceptions. - `suppress` and `Throwable.addSuppressed` are pretty confusing for Java 7+ users. Without looking at the implementation, it's hard to figure out the differences.  This PR made the following changes:  - Remove `CompositeException.suppress` so that it's easy to make CompositeException thread-safe.   - This may cause some performance lost in some path rarely happening, e.g., an excpetion is thrown from `onError`, but that's not a big deal.   - Since `suppress` is removed, it doesn't make sense to create an empty CompositeException, so `isEmpty` is removed and defense codes are added. - Defense codes for bad exceptions. - Deduplicate excepctions and flatten CompositeExceptions for `CompositeException(Throwable... exceptions)`.
+2.x: Add Single.flatMapMaybe (#4617)
+Add missing type argument documentation
+2.x: improve performance of Observable.flatMapIterable (#4612)
+2.x: Add Maybe.flatMapSingle (#4614)  * 2.x: Add Maybe.flatMapSingle  * Changes  * Fix generics
+2.x: Add Completable.andThen(MaybeSource) (#4616)  * 2.x: Add Completable.andThen(MaybeSource)  * Add missing import  * Requested changes
+2.x: Factor out typical TestObserver/TestSubscriber methods (#4609)  * 2.x: Factor out typical TestObserver/TestSubscriber methods  * Move BaseTestConsumer into the public so its javadoc is available
+2.x: TestSubscriber & TestObserver add assertValue(Predicate) (#4607)  * 2.x: TestSubscriber & TestObserver add assertValue(Predicate)  * Adjust
+2.x: Verify same onNext / onError null behavior across all Subjects and Processors (#4606)
+2.x: Evaluate Schedule initialization via Callable (#4585)  * Evaluate Schedule initialization via Callable  * Clarify docs that Schedulers are initialized by the return value of the Callable  * Enforce non-null Callable Scheduler and Scheduler  * Add remaining tests and tidy  * Expand relevant Javadoc  * Make error messages more consistent  * Correct Exception naming  * Add test for Exception message to verify root cause  * Add tests for alternative initialization path  * Simplify statement  * Use holder pattern for default Scheduler instances  * Use correct scheduler when verifying reset  * Make onInitHandler functions lazy and enforce non null.
+2.x: RxJavaPlugins - Don't pass null throwable down to Error Handler (#4603)
+2.x: benchmark just() and fromCallable() throughput (#4602)
+Remove unused imports
+2.x: Add missing @Test annotation on tests (#4597)  * 2.x: Add missing @Test annotation on tests  * Fix test
+2.x: don't show started unit tests (#4600)  * 2.x: don't show started unit tests  * This setting works locally
+2.x: Sync behaviour between UnicastProcessor & UnicastSubject + add a few test cases (#4601)
+Remove mention of blocking from the package-infos
+2.x: Remove takeFirst(predicate) in Observable & Flowable (#4595)

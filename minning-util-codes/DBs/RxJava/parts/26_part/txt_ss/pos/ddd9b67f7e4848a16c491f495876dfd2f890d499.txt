@@ -1,0 +1,1 @@
+2.x: make parallel() a fusion-async-boundary (#5677)

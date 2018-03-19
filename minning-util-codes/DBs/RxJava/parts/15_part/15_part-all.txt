@@ -1,0 +1,199 @@
+Merge pull request #1379 from benjchristensen/parallel  Parallel Operator Rewrite
+Merge pull request #1378 from benjchristensen/pivot  BugFix: Pivot Concurrency
+Parallel Operator Rewrite  A rewrite of the `parallel` operator that is more efficient by not using `groupBy` and ready to support backpressure.
+BugFix: Pivot Concurrency
+Enable FlightRecorder for JMH Tests
+1000000 is too much  ... for these tests.
+Disable flatMapTwoNestedAsync for now  it runs out of memory in JMH
+Update README.txt
+Merge pull request #1376 from benjchristensen/jmh  Revision of JMH Tests
+Revision of JMH Tests  - removal of all non-JMH perf tests
+Merge branch 'master' of https://github.com/Netflix/RxJava into docs
+More work on #1322 (missing javadocs)
+Merge pull request #1375 from zsxwing/rxscala-toXXX  RxScala: Add idiomatic toXXX methods
+Avoid the cast in toSet and toBuffer
+Add idiomatic toXXX methods to RxScala
+Merge pull request #1367 from zsxwing/swallow-error  Fix the bug that 'flatMap' swallows OnErrorNotImplementedException
+Merge pull request #1374 from nitsanw/master  Fix head/tail false sharing issues
+Javadoc changes to help fix #1322
+Fix head/tail false sharing issues.
+adding markdown version of operator decision tree
+Merge pull request #1369 from mattrjacobs/fix-debug-hook  DebugHook got miswired before
+adding the rest of the operators, tidying up, adding some color
+DebugHook got miswired before
+Fix the bug that 'flatMap' swallows OnErrorNotImplementedException
+several new operators; improved CSS
+now in spectacular Valid-HTML-o-Vision with previously unshown scenes
+Work in progress: an HTML definition-list version of Paul Taylor's RxJS decision trees, for RxJava.
+Merge pull request #1361 from samueltardieu/queued-actions  Fix a race condition if queued actions have been handled already
+Merge pull request #1336 from zsxwing/rxscala-bo  RxScala: Add the rest missing methods to BlockingObservable
+Merge pull request #1362 from zsxwing/rxscala-create  RxScala: Fix #1340 and #1343
+Remove '/*XXX*/'
+Implement 'create' in RxScala
+Fix a race condition if queued actions have been handled already
+Merge branch 'master' of https://github.com/Netflix/RxJava into docs
+Merge pull request #1359 from akarnokd/MpscLinkedQueuePadding  Fixed padding of the integer and node classes.
+Fixed padding of the integer and node classes.
+"wiki-" prefix no longer required for anchor names in github wiki pages also: correct one parameter name in javadoc comments
+add @since annotations to javadocs of new ...With() instance variants
+Version 0.19.1
+[Gradle Release Plugin] - new version commit:  '0.19.2-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.19.1'.
+Merge pull request #1357 from benjchristensen/mergeWith-and-friends  MergeWith, ConcatWith, AmbWith
+MergeWith, ConcatWith, AmbWith  Single-arity instance versions of merge, concat and amb. Since we can't use the `merge`/`concat`/`amb` names on both static and instance methods, these have the `With` suffix, which actually reads quite well.  ```java o.mergeWith(o2).subscribe(ts); o.concatWith(o2).subscribe(ts); o.ambWith(o2).subscribe(ts); ```  If we feel the need for more arities fine, but I wanted to start simple.  This originated from discussions with @headinthebox and over a year of wanting instance methods for `merge`.
+Merge pull request #1345 from jbripley/doblock-simplify  RxScala: Simplify doOnCompleted/Terminate, finallyDo callback usage
+Merge pull request #1337 from zsxwing/fix-toFuture  Make Future receive NoSuchElementException when the BlockingObservable is empty
+Merge pull request #1335 from mttkay/android-gradle-0.11  Bump build tools to 19.1 and android plugin to 0.11
+Merge pull request #1327 from akarnokd/MoreJoinPatterns  Join patterns extension for 4..9 and N arity joins.
+Merge pull request #1321 from dpsm/master  Ensuring Runnables posted with delay to a Handler are removed when unsub...
+Merge pull request #1347 from samueltardieu/unsubscribe-from-periodic  Allow use of the returned subscription to cancel periodic scheduling
+Merge pull request #1355 from akarnokd/ReplaySubjectDontAddUnsubscribedChild  Don't add the subscriber to the manager if it unsubscribed during the on...
+Improve docs of 'toFuture'
+Merge branch 'master' into rxscala-bo  Conflicts: 	language-adaptors/rxjava-scala/src/examples/scala/rx/lang/scala/examples/RxScalaDemo.scala
+Don't add the subscriber to the manager if it unsubscribed during the onStart call
+Merge pull request #1350 from benjchristensen/perf-tests  Baseline Performance Tests
+Baseline Performance Tests  Start of suite of general performance tests for comparing overall changes.
+Allow use of the returned subscription to cancel periodic scheduling  The documentation for schedulePeriodically indicates that the returned subscription can be used to unsubscribe from the periodic action, or to unschedule it if it has not been scheduled yet. That was the case only before the first action took place, and it was then impossible to unsubscribe using the given subscription, although unsubscribing the worker did work.
+RxScala: Simplify doOnCompleted/Terminate, finallyDo callback usage
+Merge pull request #1316 from zsxwing/rxscala-more  Add the rest operators to RxScala
+Update '***OrElse' to use Option.getOrElse
+Add subscribeExample to explain subscribe and foreach are same
+Future wil receive NoSuchElementException when the BlockingObservable is empty
+RxScala: Add examples for BlockingObservable
+RxScala: Add toFuture to BlockingObservable
+RxScala: Add latest to BlockingObservable
+RxScala: Add *Option and *OrElse to BlockingObservable
+Bump build tools to 19.1 and android plugin to 0.11  This is to make the project compatible with Studio 0.6.x
+Using the correct code style for variable name and removing unused imports.  Signed-off-by: David Marques <dpsmarques@gmail.com>
+comments, docs and names improvement
+Filling in javadoc gaps where I feel confident enough to do so...
+Change the return type, and add tests
+Adding ScheduledSubscription to parent in order to properly chain unsubscribe.  Signed-off-by: David Marques <dpsmarques@gmail.com>
+CRLF fix
+Join patterns extension for 4..9 and N arity joins.
+Replace unnecessary with details
+Rewrite toMultimap
+Update pivotExample
+Javadoc changes: * flesh out and update @throws sections * add @warn nags to missing javadocs * standardize formatting * fix dead links to images
+Using a ScheduledAction in order to ensure correct subscription behaviour.  Signed-off-by: David Marques <dpsmarques@gmail.com>
+Merge pull request #1324 from benjchristensen/trampoline-schedule-unsubscribe  TrampolineScheduler & Unsubscribe
+TrampolineScheduler & Unsubscribe  Unsubscribing should prevent new additions to a Worker, but not prevent already scheduled work, and definitely not affect other Workers using the same thread (by modifying the ThreadLocal as it was doing).  See the unit test for details of how unsubscribing 1 Worker could prevent work from being done on a completely separate Worker.
+Merge pull request #1311 from craigmingtaozhang/master  Tiny integration test change
+Ensuring Runnables posted with delay to a Handler are removed when unsubscribed.  This patch ensures the delayed runnables posted to a Handler are properly removed when Subscription.unsubscribe() is called on the Observable.  The original code returns the subscription from schedule() but is not used by the callers who instead add the Worker itself as a subsciption.  Signed-off-by: David Marques <dpsmarques@gmail.com>
+Add toMultimap to RxScala
+Add longCount to RxScala
+Add pivot to RxScala
+Add groupJoin to RxScala
+Add groupByUntil variant to RxScala
+Update CompletenessTest.scala
+Add orElse to RxScala
+Add combineLatest variant to RxScala
+Add foreach to RxScala
+Add error variant to RxScala
+Add retry variant to RxScala
+Add switchMap to RxScala
+Add flatten variant to RxScala
+Add nest to RxScala
+Add onErrorFlatMap to RxScala
+Attempt to fix one integration test class
+0.19.0
+[Gradle Release Plugin] - new version commit:  '0.19.1-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.19.0'.
+Merge pull request #1309 from benjchristensen/subscriber-subscription  Hide ChainedSubscription/SubscriptionList from Public API
+Hide ChainedSubscription
+Merge pull request #1306 from mattrjacobs/add-error-handler-to-error-swallowing-operators  Hooked RxJavaPlugins errorHandler up within all operators that swallow onErrors
+Remove call to RxJavaPlugins ErrorHander in mergeDelayError operator - CompositeException is already visible
+Merge pull request #1307 from benjchristensen/make-notificationDelay-deterministic  testNotificationDelay - Attempt at determinism
+testNotificationDelay - Attempt at determinism
+Hooked RxJavaPlugins errorHandler up within all operators that swallow onErrors. * Otherwise, the only onErrors visible to plugin are the ones which propagate all the way to SafeSubscriber.
+everything defaults to 1.6
+0.19.0-SNAPSHOT
+Merge pull request #1302 from davidmoten/groupBy-naming  improve variable names in OperatorGroupBy
+Merge pull request #1304 from zsxwing/flatMap  Add flatMap and concatMap to RxScala
+Add concatMap to RxScala
+Add flatMap variants to RxScala
+Merge pull request #1301 from jbripley/subscription-block-expression  RxScala: Add convenience method for adding unsubscription callback
+rename variable childObserver to child (is now a Subscriber) and rename gps to group (is not plural)
+Add convenience method for adding unsubscription callback
+Merge pull request #1298 from benjchristensen/perf-transform  Remove Bad Perf Test
+Remove Bad Perf Test  - this just stresses scheduling and at this throughput creates massive garbage and tests the wrong thing
+Merge pull request #1296 from jbripley/schedulers-internal  Move re-used internal Scheduler classes to their own package
+Move NewThreadWorker out from NewThreadScheduler  - Break out ScheduledAction from NewThreadWorker
+Move RxThreadFactory out from NewThreadScheduler
+Merge pull request #1295 from benjchristensen/notification-lite  Change `void accept` to `boolean accept`
+Change `void accept` to `boolean accept`  As per a change @akarnokd did elsewhere with `accept2` method.
+hard-code image heights in javadocs to make page loading cleaner, especially with links to anchors deep in the javadoc
+Merge pull request #1294 from benjchristensen/rx-internal-operators  rx.operators -> rx.internal.operators
+rx.operators -> rx.internal.operators
+Merge pull request #1291 from mattrjacobs/check-unsubscribe-within-observable-from-future  Check unsubscribe within observable from future
+Merge pull request #1293 from benjchristensen/perf-tests  Fix and Update JMH Perf Tests
+Fix and Update JMH Perf Tests  - The tests were wrong and re-using a single Subscriber instance which meant they weren't really testing much. - Same with the CountDownLatch which meant they weren't waiting if async. - Added several SerializePerf and PerfTransform tests
+add annotations about default schedulers to javadocs for Observable operators
+Modify OnSubscribeToObservableFuture to return early if unsubscribe without emitting anything
+2 new tests for OnSubscribeToObservableFuture  1) Creating an Observable from an already-cancelled Future should emit nothing (equivalent to Observable.never())    (it currently emits onError(CancellationException) 2) Creating an Observable from a Future then unsubscribeing immediately before Future.get()    unblocks should be an Observable.never().  This test already passes.
+Merge pull request #1290 from benjchristensen/jmh-upgrade  Upgrade to JMH 0.7.3
+Upgrade to JMH 0.7.3
+Merge pull request #1289 from benjchristensen/schedulers-from-executor  Schedulers.from(Executor)
+Schedulers.from(Executor)  As per decision at https://github.com/Netflix/RxJava/issues/1219#issuecomment-44454729
+Merge pull request #1287 from akarnokd/SubjectObserverPerf  ReplaySubject remove replayState CHM and related SubjectObserver changes
+Merge pull request #1276 from jbripley/cachedthreadscheduler2  Re-submission of CachedThreadScheduler
+Merge pull request #1286 from davidmoten/operator-to-onsubscribe  Rename some Operator* classes to OnSubscribe* as per #1270
+Merge pull request #1288 from davidmoten/string-from-bytes  Ensure StringObservable.from() does not perform unnecessary read
+Merge branch 'master' of https://github.com/Netflix/RxJava into docs
+adding javadocs to ChainedSubscription methods
+Ensure StringObservable.from() does not perform read when already unsubscribed because read could block
+Remove duplicate NotificationLite.
+Removal of ConcurrentHashMap from ReplaySubject and some NotificationLite cleanup.
+fix GroupBy and GroupByUntil which are actually Operators
+Merge branch 'master' of https://github.com/Netflix/RxJava into operator-to-onsubscribe
+Rename classes starting with Operator that are actually OnSubscribe implementations to start with OnSubscribe
+Version 0.18.4
+Merge pull request #1284 from benjchristensen/util-with-mpsc  Manual merge of Lock-free, MPSC-queue based
+Move MPSC Queue to rx.internal.util
+Revert SerializedObserver Changes  Not ready to merge these.
+Merge branch 'SerializedObserverPerf521' of github.com:akarnokd/RxJava into util-with-mpsc
+Merge pull request #1281 from benjchristensen/composite-subscription-performance  Reduce Subscription Object Allocation
+Reduce Subscription Object Allocation  - significant reduction in object allocations - details on research available at https://github.com/Netflix/RxJava/issues/1204
+add caveat about avoiding memory leaks when using GroupedObservables
+correction to RxJavaPlugins's getDefaultSchedulers() return type as reported in javadocs
+Merge pull request #1265 from zsxwing/rxscala-more  Add more operators to RxScala
+Merge branch 'master' of https://github.com/Netflix/RxJava into docs + improve retry(Func2) javadocs
+Filling in more gaps in the javadocs.
+Merge pull request #1271 from akarnokd/OperatorRetryWithPredicate  Operator Retry with predicate
+Removed the Func1 retry variant.
+Declare Scheduler classes in CachedThreadScheduler as final
+Merge pull request #1264 from akarnokd/ObserveOnScheduleUnsubscribe  ObserveOn scheduled unsubscription
+Merge branch 'master' of https://github.com/Netflix/RxJava into docs + add a couple of javadoc improvements to merged changes
+Better name for worker class running scheduled actions
+Javadoc overhaul: 1) standardize formatting, phrasing, terminology; 2) fill in gaps where javadocs (or parts of them) were missing; 3) add spurious @warn tags to cause build warnings for as-yet-unfilled gaps
+Merge pull request #1275 from benjchristensen/fix-formatting  Fix Encoding/Formatting
+Fix Encoding/Formatting  The encoding on these files is not liked by Git and it is forcing them to be updated.
+Switch to AtomicIntegerFieldUpdater and volatile int, instead of AtomicBoolean
+Merge pull request #1272 from akarnokd/ExecutorScheduler  ExecutorScheduler to wrap an Executor
+Switch to use NewThreadScheduler.RxThreadFactory
+Merge pull request #1269 from zsxwing/range-overflow  Fix the bug that int overflow can bypass the range check
+Merge branch 'master' into cachedthreadscheduler2
+Add "buffer(=> Observable[Any])" to replace "buffer(() => Observable[Any])" and "buffer(Observable[Any])""; Remove the cast for "window(=> Observable[Any])"
+ExecutorScheduler to wrap an Executor
+Operator Retry with predicate
+Fix the bug that int overflow can bypass the range check
+Fix "window"; change "amb" parameter to varargs; add examples
+Javadoc changes: 1) standardize opening sentences of function descriptions into the 3rd person descriptive; 2) add spurious @warn tag to throw compiler warnings indicating javadoc work TBD; 3) standardize on line-width; 4) document a few under-documented bits
+Remove some javadoc errors; make others more pronounced ;-) (#1266)
+Change 'window(closings: () => Observable[Any])' to 'window(boundary: => Observable[Any])'
+Add singleOption, singleOrElse, headOption, lastOption, lastOrElse to RxScala
+Update CompletenessTest.scala
+Add amb variant to RxScala
+Add timer variants to RxScala
+Add toBlocking to RxScala and deprecate toBlockingObservable
+Add debounce variant to RxScala
+Add parallelMerge to RxScala
+Add share to RxScala
+Add unsubscribeOn to RxScala
+Add unsafeSubscribe to RxScala
+Add publishLast to RxScala
+ObserveOn scheduled unsubscription
+Merge pull request #1260 from zsxwing/bo-singleOrDefault-bug  Merge pull request #1260
+Fix the bug that BlockingObservable.singleOrDefault doesn't call unsubscribe
+Lock-free, MPSC-queue based, fast-path serializing Observer.
+Implement a cached thread scheduler using event loops

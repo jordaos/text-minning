@@ -1,0 +1,201 @@
+Merge pull request #1518 from SeanPONeil/typo_fixes  Fix typos in javadoc comments.
+Merge pull request #1521 from benjchristensen/issue-1450  Fix toIterator Exception Handling
+Fix toIterator Exception Handling
+Merge pull request #1520 from benjchristensen/issue-1429  Fix non-deterministic test
+Fix non-deterministic test
+Merge pull request #1519 from benjchristensen/jruby-docs  Remove unused param comments
+Remove unused param comments
+Fix typos in javadoc comments.
+Version 0.20.0-RC3
+Version 0.20.0-RC3
+Restore rxjava-quasar
+[Gradle Release Plugin] - new version commit:  '0.20.0-RC4-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.20.0-RC3'.
+Temporarily skipping rxjava-quasar  Can't get ASM 5.0.3 to work in build so skipping rxjava-quasar until that is solved.
+Merge pull request #1513 from benjchristensen/to-list-copy  Revert to copying list in toList
+Revert to copying list in toList  It is a breaking change to existing code to make it immutable, so reverting back to copying.
+removing unicode ligature that breaks build
+Merge pull request #1501 from benjchristensen/blocking-next  blocking synchronous next
+Merge pull request #1504 from benjchristensen/issue-1218  Eliminate duplication of List in toList
+messagePrefix null check
+Restore use of messagePrefix  as per https://github.com/Netflix/RxJava/issues/1266
+Fix typo  as per https://github.com/Netflix/RxJava/issues/1266
+Eliminate duplication of List in toList  Fixes https://github.com/Netflix/RxJava/issues/1218
+blocking synchronous next  Fixes https://github.com/Netflix/RxJava/issues/624
+Merge pull request #1499 from benjchristensen/retryTest-iterativeBackoff  retrytest.iterativeBackoff
+retrytest.iterativeBackoff  Unable to replicate failure of this test ... but adding assertNoErrors so we can see an exception if it happens again.
+Merge pull request #1498 from benjchristensen/testUserSubscriberUsingRequestAsync  non-deterministic testUserSubscriberUsingRequestAsync
+non-deterministic testUserSubscriberUsingRequestAsync  fix non-deterministic failures of BackpressureTests.testUserSubscriberUsingRequestAsync  I was able to replicate the occasional failure by putting it in a tight loop. With these changes it no longer fails.
+Merge pull request #1497 from benjchristensen/ring-buffer  spsc ring buffer concurrency test
+spsc ring buffer concurrency test
+Merge pull request #1495 from puniverse/master  Upgrade to Quasar 0.6.0
+Merge pull request #1496 from benjchristensen/ring-buffer  Change RxRingBuffer Queue Usage
+Reverting use of JCTools Until Problem Is Solved
+Update JCTools Code
+using a <dl> will make the "Scheduler" and "Backpressure Support" sections fit into the javadoc format more effectively
+adding @since annotations, a few other touch-ups to javadocs of new operators
+Merge pull request #1494 from benjchristensen/zip-with  zipWith
+zipWith
+Merge pull request #1493 from benjchristensen/retry_repeat-when  Manual merge of retryWhen/repeatWhen
+Add retryWhen example to Javadoc
+retryWhen/repeatWhen
+Upgrade to Quasar 0.6.0
+TODO for removing this timeout  this code is just for finding bugs during the 0.20-RCs
+Merge pull request #1491 from benjchristensen/concat-backpressure-outer  Concat Outer Backpressure
+Concat Outer Backpressure  Fixed https://github.com/Netflix/RxJava/issues/1481
+Merge pull request #1490 from benjchristensen/unit-tests  non-deterministic timeouts on slow machines
+non-deterministic timeouts on slow machines
+Merge pull request #1489 from benjchristensen/terminal-operator-backpressure  Backpressure Fixes and Docs
+Backpressure Fixes and Docs  Docs for operators that don't support backpressure, particularly all the temporal operators.  Fixes for several that needed to request(1) or request(Long.MAX_VALUE).
+Merge pull request #1474 from mattrjacobs/ignore-backpressure-operator-tosortedlist  Ignore backpressure for OperatorToObservableSortedList
+Ignore backpressure for OperatorToObservableSortedList
+Merge pull request #1473 from mattrjacobs/handle-backpressure-in-any-operator  OperatorAny needs to handle backpressure
+Merge pull request #1472 from mattrjacobs/add-unit-test-to-operator-all  Add test of backpressure to OperatorAll
+OperatorAny needs to handle backpressure
+Add test of backpressure to OperatorAll
+Merge pull request #1469 from mattrjacobs/fix-tolist-backpressure  ToList operator needs to ignore backpressure
+Update CONTRIBUTING.md  updating the date.
+ToList operator needs to ignore backpressure
+javadocs: add missing @see links; correct broken link URLs; standardize formatting/capitalization/punctuation
+Increasing timeout  Using low timeout values causes non-determinism in some build environments.
+remove javadoc warnings from cache(); add @since annotation to cache(b)
+Merge pull request #1467 from benjchristensen/cache-docs  Javadocs for cache operator
+Javadocs for cache operator
+Add perf tests for cache(1) variant
+Merge pull request #1393 from gliptak/cachehint  Add cache(int capacity) to Observable
+Merge pull request #1431 from tomrozb/composite-exception  CompositeException fix for Android
+Merge pull request #1436 from gliptak/genericswarnings  Correct warnings
+Update CHANGES.md
+Version 0.20.0-RC2
+[Gradle Release Plugin] - new version commit:  '0.20.0-RC3-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.20.0-RC2'.
+Merge pull request #1463 from benjchristensen/merge-1420  Merge Bug: Missing Emissions
+Merge Bug: Missing Emissions  Notes and temporary fix
+Merge pull request #1462 from benjchristensen/merge-perf-fix  Merge Perf Fix: Re-enable fast-path
+Merge Perf Fix: Re-enable fast-path
+Merge pull request #1459 from benjchristensen/remove-onSetProducer  Remove Subscriber.onSetProducer
+Support OnSetProducer/Request Changes
+Merge branch 'remove-onsetproducer' of github.com:abersnaze/RxJava into remove-onSetProducer
+Merge pull request #1458 from benjchristensen/remove-pivot  Remove Pivot Operator
+Remove Pivot Operator  as per https://github.com/Netflix/RxJava/issues/1402
+Removing unnecessary test
+Removing unnecessary test
+Remove test ... leave functional testing in core  The behavior of mergeDelayError has slightly changed.  It doesn't eagerly unsubscribe if the source keeps emitting after onError.
+Merge pull request #1457 from benjchristensen/mergeDelayError-backpressure  MergeDelayError & OnErrorFlatMap w/ Merge
+MergeDelayError & OnErrorFlatMap w/ Merge
+Removing onSetProducer from the API
+Merge pull request #1453 from spodila/takeWhileFailure  New test case for takeWhile that currently fails
+Merge pull request #1454 from zsxwing/issue1451  Fix issue #1451
+Merge pull request #1446 from benjchristensen/zip-backpressure  Zip with Backpressure Support
+Debugging Test
+OperatorAll & Backpressure  Similar to filter, it needs to request(1) each time it filters an onNext.
+Fix related classes for issue #1451
+Fix issue #1451
+New test case for takeWhile that currently fails
+Merge pull request #1448 from zsxwing/rxscala-more  RxScala: Add Scala idiomatic methods
+RxScala: Add Scala idiomatic methods
+Zip with Backpressure Support  This supports both upstream and downstream backpressure.
+first pass at javadocs for new backpressure stuff
+Version 0.20.0-RC1
+[Gradle Release Plugin] - new version commit:  '0.20.0-RC2-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.20.0-RC1'.
+Merge pull request #1443 from benjchristensen/request-long-max-value  Infinite request with Long.MAX_VALUE instead of -1
+Infinite request with Long.MAX_VALUE instead of -1  Migrating to this after discussions at https://github.com/reactive-streams/reactive-streams/issues/62
+Merge pull request #1442 from benjchristensen/merge-bug  Merge Bug
+Fix Merge Bug  Working on https://github.com/Netflix/RxJava/issues/1420
+minor javadoc improvements
+Adding alt attributes to img tags in javadocs to avoid occasional build issues
+Correct static access warnings
+Add generics
+Add generics
+Remove unused imports/locals
+Remove cast
+Move cast to parent function
+Merge pull request #1433 from Applied-Duality/async  Take 3
+Copied from master
+Undo comments
+Remove cycles in CompositeException
+Removed deprecated OnSubscribeFunc
+Forgot to undo
+Revert "CompositeException does not mutate nested exceptions by attaching stacks, but instead"  This reverts commit f4ae92aa624923e9a632fb677730a2d6e04595e5.
+Removed unnecessary variance
+Publish signature  Less variance, more type inference
+Merge pull request #1423 from stealthcode/ProducerIntToLong  Changed producer interface to work with long instead of int
+Changed producer interface to work with long instead of int
+Merge pull request #1422 from benjchristensen/issue-1420  Concurrency Fixes for RxRingBuffer & Merge
+Concurrency Fixes for RxRingBuffer & Merge
+Merge pull request #1394 from gliptak/scalabindings  Gradle Builds: Change provided to testCompile
+Merge pull request #1421 from akarnokd/RangeBackpressureFix  Range backpressure concurrency & off-by-one bugfix
+Range concurrency & off-by-one bugfix
+Remove build provided references and separate JUnit tests
+Remove build provided references (except for rxjava-android)
+'rxjava-contrib:rxjava-scalaz'
+Version 0.19.6
+Merge pull request #1417 from benjchristensen/onStart  Proposal: Subscriber.onStart
+Ignoring non-deterministic test  ... until someone can figure it out.  This code is far less important now since it is no longer used by merge.
+flatMapAsync test was non-deterministic
+Use Subscriber.onStart as idiomatic backpressure start point
+Merge pull request #1282 from abersnaze/closeable  utility function for creating observables for closeable resources
+Merge pull request #1398 from zsxwing/rxscala-currying  RxScala: Use currying to improve type inference
+Merge pull request #1414 from benjchristensen/merge-fixes  Merge Fixes
+Test timing  Adjust timing for slower machines (such as CloudBees)
+Clarity about batching request
+Fix Merge Bug  If the queue being drained did not complete due to the backpressure request being fulfilled, it could onComplete before draining the queue and miss values.
+Remove provided configuration for test dependencies
+Set scalatest as testCompile dependency  Gradle now generates correct eclipse dependencies
+Merge pull request #1412 from benjchristensen/backpressure-9  Backpressure & 0.20.0-RC1
+Backpressure & 0.20.0-RC1
+Version 0.19.4
+[Gradle Release Plugin] - new version commit:  '0.19.5-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.19.4'.
+0.19.4-SNAPSHOT  Manually incrementing as the upload to Maven Central for 0.19.3 failed part way through and can't be redone.
+Merge pull request #1401 from samhendley/onnextvalue  OnError while emitting onNext value: object.toString
+Merge pull request #1409 from dpsm/master  Avoiding OperatorObserveOn from calling subscriber.onNext(..) after unsu...
+Avoiding OperatorObserveOn from calling subscriber.onNext(..) after unsubscribe().  The OperatorObserveOn operator uses a scheduler to cancel subscriptions as well as to deliver the objects passing through it's onNext(..) in the right context.  Calling unsubscribe will schedule the actual unsubscription while not making sure that the child subscriber will no longer receive calls to onNext(..) after unsubscribe() returns.  This fix makes sure that after unsubscribe() returns no more onNext(..) calls will be made on the child subscribers.  Signed-off-by: David Marques <dpsmarques@gmail.com>
+Merge pull request #1406 from MarioAriasC/master  Kotlin M8
+Kotlin M8
+Add links to Graham Lea's useful overview of observeOn/subscribeOn
+Added a renderValue function to create a string from unknown client objects without calling toString (PR #1401)
+Rename to sliding and tumbling
+Use currying to improve type inference
+Fixed OnNextValue to not call toString on the failing value
+Created test cases that show inconsistent error handling with OnNextValue and toString
+Merge pull request #1400 from benjchristensen/internal-data-structures  Internal Data Structures
+Internal Data Structures  Various data structures to allow performance improvements. I am committing these separately from the code that uses it to keep the pull requests simpler. Nothing in RxJava depends on these classes in this commit.
+Merge pull request #1399 from benjchristensen/perf-tests-0702  Update Perf Tests
+Update Perf Tests  matching with work being done for 0.20 to allow comparisons
+Merge pull request #1396 from zsxwing/rxscala-fix-warning  RxScala: Fix the compiler warnings
+Merge pull request #1397 from abersnaze/add-hooks-to-unsafeSubscribe  Adding the hooks unsafeSubscribe
+Adding the hooks unsafeSubscribe by making the execution same as safe version without the safety checks.
+Fix the compiler warnings
+Add cache(int capacity) to Observable
+Better naming, and new test  ... using to compare 0.19 and 0.20 so want in both.
+Version 0.19.2
+[Gradle Release Plugin] - new version commit:  '0.19.3-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.19.2'.
+rxjava-scalaz  commenting out rxjava-scalaz until I can figure out what's wrong with the Netflix building system that prevents it from finding the following jar:  ``` Artifact 'org.scalaz:scalaz-core_2.10:7.0.4@jar' not found. ```
+Merge pull request #1388 from mattrjacobs/eliminate-circular-exception-creation  CompositeException stops mutating nested Exceptions
+Fixed up SafeObserverTest w.r.t. CompositeException changes
+Removed unused import
+CompositeException does not mutate nested exceptions by attaching stacks, but instead aggregates them at print-time.  Since nothing is being mutated, there's no chance of accidentally creating a cycle in the Exception chain.
+Cross-reference observeOn and subscribeOn from each others' javadocs
+Merge pull request #1387 from benjchristensen/jmh-0.9  Upgrade to JMH 0.9
+Upgrade to JMH 0.9
+Merge pull request #1297 from everpeace/rxjava-scalaz  [RxScala] rxjava-scalaz: providing some type class instances.
+Merge pull request #1332 from ashleyj/master  IOSSchedulers for RoboVM
+Adding missing javadocs to Exceptions/OnErrorThrowable (#1322)
+Adding missing javadocs to TestSubject (#1322)
+Adding missing javadocs to TestSubscriber (#1322)
+Merge pull request #1380 from benjchristensen/fixes  Variety of Fixes
+TrampolineScheduler Cleanup  Remove the null check and lazy creation, build the queue in the ThreadLocal. Fix bugs about "work in progress".
+TestSubscriber.assertNoErrors
+Formatting
+OnSubscribe: DelaySubscribe -> UnsafeSubscribe  This could cause an unwanted unsubscribe to be propagate because of the `SafeSubscriber`
+Remove unnecessary code
+TakeUntil & NotificationLite  A rewrite of TakeUntil that doesn't leak NotificationLite.COMPLETE outside of itself. It causes problems to leak the sentinels as other operators also using NotificationLite get confused.
+As per suggestions: Added single static instance of ExecutorService for delayed posting Introduced ScheduledIOSAction to enable CompositeSubscription
+IOSSchedulers for RoboVM
+replaced getOne method which is based on promise with toBlocking.first
+Introduced 'rxjava-scalaz' project.  This project provides some type class instances for Observable.  * Monoid: Observable obviously forms a monoid in terms of concatenation. * Functor, Applicative, Monad, MonadPlus: Observable can be a Stream-like Monad and can be MonadPlus as well as Monoid. * Traverse, Foldable: Observable can be Stream-like traversable. __NOTE: The operations for the instance is blocking calls.__ * etc.  About Testing, property based tests are applied by Scalaz's ScalaCheck binding.  For QuickStart, please refer to rx.java.scala.scalaz.examples.RxScalazDemo.
+switch from AutoCloseable to Closeable for java 6. UnsafeFunc0 now extends Callable.
+utility function for creating observables for closeable resources

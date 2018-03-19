@@ -1,0 +1,201 @@
+Merge pull request #1247 from zsxwing/zip-iterable  Merge pull request #1247
+Merge pull request #1254 from akarnokd/ZipWithIterableFix  Merge pull request #1254
+Merge pull request #1246 from akarnokd/AtomicReferencesToFieldUpdaters  Moved to atomic field updaters.
+Make the chunk_test.clj work again for now
+Changed lazySet to regular volatile write to avoid potential visibility issues.
+ZipIterable unsubscription fix.
+Rename to 'zipWith';  add 'zip(iterable)'; add examples
+Merge pull request #1248 from akarnokd/SchedulerTestConcurrentFix  Fixed testConcurrentOnNextFailsValidation
+Merge pull request #1239 from zsxwing/apply-scaladoc-example  Update docs for "apply" and add an example
+Fixed testConcurrentOnNextFailsValidation
+Add zip(iterable, selector) to RxScala; resolve the issue of zipWithIndex; update CompletenessTest.scala
+Moved to atomic field updaters.
+Update README.md to new constructors
+Merge pull request #1244 from benjchristensen/from-just  Observable.from(T) using Observable.just(T)
+Observable.from(T) using Observable.just(T)  For code like `Observable.from(1)` Improve performance from ~3.9m to 4.5+m ops/second  Before;  ``` r.u.PerfTransforms.flatMapTransformsUsingFrom        1  thrpt         5  3923845.687    46657.660    ops/s r.u.PerfTransforms.flatMapTransformsUsingFrom     1024  thrpt         5     8924.953     1983.161    ops/s  r.u.PerfTransforms.flatMapTransformsUsingFrom        1  thrpt         5  3623228.857   490894.492    ops/s r.u.PerfTransforms.flatMapTransformsUsingFrom     1024  thrpt         5     9176.330      923.929    ops/s ```  After:  ``` Benchmark                                       (size)   Mode   Samples         Mean   Mean error    Units r.u.PerfTransforms.flatMapTransformsUsingFrom        1  thrpt         5  4052364.587   100971.234    ops/s r.u.PerfTransforms.flatMapTransformsUsingFrom     1024  thrpt         5    11682.783      496.656    ops/s  Benchmark                                       (size)   Mode   Samples         Mean   Mean error    Units r.u.PerfTransforms.flatMapTransformsUsingFrom        1  thrpt         5  4700583.987    77742.037    ops/s r.u.PerfTransforms.flatMapTransformsUsingFrom     1024  thrpt         5    12588.803       58.935    ops/s ```  Using this test:  ``` ../gradlew benchmarks '-Pjmh=-f 1 -tu s -bm thrpt -wi 5 -i 5 -r 5 -prof GC .*PerfTransforms.flatMapTransformsUsingFrom*' ```
+Merge pull request #1243 from benjchristensen/perf  Remove Subscription Wrapper from Observable.subscribe
+Remove Subscription Wrapper from Observable.subscribe  Performance increase from 7.7m to 8.8m ops/second  Before:  Benchmark                              (size)   Mode   Samples         Mean   Mean error    Units r.u.PerfTransforms.mapTransformation        1  thrpt         5  7714453.187   362218.633    ops/s r.u.PerfTransforms.mapTransformation        1  thrpt         5  7527144.767   497816.471    ops/s  After:  Benchmark                              (size)   Mode   Samples         Mean   Mean error    Units r.u.PerfTransforms.mapTransformation        1  thrpt         5  8853534.333   183494.242    ops/s r.u.PerfTransforms.mapTransformation        1  thrpt         5  8806958.403   452595.219    ops/s
+JMH Tests for Simple Use Cases
+Merge pull request #1236 from akarnokd/CompositeSubscriptionMemory521  CompositeSubscription with atomic field updater
+Merge pull request #1237 from akarnokd/SafeSubscriberMemory  SafeSubscriber memory reduction
+Update docs for "apply" and add an example
+Changed to field updater
+Switch to AtomicReferenceFieldUpdater.
+Adding another @since annotation to the toBlocking() javadocs
+Merge branch 'master' of https://github.com/Netflix/RxJava into docs
+adding @since javadoc annotation to new methods
+Merge branch 'master' of https://github.com/Netflix/RxJava into docs
+Merge pull request #1233 from benjchristensen/deprecate-toBlockingObservable  Deprecate toBlockingObservable in favor of toBlocking
+(#1230) javadocs for serialize() also some improvements to javadocs for share()
+Deprecate toBlockingObservable in favor of toBlocking  As per discussion at https://github.com/Netflix/RxJava/pull/1224#issuecomment-43658284
+Merge pull request #1232 from benjchristensen/678-Java8-names  Adopt Limit and ForEach Java 8 Naming Conventions
+ForEach aliases to Subscribe to match Java 8 Convention  As per discussion at https://github.com/Netflix/RxJava/issues/678  Code like this is now supported:  ```java Observable.from(1, 2, 3).forEach(System.out::println); Observable.from(1, 2, 3).toBlocking().forEach(System.out::println); ```
+Limit alias to Take  - as per Java 8 Stream naming conventions in discussion https://github.com/Netflix/RxJava/issues/678
+Merge pull request #1231 from benjchristensen/682-share  Operator Alias: Share
+Operator Alias: Share
+Merge pull request #1229 from benjchristensen/1116-ambiguous-overloads  Remove Ambiguous Subscribe Overloads with Scheduler
+Remove Ambiguous Subscribe Overloads with Scheduler  - Fixes https://github.com/Netflix/RxJava/issues/1116 - These should never have been added, the subscribeOn operator already provides this functionality
+Merge pull request #1228 from benjchristensen/fix-formatting  Git Reformats This File
+Git Reformats This File
+Merge pull request #1160 from zsxwing/replay-multicast  Add `replay` and `multicast` variants to RxScala
+Merge pull request #1223 from akarnokd/BoundedReplaySubject520  ReplaySubject enhancement with time and/or size bounds
+Merge pull request #1224 from daschl/toblocking  Implement shorter toBlocking as shorter alias for toBlockingObservable.
+Merge pull request #1226 from zsxwing/zip  Fix bug in `zipWithIndex` and set `zip(that, selector)` public in RxScala
+make 'zip(that, selector)' public and rename to 'zipWith'
+Fix the bug that using mutable function in 'zipWithIndex'
+Implement shorter toBlocking as shorter alias for toBlockingObservable.  Fixes #1220
+ReplaySubject enhancement with time and/or size bounds
+Re-enable testStaggeredCompletion  See https://github.com/Netflix/RxJava/issues/1011
+Javadoc: Inner -> Worker  https://github.com/Netflix/RxJava/issues/808
+Merge branch 'master' into replay-multicast  Conflicts: 	language-adaptors/rxjava-scala/src/examples/scala/rx/lang/scala/examples/RxScalaDemo.scala 	language-adaptors/rxjava-scala/src/main/scala/rx/lang/scala/Observable.scala 	language-adaptors/rxjava-scala/src/test/scala/rx/lang/scala/CompletenessTest.scala
+Merge pull request #1185 from akarnokd/BehaviorSubjectTimeGapFix2  Behavior subject time gap fix 2
+Merge pull request #1208 from mttkay/tolist-uses-linked-list-buffer  OperatorToObservableList: use LinkedList to buffer the sequence���s items
+Merge pull request #1216 from hmrm/patch-1  Exposing PublishSubject
+Merge pull request #1210 from zsxwing/rxscala-more  Add more operators to RxScala
+Merge branch 'master' into rxscala-more  Conflicts: 	language-adaptors/rxjava-scala/src/test/scala/rx/lang/scala/CompletenessTest.scala
+Exposing PublishSubject  All other subjects (Async, Behavior, Replay) have non-private companion objects.
+Merge pull request #1178 from zsxwing/issue1173  Fix issue #1173
+Revert createExampleBad and import scala.concurrent.duration.MILLISECONDS
+Fix the initialization order
+Eliminate compiler warnings
+Update CompletenessTest.scala for new operators
+Merge branch 'master' into rxscala-more  Conflicts: 	language-adaptors/rxjava-scala/src/examples/scala/rx/lang/scala/examples/RxScalaDemo.scala
+use LinkedList to buffer the sequence���s items  LinkedList has guaranteed constant insertion time when appending to the end of the list, whereas ArrayList takes O(1) amortized, since a reallocation might be necessary to insert further items. Since no capacity was specified for the buffer, on Hotspot this would cause the array to reallocate after the first 10 insertions, on Android after the first insertion (since Android���s ArrayList uses a default capacity of zero.)  Since the buffer is copied to an ArrayList before emission, subscriber performance when working with the list should remain unaffected.  Refs #1141
+Merge pull request #1195 from akarnokd/SwingSchedulerNegativeFix  SwingScheduler: allow negative schedule
+Merge pull request #1191 from akarnokd/OperatorPivotTestFix  Fix attempt for OperatorPivotTest
+Merge pull request #1172 from akarnokd/ObserveOnBatchDequeue  ObserveOn: Change to batch dequeue.
+Merge pull request #1175 from akarnokd/ConnectableObservableSynchronousFix  Fixed synchronous ConnectableObservable.connect problem
+Comment out javafx until build is fixed
+Merge pull request #1188 from zsxwing/issue1187  Fix issue #1187 and #1196
+Might help with questions like in the email thread "javadoc for api-sdk in Eclipse: how to?"
+EDGE-1369 document runAsync/StoppableObservable
+Adding marble diagrams to StringObservable operator javadocs
+Add buffer variants to RxScala
+Add using to RxScala
+Update range comments
+Add delay variants to RxScala
+Update more mappings to CompletenessTest
+Comment explaining non-positive delay values
+Fix issue #1196 and some docs issues
+Negative schedule time now indicates immediate execution.
+Add timeInterval to RxScala
+Add takeRight(takeLast) variants to RxScala
+Add take variants to RxScala
+Add sequenceEqual to RxScala
+Fix attempt #1
+Update the signature of "schedule" methods
+Fix issue #1187
+Update CompletenessTest.scala
+Fix the bug that the inner Subscriber can not be unsubscribed and elimilate scaladoc warnings
+Fix issue #1173
+Add note to javadocs about ConnectableObservables requiring connect() call (#1180)
+Merge pull request #1182 from amazari/rxjava-javafx  Merge pull request #1182
+Unified the Subject management.
+PublishSubject to match BehaviorSubject
+Some performance improvements
+Going lite
+BehaviorSubject subscription timegap fix 2
+BehaviorSubject subscription timegap fix
+Version 0.18.3
+Merge pull request #1177 from akarnokd/GroupByUntilTimeGap  GroupByUntil to use BufferUntilSubscriber
+Merge pull request #1183 from akarnokd/NotificationLitePerf  NotificationLite.accept performance improvements
+Switch to direct accept and no instanceof
+Add facilities for creating Observables from JavaFX events and ObservableValues.  Provides:  * a Scheduler implementation ensuring execution in the JavaFX UI thread  * a Subscription implementation ensuring that un-subscription happens in JavaFX UI thread  * an Observable factory method for observing UI events on JavaFX nodes  * an Observable factory method for observing value changes of a JavaFX ObservableValue  Also the rxjava-javafx is added to the gradle build.
+GroubByUntil to use BufferUntilSubscriber
+Fixed synchronous ConnectableObservable.connect problem
+Change to batch dequeue.
+Merge branch 'master' into replay-multicast  Conflicts: 	language-adaptors/rxjava-scala/src/examples/scala/rx/lang/scala/examples/RxScalaDemo.scala
+Merge pull request #1165 from zsxwing/review-issue1159  Update according to review in issue #1159
+Update 'startWith' info in CompletenessTest
+Remove 'startWith', add '+:' and ':+'
+Remove () and update CompletenessTest
+Merge branch 'master' into replay-multicast  Conflicts: 	language-adaptors/rxjava-scala/src/examples/scala/rx/lang/scala/examples/RxScalaDemo.scala
+Update according to review in issue #1159
+[Gradle Release Plugin] - new version commit:  '0.18.4-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.18.3'.
+Revert #1163 until decision made  Reverting change made in #1163 as it broke the build
+Merge pull request #1158 from akarnokd/SchedulerFixes0506  Scheduler correctness improvements.
+Merge pull request #1164 from benjchristensen/scheduler-jmh-perf-tests  JMH Perf Tests for Schedulers.computation
+JMH Perf Tests for Schedulers.computation
+Merge pull request #1159 from zsxwing/rxscala-improvement  Rxscala improvement
+Merge pull request #1162 from kirkshoop/stableperiodic  fix to remove drift from schedulePeriodic
+Merge pull request #1161 from akarnokd/RemoveOnSubscribeFuncRefs  Removed use of deprecated API from tests & operators, fixed year in head...
+Merge pull request #1163 from benjchristensen/defer-generics  Fix defer for Java 8 type-inference
+Fix defer for Java 8 type-inference  Fixes https://github.com/Netflix/RxJava/issues/1157
+fix to remove drift from schedulePeriodic
+Replace '+' with '::'
+Removed unused interface
+Removed use of deprecated API from tests & operators, fixed year in headers, added and removed suppressions, fixed line endings, replaced tabs with spaces
+Add 'replay' variants to RxScala
+Remove 'Observable.apply(Int)'
+Add 'multicast' variants to RxScala
+Change '(() => Subscription, Observable[R])' to 'ConnectableObservable[R]'
+Scheduler correctness improvements.
+Add 'publish' variants to RxScala
+Add 'startWith' to RxScala
+Add 'doOnTerminate' to RxScala
+Add 'repeat' to RxScala
+Add 'contains' to RxScala
+Add 'dropUntil' to RxScala
+Version 0.18.2
+[Gradle Release Plugin] - new version commit:  '0.18.3-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.18.2'.
+Merge pull request #1150 from benjchristensen/replay-fix  Fix ReplaySubject Terminal State Race Condition
+ReplaySubject testRaceForTerminalState()
+Fix ReplaySubject termination race
+Make final
+Merge pull request #1148 from benjchristensen/merge-delay  Manual Merge of Delay PR
+Merge branch 'OperatorDelay505' of github.com:akarnokd/RxJava into merge-delay  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #1142 from zsxwing/contains  Update 'contains' signature to 'contains(Object)'
+Merge pull request #1138 from akarnokd/OperatorWindow430  Operator Window and other changes
+Merge pull request #1137 from akarnokd/OperatorFixes430  Fixes to the operators.
+Merge pull request #1135 from zsxwing/take-until  OperatorTakeUntil
+Merge pull request #1134 from zsxwing/take-last  OperatorTakeLast
+Merge pull request #1124 from zsxwing/scala-lift  Add lift to rxscala
+Operator Delay rebase & fixes
+Modified BufferUntilSubscriber to onError for any subscriber but the first
+Update 'contains' signature to 'contains(Object)'
+Use NotificationLite
+Update the signature of lift
+Operator Window and other changes
+Fixes to the operators.
+OperatorTakeLast
+OperatorTakeUntil
+Merge pull request #1133 from benjchristensen/imports  collapse imports
+collapse imports  attempt to reduce merge conflicts as it's always the import statements that are conflicting
+Merge pull request #1132 from benjchristensen/merge-prs  Manual Merge of Several PRs
+Merge branch 'OperatorTakeTimed429' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorSwitch' of github.com:akarnokd/RxJava into merge-prs
+Merge branch 'OperatorComputationExpr' of github.com:akarnokd/RxJava into merge-prs
+Merge branch 'SerializedObserverTestFix' of github.com:akarnokd/RxJava into merge-prs
+Merge branch 'OperatorContribJoin' of github.com:akarnokd/RxJava into merge-prs
+Merge branch 'OperatorContribMath' of github.com:akarnokd/RxJava into merge-prs
+Merge branch 'OperatorSkipUntil' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorSkipTimed' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorSequenceEquals' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorRefCount' of github.com:akarnokd/RxJava into merge-prs
+Merge branch 'OperatorParallelMerge' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'OperatorOnExceptionResumeNextViaObservable' of github.com:akarnokd/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'take-while' of git://github.com/zsxwing/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'throttle-first' of git://github.com/zsxwing/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge branch 'time-interval' of git://github.com/zsxwing/RxJava into merge-prs  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Update CompletenessTest
+Operator TakeTimed
+Operator Switch
+Conditional statements contribution to Operator
+Fix for SerializedObserverTest
+Operator When
+Corrected LF
+Operators of contrib-math
+Add unsubscribe
+Add Operator conversion, tail and update liftExample2
+Add lift to rxscala
+OperatorSkipUntil
+OperatorSkipTimed
+OperatorSequenceEqual
+OperatorRefCount
+Operator ParallelMerge
+Operator OnExceptionResumeNextViaObservable
+OperatorTakeWhile
+OperatorThrottleFirst
+OperatorTimeInterval

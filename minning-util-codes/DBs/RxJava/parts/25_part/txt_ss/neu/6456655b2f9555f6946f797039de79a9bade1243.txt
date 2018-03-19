@@ -1,0 +1,1 @@
+2.x: cancel upstream first, dispose worker last (#5075)

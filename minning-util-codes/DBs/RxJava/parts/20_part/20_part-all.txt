@@ -1,0 +1,200 @@
+Merge pull request #2898 from davidmoten/range-eager-complete  Observable.range - add unit test for eager completion on empty
+add unit test to ensure that range with count of 0 sends onComplete even when initial request is 0
+Merge pull request #2895 from davidmoten/from-iter-race  Fix Observable.from(Iterable) race condition
+fix race condition for Observable.from(Iterable) where two concurrent calls to the Producer.request with Long.MAX_VALUE could start the fast path twice
+Merge pull request #2892 from davidmoten/range-race  Fix Observable.range race condition
+fix race condition for range where two threads concurrently request Long.MAX_VALUE and both start the fast path thus possibly some items more than once
+Merge pull request #2882 from davidmoten/scan-fix  OperatorScan - don't call onNext after onError is called
+child.onNext should not be called after child.onError
+Merge pull request #2875 from akarnokd/ConcatNPEFix  Fix: NPE in requestFromChild method.
+Fixes NPE in requestFromChild method.
+1.0.9
+Merge pull request #2866 from davidmoten/Action1-argument-name  Use simpler naming in Action1, Func1 to assist IDEs
+Merge pull request #2867 from davidmoten/remove-unused  More warnings cleanup
+Merge pull request #2868 from akarnokd/RetryWithBackpressureFix  Fixed reentrancy issue with the error producer.
+Fixed reentrancy issue with the error producer.
+remove unused code that was the subject of varargs warnings, remove unused import
+Merge pull request #2862 from davidmoten/test-warnings  Cleanup warnings in test source
+Merge pull request #2864 from davidmoten/main-warnings  IndexedRingBuffer.getInstance can infer type
+use simpler naming in Action1, Func1 because is used as a default for IDEs when generating implementing methods
+add generic type to IndexedRingBuffer.POOL and modifiy IndexedRingBuffer.getInstance so that infers type
+Merge pull request #2861 from davidmoten/zipRace-fix  Ensure OperatorZipTest.testZipRace does not fail on slower machines
+warnings cleanup in test source
+ensure OperatorZipTest.testZipRace does not fail on slower machines
+Merge pull request #2860 from davidmoten/OperatorSingle-request-accounting  OperatorSingle should request exactly what it needs
+Merge pull request #2854 from akarnokd/AbstractOnSubscribeRequestFix  Fixes wrong request accounting in AbstractOnSubscribe
+OperatorSingle should request exactly what it needs
+Fixed request accounting, increased visibility of BackpressureUtils
+Merge pull request #2859 from davidmoten/doOnRequest-fix-2  OperatorDoOnRequest should unsubscribe from upstream
+fix unsub of OperatorDoOnRequest and add more unit tests
+Merge pull request #2852 from akarnokd/RetryOldSubscribeFix  Change retryWhen to eagerly ignore an error'd source's subsequent events
+Merge pull request #2851 from zsxwing/fix-debounce  Add 'request(Long.MAX_VALUE)' in 'onStart' to fix the backpressure issue of debounce
+Change retryWhen to eagerly ignore an error'd source's subsequent events
+Add a unit test for debounce's backpressure issue
+Add 'request(Long.MAX_VALUE)' in 'onStart' to fix the backpressure issue of debounce
+Merge pull request #2845 from akarnokd/Issue2844Fix  Fix for repeat: wrong target of request
+Fix for issue 2844: wrong target of request on repeat
+Merge pull request #2838 from avram/patch-1  Fix typo in OnSubscribe interface's Javadoc
+Fix typo in OnSubscribe interface's Javadoc
+Merge pull request #2825 from fatroom/repeat_javadoc  Fixed javadoc for Observable.repeat() method
+Fixed javadoc for Observable.repeat() method
+Merge pull request #2837 from akarnokd/TestFixes0318  Fixed a non-deterministic test and a few scheduler leaks.
+Fixed a non-deterministic test and a few scheduler leaks.
+increase memory for test
+Add .gradle to cache
+Removing debug
+memory for test  Attempt at fixing build failures https://github.com/ReactiveX/RxJava/issues/2832
+Adding caching to Travis
+Debug build failures
+Merge pull request #2831 from akarnokd/OnBackpressureDropWithActionReduced  testOnBackpressureDropWithAction restored original test count
+Checking if the test change is the main cause or not.
+javadocs: adding @since annotation; adjusting failed @link targets to @code
+Merge pull request #2632 from simonbasle/plugErrorRenderer  Implement hook to render specific types in OnNextValue
+Merge pull request #2807 from artem-zinnatullin/correct-interfaces  Corrected all Java interfaces declarations
+Merge pull request #2823 from rspieldenner/maven_sync  Enable maven central sync via bintray
+Enable maven central sync via bintray
+Merge pull request #2818 from akarnokd/SubjectJavadocFix  Small fix for the getValue javadoc in AsyncSubject and BehaviorSubject
+Small fix in the sentences of getValue.
+Merge pull request #2817 from akarnokd/OnBackpressureDropWithActionFix  Fix for non-deterministic: testOnBackpressureDropWithAction
+Added more to take to decrease the likelyhood that nothing is dropped.
+800kb jar.
+1.0.8
+Merge pull request #2809 from akarnokd/TakeUntilTerminationFix  Fixed takeUntil not unsubscribing from either of the observables in case
+Merge pull request #2804 from akarnokd/Perf0225  ObserveOn throughput enhancements
+revert eager static ref to plugin + better exception handling around render
+Fixed takeUntil not unsubscribing from either of the observables in case of a terminal condition.
+Corrected all Java interfaces declarations
+ObserveOn throughput enhancements
+statically reference the plugin and mark as experimental
+Implement hook to render specific types in OnNextValue
+Add Experimental to onBackpressureDrop(Action1)
+Merge pull request #2776 from stevenzwu/issues-2764  issue-2764: add new operator onBackpressureDrop(Action1 onDrop)
+Merge pull request #2788 from zsxwing/publish-no-subscriber  Fix the bug that 'publish' will cache items when no subscriber
+Merge pull request #2777 from stevenzwu/typo  fix several typos
+Merge pull request #2779 from davidmoten/connect-returns-null  OperatorMulticast.connect(connection) should not return null
+Fix the bug that 'publish' will cache items when no subscriber
+shouldSubscribe boolean variable not required
+issue-2764: add new operator onBackpressureDrop(Action1 onDrop)
+revert visibility of fields and add == this check for guarded subscription
+fix typo in comment
+OperatorMulticast.connect(connection) should return first subscription on multiple calls, address possible race condition provoking IAE
+fix several typos
+Merge pull request #2767 from akarnokd/ScalarScheduleOn  Optimized scalar observeOn/subscribeOn
+Merge pull request #2771 from davidmoten/range-request-overflow  OnSubscribeRange request overflow check
+add request overflow check to OnSubscribeRange
+Merge pull request #2770 from davidmoten/onBackpressureDrop-request-overflow  OperatorOnBackpressureDrop request overflow check
+add request overflow check to OperatorOnBackpressureDrop
+Merge pull request #2769 from davidmoten/combineLatest-request-overflow  OperatorCombineLatest request overflow check
+add request overflow check for combineLatest
+Fix typo
+Optimized scalar observeOn/subscribeOn
+javadocs: withLatestFrom diagram, @since annotations, standardize on formatting and terminology, add compiler nags for missing content
+1.0.7
+Merge pull request #2760 from akarnokd/WithLatestFrom  Operator: WithLatestFrom
+Merge pull request #2762 from akarnokd/SubscriptionOpt  Optimized isUnsubscribed check
+Merge pull request #2759 from davidmoten/using-redev  Observable.using should use unsafeSubscribe and enable eager disposal
+using should use unsafeSubscribe, allow eager disposal to enable the synchronous case
+Optimized isUnsubscribed check
+Experimental annotation.
+Operator WithLatestFrom
+Merge pull request #2655 from akarnokd/Issue2654  SwitchOnNext: fix upstream producer replacing the ops own producer
+Restore merge changes: not related to the bug
+SwitchOnNext: fixed wrong producer
+javadocs: adding (+ correcting one) @since annotations
+Explicit build + snapshot
+Delete publishViaTravis.sh
+Conditional logic for pull request
+javadocs: add @since annotations to new methods; fix formatting, polish wording for new Subscriber constructor
+Version 1.0.6
+Fix Pull Request Conditionals
+Merge pull request #2627 from akarnokd/FlatMapMaxConcurrent  FlatMap overloads with maximum concurrency parameter
+Merge pull request #2648 from akarnokd/OnCompletedFix  TakeWhile: don't unsubscribe downstream.
+Merge pull request #2601 from akarnokd/CommonUnsubscribeThrow  Added common Exceptions.throwIfAny to throw a collection of exceptions
+Merge pull request #2580 from akarnokd/ComputationSchedulerConfig  Allow configuring the maximum number of computation scheduler threads
+TakeWhile: don't unsubscribe downstream.
+Merge pull request #2644 from jtulach/MissingClassThrowsError  Missing Unsafe class yields NoClassDefFoundError
+Missing Unsafe class yields NoClassDefFoundError so checking for Exception is not really appropriate. Let's catch all throwables.
+Merge pull request #2642 from zsxwing/fix-memory-leak  Fix a potential memory leak in schedulePeriodically
+Use MultipleAssignmentSubscription to save an import
+Revert the change in recursiveAction
+Fix a potential memory leak in schedulePeriodically
+Update build.gradle
+Create gradle.properties  as per https://github.com/ReactiveX/RxJava/issues/2586#issuecomment-73331618
+Update build.gradle  I don't enjoy trial and error with build systems.
+project.setProperty('release.scope', 'patch')  as per https://github.com/ReactiveX/RxJava/issues/2586#issuecomment-73316386
+reverting release.scope=patch
+release.scope=patch
+Reenable Snapshot
+Merge pull request #2630 from akarnokd/FixSubscriberLoss  Cast back Observer to Subscriber if passed to subscribe(Observer)
+Cast back Observer to Subscriber if passed to subscribe(Observer)
+Merge pull request #2622 from akarnokd/EmptyObservable  Changed Observable.empty() into a stateless constant observable.
+Merge pull request #2607 from davidmoten/refcount-comments  OnSubscribeRefCount - improve comments
+Merge pull request #2628 from akarnokd/BuildFix3  Make travis run a proper build.
+Make travis run a proper build.
+FlatMap overloads with maximum concurrency parameter
+Disable Snapshot
+Add release.travisci Property  As per https://github.com/ReactiveX/RxJava/issues/2586#issuecomment-73136205
+add diagram for new takeUntil variant and a few other related javadoc tweaks and remove a troublesome unicode ligature from SpscArrayQueue.java that's causing a compiler warning
+Changed empty into a stateless constant observable.
+Merge pull request #2610 from akarnokd/BuildFix2  Build at least as if it was a pull request.
+Build at least as if it was a pull request.
+Merge pull request #2609 from akarnokd/BuildFix  Fixed comment and missing value
+Script fix
+Fixed comment and missing value
+improve OnSubscribeRefCount comments
+Snapshot with Patch Version  See https://github.com/ReactiveX/RxJava/issues/2586#issuecomment-72937790
+Reporting stackoverflow caused stackoverflow
+Use buildViaTravis for all flows
+Add Release Branch
+Update buildViaTravis.sh
+Add Snapshot Support
+add @since annotation to javadocs for new takeUntil variant
+Added experimental annotation, using propagate.
+Adjusted subject error text.
+Added common throwIfAny to throw 0 or more exceptions
+Secure Variables for Release
+Nebula Config for Travis Build/Release
+Merge pull request #2595 from benjchristensen/release-via-travis  Gradle & Travis Release Config
+Gradle & Travis Release Config  Configuring Travis for build and release. This was tested at https://github.com/ReactiveX/BuildInfrastructure
+Version 1.0.5
+Merge pull request #2594 from benjchristensen/test-subscriber  Revert Behavior Change in TestSubscriber.awaitTerminalEvent
+Revert Behavior Change in TestSubscriber.awaitTerminalEvent  Reverts change made at https://github.com/ReactiveX/RxJava/pull/2332/files#diff-fbed6a16f49022fd2b10f45fd6dd015bR230  See discussion at https://github.com/ReactiveX/RxJava/issues/2549#issuecomment-72783738  The Javadoc for this method clearly states that it will wait until completion or timeout. It does not say it will throw an exception on timeout, so we can not start throwing as that is a behavioral change.
+Merge pull request #2593 from akarnokd/ZipHangFix2  Zip: emit onCompleted without waiting for request + avoid re-reading fields
+Merge pull request #2567 from akarnokd/RefCountDisconnectOnTerminalEvent  RefCount: disconnect all if upstream terminates
+Merge pull request #2493 from akarnokd/OperatorDoTakeWhile  Operator TakeUntil with predicate
+Less iteration.
+Zip: emit onCompleted without waiting for request + avoid re-reading fields
+Merge pull request #2589 from akarnokd/OperatorDistinctFix  Repeat/retry: fixed unbounded downstream requesting above Long.MAX_VALUE
+Merge pull request #2590 from akarnokd/ZipHangFix  Zip: fixed unbounded downstream requesting above Long.MAX_VALUE
+Merge pull request #2591 from akarnokd/NewThreadSchedulerSyskey  Changed the naming of the NewThreadWorker's system parameters
+Changed system-parameter naming.
+Changed the naming of the NewThreadWorker's system parameters
+Zip: fixed unbounded downstream requesting above Long.MAX_VALUE
+Repeat/retry: fixed unbounded downstream requesting above Long.MAX_VALUE
+add @since annotation to new operator (also: remove "Beta" section as it's been moved from Beta to Experimental status)
+Merge pull request #1955 from akarnokd/OnBackpressureBlockFix  OnBackpressureXXX: support for common drain manager & fix for former concurrency bugs
+Merge pull request #2585 from akarnokd/switch_if_empty  Operator: switchIfEmpty
+Using @Experimental, covariance and final class
+Fixed some concerns with the operator.
+Changed predicate to stopPredicate: stops on becoming true.
+Merge pull request #2583 from akarnokd/SubscriptionPerfs  Added perf tests for various container-like subscriptions
+Fixed local variables, added blackhole to *Local benchmarks
+Added perf tests for various container-like subscriptions
+Fixed race in testConnectUnsubscribeRaceCondition()
+Fixed typo.
+Allow configuring maximum number of computation scheduler threads
+Merge pull request #2578 from ReactiveX/revert-2575-subscribeOn_subscription  Revert "subscribeOn drops the subscriptions returned from the scheduler....
+Revert "subscribeOn drops the subscriptions returned from the scheduler."
+RefCount: disconnect all if upstream terminates
+Changed operator names, fixed backpressure.
+Added value null check
+Added capacity increase on poll.
+Fixed line delimiters.
+Operator DoTakeWhile
+Fixed file comment, larger timeout for a test
+Fix for back pressure on the alternate subscription.
+Addressing review feedback:  Ensure that we unsubscribe upstream "parent" when switching to alternate. That way upstream will trigger unsubscribe when the first Observable completes. Added test. Child should contain downstream subscriptions - not parent.
+Added Operator switchIfEmpty, like defaultIfEmpty but subscribes to and emits the items in an Observable if the source is empty
+Fixed potential request value overflow.
+Factored out the backpressure management into an experimental class and reimplemented Buffer and Block strategies with it.
+Fixed race & late termination condition.

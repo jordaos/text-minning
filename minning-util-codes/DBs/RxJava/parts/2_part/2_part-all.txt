@@ -1,0 +1,200 @@
+Consolidating ExecutorScheduler and ScheduledExecutorScheduler  ScheduledExecutorScheduler is just an extension of ExecutorScheduler so keeping them together for less surface area on the API.
+Formatting to match codebase
+Keeping ScheduledObserver out of public API  For now keeping ScheduledObserver an implementation detail until it's clear we want it part of the long-term public API.
+Merge branch 'schedulers' of git://github.com/mairbek/RxJava into schedulers-merge  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Gradle Release Plugin - new version commit:  'rxjava-0.6.4-SNAPSHOT'.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.6.3'.
+Version 0.6.3
+Merge pull request #224 from benjchristensen/execution-hooks  RxJavaObservableExecutionHook
+RxJavaObservableExecutionHook  Allow a plugin to intercept invocations of an Observable via its subscribe method.  Use cases:  - extra logging or metrics for start, return and error events when subscribing  - decorate (or replace) an 'onSubscribe' function with additional behavior  - decorate an Exception  - decorate a Subscription  This is modeled after Hystrix Plugins: http://netflix.github.com/Hystrix/javadoc/index.html?com/netflix/hystrix/strategy/executionhook/HystrixCommandExecutionHook.html  Javadocs will be at http://netflix.github.com/RxJava/javadoc/
+added threadPoolForComputation and threadPoolForIO schedulers
+Removed SleepingAction from Abstract scheduler. ExecutorScheduler throws exception for the delayed action.
+Gradle Release Plugin - new version commit:  'rxjava-0.6.3-SNAPSHOT'.
+Gradle Release Plugin - pre tag commit:  'rxjava-0.6.2'.
+0.6.2-SNAPSHOT  Fixing build issue
+Gradle Release Plugin - pre tag commit:  'rxjava-0.6.1'.
+Merge pull request #222 from joshgord/pull-issue-43-merge  Pull issue 43 merge
+Merge branch 'issue43' of https://github.com/abliss/RxJava into pull-issue-43-merge  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Version 0.6.2
+Simplified ImmediateScheduler
+Merge pull request #201 from benjchristensen/issue-200-merge-synchronization  Synchronize Observer on OperationMerge
+Trying to fix non-deterministic test  - not sure of a way other than putting Thread.sleep in here to give time after each CountDownLatch triggers for the process scheduler to execute the next line of each thread  See https://github.com/Netflix/RxJava/pull/201 for more information.
+Merge pull request #221 from benjchristensen/issue-216-error-handling  Error Handling Improvements - User Provided Observers/Functions
+Restrict identification of "internal" operators to only the rx.operators package  - based on discussion at https://github.com/Netflix/RxJava/pull/221 - don't wrap at AtomicObserver again - anything outside of rx.operators will be wrapped
+Protect subscribe/forEach implementations against user provided function failures  Related to https://github.com/Netflix/RxJava/issues/216  The new forEach unit test went into a deadlock prior to this fix.
+Improve error handling of user provided Observers  https://github.com/Netflix/RxJava/issues/216
+Merge pull request #220 from johngmyers/takewhile-predicate  TakeWhile protect calls to predicate
+TakeWhile protect calls to predicate
+Merge pull request #215 from benjchristensen/pull-212-manual-merge  Manual Merge of Pull Request #212
+Small reorganization of code for OperationTake and TrustedObservableTester  - removed rx.testing package (if that's going to exist that means it's bleeding into something that should live in /src/test and beyond what works well for inner class testing) - made TrustedObservableTester part of rx.operation package and an inner UnitTest class so it doesn't become part of the public API
+Merge branch 'take-test' of git://github.com/johngmyers/RxJava into pull-212-take-merge
+take(0) subscribes to its source
+Fix violations of the Observer contract.
+Implement TrustedObservableTester.assertTrustedObservable()
+Incorporate review suggestions.  - Changes finally0 to finallyDo. - Removes unnecessary subscription-wrapping. - Handle exceptions in onCompleted/onError
+Split Take and TakeWhile
+Merge branch 'upstream' into issue43
+Add tests to demonstrate bugs
+Merge pull request #211 from benjchristensen/issue-192  Remove use of JSR 305 and dependency on com.google.code.findbugs
+Remove use of JSR 305 and dependency on com.google.code.findbugs  https://github.com/Netflix/RxJava/issues/192  The library and annotations were being used for trivial reasons so removing the usage so we don't have the dependency.
+Merge pull request #207 from jmhofer/master  Implemented combineLatest semantics
+Whoops, generics not allowed in @see javadoc...
+Fixed javadoc and comments, cleaned up a bit, and tried to fix synchronization.
+Merge pull request #206 from thegeez/list-subscribe  Observable.toList breaks with multiple subscribers
+Merge pull request #203 from mairbek/all-operation  All Operation Implemented
+Merge pull request #197 from thegeez/take-while  TakeWhile observables do not properly complete
+An attempt at implementing the correct combineLatest semantics. The tests do pass again now (they had to be adapted too).
+made 'next' more typesafe
+updated a test and added another one, trying to get the expected behavior right
+Fix for Observable.toList failing with multiple subscribers
+Failing test case to show Observable.toList breaks with multiple observers due to sharing of the buffer list
+Added groovy test
+Updated Observable API
+Implemented all operation
+Synchronization of Merge operator (fixes)  - return AtomicSubscription not MergeSubscription which I was accidentally still returning - try/finally in unit test so threads are released even if assertion is thrown
+Synchronize Observer on OperationMerge  fixes https://github.com/Netflix/RxJava/issues/200  This is necessary because by definition Merge is subscribing to multiple sequences in parallel and is supposed to serialize them into a single Observable.
+Whitespace
+Extracted ScheduledObserver as a separate class
+renamed tests
+Documenting code
+Some documentation
+ObserveOn/SubscribeOn unit tests
+Headers
+More tests
+Added to Schedulers
+Added ScheduledExecutorServiceScheduler
+Call complete on take/takeWhile observables once the predicate is true.
+Failing test case to show bug in takeWhile
+Incoporate review suggestions.  Splits a compound unit test into to parts. Uses mockito instead of a bespoke test object. Removes unused import statements. Changes the order of the Finally action w.r.t. onComplete/onError.
+Added nonstatic Observable.finally0
+Missing import
+Add finally0 to Observable.java .
+New operation Finally (issue #43)
+Merge pull request #191 from prabirshrestha/where  Where alias to filter
+Add communications links
+Merge pull request #194 from sopel/patch-1  Add pointer regarding unit tests as inner classes
+Convert README to Markdown
+Add pointer regarding unit tests as inner classes
+Naive schedulers implementation
+added where operation to Observable
+implemented OperationWhere
+Version 0.6.1
+Merge pull request #190 from prabirshrestha/chainDematerialize  update dematerialize so can chain correctly
+updates dematerialize so can chain correctly
+Merge pull request #189 from benjchristensen/polishing  Handful of Improvements
+more thorough error handling in case Func1 implementation itself fails  - Func1.call may fail (null impl, bad impl, etc) - Func1.call may success but the implementation itself may throw an exception instead of properly catching and sending to onError
+add try/catch in example to better demonstrate error handling  ��� despite no errors being possible of being thrown in this code
+gracefully handle null subscription on trusted onSubscribe the same as non-trusted already does
+Note on versioning on road to 1.0
+0.6.1-SNAPSHOT
+Merge pull request #188 from benjchristensen/issue-173  Subscriptions cleanup
+update clojure and groovy code to subscriptions changes
+Subscriptions cleanup  - make createSubscription be create ��� as I had originally intended to do but forgot to - make EmptySubscription a singleton
+Version 0.6.0  This release includes some small breaking changes to the API.
+Merge pull request #187 from benjchristensen/issue-148  Confusing Javadoc for `toObservable(Future)` methods
+Confusing Javadoc for `toObservable(Future)` methods  https://github.com/Netflix/RxJava/issues/148
+Merge pull request #186 from benjchristensen/issue-154-osgi  Add 'Fragment-Host' to submodules for OSGi
+Add 'Fragment-Host' to submodules for OSGi  Based on discussion on issue https://github.com/Netflix/RxJava/issues/154
+Merge pull request #184 from benjchristensen/issue-57-last  Convert 'last' from non-blocking to blocking to match Rx.Net
+Convert 'last' from non-blocking to blocking to match Rx.Net  See https://github.com/Netflix/RxJava/issues/57#issuecomment-14253118 for background.  NOTE: This is a breaking change thus we are bumping the version from 0.5.x to 0.6.x  Manual merge of branch 'last' of git://github.com/mairbek/RxJava into issue-57-last  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #183 from benjchristensen/groovy-cleanup  Groovy VideoExample improvements
+Groovy VideoExample improvements  - Make VideoExample more idiomatic for Groovy based on feedback - Use the new BooleanSubscription object
+Set unsubscribed true  ... should probably set it to true when unsubscribed :-$
+Merge pull request #182 from benjchristensen/issue-173-subscriptions  Subscriptions utility class and rx.subscriptions package
+Merge pull request #181 from benjchristensen/osgi  Add OSGi manifest headers
+Version 0.5.5
+0.6.0-SNAPSHOT  Bumping to 0.6.0 as about to commit some breaking changes and new packages.
+Subscriptions utility class and rx.subscriptions package  https://github.com/Netflix/RxJava/issues/173
+Add OSGi manifest headers  https://github.com/Netflix/RxJava/issues/154  I can't confirm that these work but submitting based on discussion on issue #154.
+Merge pull request #180 from benjchristensen/formatting-and-cleanup  Formatting and cleanup
+Cleanup various compiler warnings.
+making sequenceEqual private methods public  These should be public as part of issue https://github.com/Netflix/RxJava/issues/76
+bulk import organize and code formatting
+Merge pull request #179 from benjchristensen/groupBy-review  Operator GroupBy Pull Request - Review and Refactor
+Move GroupedObservable to rx.observables
+0.5.6-SNAPSHOT
+Refactor to eliminate need of delegate methods for GroupedObservable
+Merge branch 'groupby' of git://github.com/mairbek/RxJava into groupBy-review
+Merge pull request #168 from mairbek/mostrecent  Implemented Most Recent
+Removed static methods delegations
+Merge pull request #171 from mairbek/defer  Implemented Defer Operation
+Merge pull request #178 from benjchristensen/GetIterator-review  Review and Refactor of GetIterator
+Refactored Iterator implementation out of Observable into OperatorToIterator  - Trying to keep the massively large Observable.java class focused on the API and implementation details off in small classes.
+Merge branch 'getiterator' of git://github.com/mairbek/RxJava into GetIterator-review
+Merge pull request #177 from benjchristensen/dematerialize-merge  Operator: Dematerialize - review and manual merge
+Merge branch 'dematerialize' of git://github.com/prabirshrestha/RxJava into dematerialize-merge  - added Javadoc for @throws Exception - suppressed unchecked warnings  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #151 from mairbek/TakeUntiFunctional  Implemented TakeUntil operation
+copyright update
+Updated Observable API
+Concurrency improvements
+Draft group by implementation
+Cleaned up comment
+Refactored TakeUntil to use TakeWhile.
+Updated logic to match Rx.NET
+optimize imports
+updated dematerialize unit tests to use mockit
+unit test for OperationDematerialize
+added dematerialize api to observable
+implemented OperationDematerialize
+Unsubscribe behavior.  Adding correct unsubscribe behavior to the example so it models what real implementations should be doing. Also added comments around the synchronous observable to make clear that it 'firehoses' and will not unsubscribe regardless of a take operator saying it wants less than the 50 it will send.
+Implemented Defer Operation
+Implemented GetIterator operation
+Updated Observable API
+Unit tests for MostRecent Operator
+Basic MostRecent implementation
+Reimplemented Last operation
+Refactored TakeUntil operator
+Merge branch 'master' into TakeUntiFunctional  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+0.5.5-SNAPSHOT
+0.5.4
+Merge pull request #166 from benjchristensen/next-review  Review of Next Operation
+don't throw exception on iterator.hasNext()
+Add unit test testNoBufferingOrBlockingOfSequence  As part of reviewing the code I added another unit test.
+Merge remote-tracking branch 'mairbek/next-new' into next-review
+Merge pull request #165 from mairbek/range-fix  Fixed bug in ranges
+Fixed bug in ranges
+Renamed variable
+Updated Observable API
+Implemented Operation Next
+Merge pull request #161 from garethbowles/master  Added build status badges
+Merge pull request #160 from benjchristensen/mairbek_single-merge  Manual merge of mairbek/single Pull #157
+Update README.md
+Merge remote-tracking branch 'mairbek/single' Added @throws javadocs Suppressed rawtypes warnings  Conflicts: 	language-adaptors/rxjava-groovy/src/test/groovy/rx/lang/groovy/ObservableTests.groovy 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #159 from mairbek/lastOrDefault  Implemented LastOrDefault Operator
+Implemented lastOrDefault
+Updated single/singleOrDefault according to review request
+Merge branch 'master' into single
+Merge pull request #156 from mairbek/toIterable  Implemented ToIterable Operation
+Implemented single and singleOrDefault methods
+Static method plus javadoc
+Implemented toIterable method
+Merge pull request #155 from benjchristensen/issue-153  Change target compatibility from 1.5 to 1.6
+Change target compatibility from 1.5 to 1.6  https://github.com/Netflix/RxJava/issues/153
+Merge pull request #150 from mairbek/code-cleanup  Cleaned up copy-paste in OperationMerge code
+Tests for TakeUntil
+Basic takeUntil implementation
+Cleaned up copy-paste in merge code
+fix links
+0.5.4-SNAPSHOT
+Version 0.5.3
+Merge pull request #147 from benjchristensen/issue-45  Operator: forEach
+mark the thread as interrupted again
+removing unused verifications  https://github.com/Netflix/RxJava/pull/147/files#r3028477
+add a comment so it doesn't look like this was left empty by accident
+forEach with Action1 but not Observer  I re-read the MSDN docs and found the previous implementation wasn't complying with the contract.  http://msdn.microsoft.com/en-us/library/hh211815(v=vs.103).aspx  I believe this now does.
+Operator: ForEach  https://github.com/Netflix/RxJava/issues/45
+add error handling for onNext failure so exceptions don't get thrown up the stack but instead via onError
+Merge pull request #146 from benjchristensen/issue-87  Merge of Pull #125 for Issue #87 Operator TakeWhile
+merge Operator TakeWhile pull request  This is a manual merge of https://github.com/Netflix/RxJava/pull/125 contributed by @mairbek
+javadocs
+play with tests in clojure -- still not hooked up or actual tests
+Merge pull request #145 from benjchristensen/issue-143  Support 'provided' dependencies in IntelliJ Idea build
+Add IntelliJ Idea support to Gradle build  https://github.com/Netflix/RxJava/issues/143
+fix javadocs - cleanup some warnings
+Merge pull request #144 from mairbek/mocks-inorder  Used mockito's inOrder to verify ordering instead of hand-written stub
+Used mockito's inOrder to verify ordering instead of hand-written stub
+Renamed takeWhile with Func2 parameter to takeWhileWithIndex  Added takeWhile and takeWhileWithIndex methods to Observable
+Restored javadoc
+Unit tests for take while
+TakeWhile support for predicate with index
+Basic take-while implementation

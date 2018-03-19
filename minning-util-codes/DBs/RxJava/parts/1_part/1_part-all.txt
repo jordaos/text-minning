@@ -1,0 +1,200 @@
+Version 0.5.2
+0.5.3-SNAPSHOT
+0.5.2-SNAPSHOT
+Merge pull request #142 from benjchristensen/dev  RxJava ErrorHandler Plugin
+RxJavaErrorHandler Plugin  https://github.com/Netflix/RxJava/issues/141 Error Handler Plugin https://github.com/Netflix/RxJava/issues/139 Plugin System
+example (as test) of closure versus map
+fix grammar and add success log
+Merge pull request #140 from mairbek/TakeLast  Implemented TakeLast operator
+Merge pull request #138 from mairbek/SequenceEqual  Implemented SequenceEqual Operator
+styling: new line at the end of the file
+Added ordering unit test
+Fixed import
+Added takeLast to Observable
+TakeLast basic implementation
+Implemented sequenceEqual method
+Merge pull request #136 from myfreeweb/patch-1  Add examples for jbundler and sbt
+Merge pull request #137 from mairbek/ranges  Implemented range operator. Fixes issue #68
+Implemented range operator
+Update language-adaptors/rxjava-scala/README.md
+Update language-adaptors/rxjava-jruby/README.md
+Merge pull request #135 from ddeaguiar/idiomatic  Idiomatic usage of import in ns macro in rx-examples.
+Idiomatic usage of import in ns macro.
+Merge pull request #134 from daveray/clj-video-example  Adapt Groovy VideoExample to Clojure
+Adapt Groovy VideoExample to Clojure
+Create CHANGES.md
+Update language-adaptors/rxjava-scala/README.md
+Update language-adaptors/rxjava-jruby/README.md
+Update language-adaptors/rxjava-groovy/README.md
+Update language-adaptors/rxjava-clojure/README.md
+Update language-adaptors/rxjava-clojure/README.md
+Update language-adaptors/rxjava-scala/README.md
+Merge pull request #133 from benjchristensen/fixes  Various fixes
+Restoring null check removed in recent commit  See https://github.com/Netflix/RxJava/commit/caf3a9434ed4b3b4efba6661891f02417aebf604 for removal  It started causing this unit test to fail:  rx.operators.OperationZip$UnitTest > testAggregatorUnsubscribe FAILED     java.lang.NullPointerException at OperationZip.java:611  Not sure how I missed it when I reviewed the previous commit ��� but I did.
+remove warnings and cleanup
+restore performance optimization to reduce wrapping  Without optimization:  runCompositionTest Sum: 710082754 Time: 42.353ms runNonCompositionalTestWithDirectLoop Sum: 710082754 Time: 17.719ms runNonCompositionalTestWithArrayOfFunctions Sum: 710082754 Time: 17.344ms  With optimization:  runCompositionTest Sum: 710082754 Time: 23.064ms runNonCompositionalTestWithDirectLoop Sum: 710082754 Time: 18.059ms runNonCompositionalTestWithArrayOfFunctions Sum: 710082754 Time: 18.88ms
+Merge pull request #132 from benjchristensen/language-tests-and-examples  Refactoring language tests and examples layout
+clojure project build config
+remove rxjava-examples submodule
+groovy example code  - examples are in /src/examples/groovy
+clojure example code  - examples are in /src/examples/clojure - placeholder for unit tests in /src/tests
+README to explain unit tests
+remove rxjava-examples  Examples have been moved into /src/examples folders of each language-adaptor subproject.
+migrate unit tests for Groovy to separate Groovy file  - testing all Groovy functionality doesn't belong as an inner class - it was awkard to load Groovy scripts via Java (leftover from previous codebase where Groovy wasn't part of build, only a runtime library) - establish convention for each language to have a suite of tests in /src/test
+Merge pull request #129 from mairbek/code-cleanup  Code cleanup
+Merge pull request #127 from matthewmichihara/master  Update README
+Code cleanup
+Update README
+Merge pull request #124 from jcacciatore/scala-example-cleanup  trivial syntax clean-up in scala adaptor
+clean-up
+Merge pull request #122 from benjchristensen/examples  Examples Cleanup
+Remove scala from rxjava-examples  Groovy and Scala can't co-exist in a single Eclipse project even though Gradle handles it fine.  Perhaps the examples should go in the /test/ folder of each of the rxjava-[language] projects instead of rxjava-examples?
+Eclipse build config  - Include 'provided' in Eclipse classpath - Upgrade to Groovy 2.+
+scala is building
+Commenting out non-deterministic portion of unit tests  These verifications are non-essential so commenting out right now until I or someone else has time to fix it correctly.
+scala support in examples
+Merge pull request #121 from daveray/clj-cleanup  Minor cleanup of Clojure example.
+Minor cleanup of Clojure example.  Cleaned up some formatting and spacing. Used future-cancel. Future subscriptions were not being returned properly. Replaced use of #_ with comment form. Fixed rest args usage for hello example.
+Update README.md
+Update README.md
+Update README.md
+Update README.md
+Merge pull request #120 from benjchristensen/javadocs  Fixing javadocs
+Fixing javadocs  https://github.com/Netflix/RxJava/issues/119  - added correct links to external images - cleaned up some of the text - improved some function memoization that was missed
+Update gradle.properties
+Update gradle.properties
+Update gradle.properties
+Update gradle.properties
+Create CONTRIBUTING.md
+Create README.md
+Update README.md
+Update README.md
+Update README.md
+updating jruby and scala builds
+Update README.md
+dependency management
+Update README.md
+Update README.md
+Update README.md
+Update README.md
+Update README.md
+Create README.md
+Merge pull request #116 from benjchristensen/refactor  Refactor
+fix package names for imports
+make Observable constructor arg optional so unit tests can just override subscribe for simpler code
+fix warning
+removing .observables package so main classes are just rx.*
+performance test classes
+clean example so it shuts down correctly
+synchronization and contract refactoring  No longer will synchronization ever be added automatically. If synchronization is needed then the synchronize() operator should be used. The AtomicObserver is added to Observables (but not internally trusted ones) to ensure compliance with the Rx contract and auto-unsubscribe. This should generally mean just 1 wrapper at the top of a sequence chain. These changes are based on a discussion with Erik about how Rx 2.0 works in .Net.
+Merge pull request #115 from benjchristensen/examples  more examples
+more examples
+Merge pull request #113 from billyy/concat  Concat
+Update comment in Observable for concat.
+Update the javadoc
+Merge pull request #108 from abersnaze/subject  Adding a draft of Subject class
+Merge pull request #109 from abersnaze/future  Creating toObservable for Future
+Add overloaded methods and unit tests for list<observable<T>> and Observable<Observable<T>>.
+adding more details about how the toObservable behaves.
+Merge commit 'b764ef1b1d76e8ecc9d7a826ee57023ea91c6327' into future
+Merge pull request #114 from benjchristensen/examples  Examples
+builds for each language and examples  Use 'provided' not 'compile' for language dependencies so we don't force specific versions.
+example code as part of "How to Use"
+factory method createSubscription from Action0
+Update example with two observables.
+Add the new Operation Concat
+adding support for also get time outs.
+Merge pull request #112 from benjchristensen/examples  Examples Submodule
+Start of examples with clojure and groovy
+Change NullObservableSubscription to NoOpObservableSubscription  Gives stacktraces that make more sense as "null" has nothing to do with it.
+Merge pull request #111 from benjchristensen/dev  IDE Support
+ignore Scala .cache folder
+IDE support  Importing into Eclipse Juno with the Gradle plugin now gets everything setup, compiling and running correctly.
+Merge pull request #110 from benjchristensen/build-fix  Build fix
+fixing compile issues after core refactoring
+make scala build fork so it gets its own JVM args  The permgen needs to be increased for scala.
+upgrade from Gradle 1.1 to 1.3 to support needed Scala features
+removing the dependency on groovy
+Adding a draft of Subject class https://github.com/Netflix/RxJava/issues/19
+Creating toObservable for Future
+Merge pull request #107 from benjchristensen/performance  Performance: Reduce synchronization
+Format code, delete test classes
+Performance refactoring: OperatorSubscribeFunction  - migrated Func1 to OperatorSubscribeFunction for internal operator implementations - do not wrap with AtomicObserver when it's a trusted operator  https://github.com/Netflix/RxJava/issues/104
+Refactoring towards performance improvements  - Convert operators to implement Func1 instead of extend Observable - Change Observable to concete instead of abstract - subscribe is now controlled by the concrete class so we can control the wrapping of a Func to be executed when subscribe is called - removed most wrapping inside operators with AtomicObservable except for complex operators like Zip that appear to still need it  While doing these changes the util/function packages got moved a little as well to make more sense for where the Atomic* classes should go
+Merge pull request #106 from benjchristensen/function-memoization  Performance optimizations for dynamic function execution.  https://github.com/Netflix/RxJava/issues/104
+Performance optimizations for dynamic function execution.  - memoize dynamic function constructions so executions are statically typed after a single dynamic lookup instead of dynamic on every execution
+Merge pull request #27 from jcacciatore/scala-adaptor  Scala adaptor
+Refactoring name-space to remove 'org'
+Adding code for scala adaptor (initial implementation)
+Update README.md
+Merge pull request #6 from benjchristensen/refactoring  Refactoring
+update language adaptors to rx.* package
+Change order of generics for Func from R, T to T, R to match C# Rx
+subscribe methods with typed Action arguments
+alias methods "from" for toObservable
+changing package to rx.*
+Merge pull request #5 from benjchristensen/language-adaptor-classes  Support multiple class types for language adaptors
+Support multiple class types for language adaptors
+Remove erroneous create method  It was a method I was playing with during refactoring and accidentally committed.  The real create methods already exist.
+Merge pull request #4 from benjchristensen/cleanup  remove 'wrap' functionality
+remove 'wrap' functionality  We no longer need this as we've merged the interface and abstract classes together and don't need to ensure we have the abstract class.
+Update README.md
+Update README.md
+Update README.md
+Update README.md
+Update README.md
+Update README.md
+Update README.md
+Version 0.1
+Create README.md
+Create README.md
+Create README.md
+Merge pull request #3 from benjchristensen/clojure-adaptor  Clojure adaptor
+ClojureAdaptor  Very basic support that allows clojure/java interop using the fn function rather than Clojure code needing to use proxy/reify and implement full java interfaces.
+Forward from Object to Observer overload  Be more lenient in handling the overloaded methods.
+Merge pull request #2 from benjchristensen/language-adaptors  Language adaptors
+Javadoc generation
+License headers
+JRuby adaptor
+GroovyAdaptor
+LanguageAdaptor for Function execution  Removed dependencies on Groovy and JRuby from rxjava-core
+Add more arities
+Merge pull request #1 from benjchristensen/api-and-naming  Refactoring conventions
+Refactoring for consistent implementation approach.  Combined ObservableExtensions into Observable to match how Rx works (Observable.* methods)
+Rename to Observer/Observable  Observable is now a concrete abstract class rather than an interface with 1:1 relationship to a concrete class.
+Organize imports and format code
+Java 5 compatibility target  We want to support Android.
+Initial commit
+build settings for rxjava-core
+Merge branch 'multi-project' of github.com:Netflix/gradle-template
+Initial commit
+Fixing transitive-ness of provided
+Adding provided scope  Conflicts: 	gradle/convention.gradle
+Using a better github location
+Fixing issue when publishing source/javadoc to maven central
+Putting javadoc and sources into proper confs and setting types
+Add local publishing
+Filling in more pom fields for Sonatype
+Stop relying on maven convention on project
+Changes needed for release plugin
+Setting default name for multi-project
+Using custom build of release plugin, to support building from a branch
+Pointing to a repo in our control
+Release plugin
+Adding cobertura
+Upgrade to Gradle 1.1.
+Enable license header plugin
+Merge pull request #3 from Randgalt/multi-project  Wrong Sonatype URL - don't know why this wasn't found before
+Sonatype URL was wrong
+Make one less thing people have to change
+Merge commit 'bc662051d8c72ea7b20350b1746e1a8f527c9244' into multi-project
+Un-indenting HEADER
+Create branch that contains only build related files
+Use lifecycle to add signing task
+Fix quotes
+Multimodule builds need a dump signing task
+Remove local testing file
+Avoid signatures in archives unless doing mavenCentral build
+Correct artifacts, moved pom to more visible area
+Restructure into smaller files
+Initial commit, working with Maven Central

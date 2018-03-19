@@ -1,0 +1,1 @@
+2.x: Remove some unused fields (#4754)

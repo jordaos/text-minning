@@ -1,0 +1,200 @@
+Merge pull request #832 from duncani/fixes  [Issue #831] Fix for OperationJoin race condition
+Remove line break
+from(this) -> nest()
+Merge pull request #822 from zsxwing/subscribeOn  Reimplement 'subscribeOn' using 'lift'
+Merge pull request #829 from Netflix/docs  adding marble diagrams, see-also links to javadocs of new repeat() variants
+Merge pull request #833 from benjchristensen/take-issue-830  Take operator was breaking the unsubscribe chain
+Take operator was breaking the unsubscribe chain  Fixes issue https://github.com/Netflix/RxJava/issues/830
+[Issue #831] Fix for OperationJoin race condition
+Changing marble diagrams for repeat() variants to those that operate on a source Observable rather than a source item
+adding marble diagrams, see-also links to javadocs of new repeat() variants
+Merge pull request #827 from Applied-Duality/BugFixesSchedulers  Fixed cut & paster error in io scheduler
+Merge pull request #828 from benjchristensen/repeat-operator  Repeat Operator
+Subscribers/Observers.empty()
+Repeat with Count  - merging changes from https://github.com/Netflix/RxJava/pull/807
+Fixed cut & paster error in io scheduler
+OperatorRepeat
+Test Repeat with SubscribeOn
+Merge pull request #824 from akarnokd/NewThreadSchedulerToDaemon  Set setDaemon on NewThreadScheduler
+Merge pull request #826 from benjchristensen/returned-subscription  Return wrapped Subscription
+Return wrapped Subscription  - make sure the SafeSubscriber is included in what is returned - then return as Subscription not Subscriber so it can't be cast back to a Subscriber
+Using inner and fix unit tests
+Set setDaemon on NewThreadScheduler
+Remove 'inner.unsubscribe'
+Reimplement 'subscribeOn' using 'lift'
+Merge pull request #821 from benjchristensen/fix-android-merge  Update to use Subscriber/Subscriptions.create
+Update to use Subscriber/Subscriptions.create  Master had changed since the pull request.
+Merge pull request #783 from mironov-nsk/android-ui-operators  Implement some Android UI related operators
+Merge pull request #781 from Applied-Duality/join  Fixed buglet in join binding, simplified types
+Merge pull request #820 from benjchristensen/fix-CompositeSubscriptionAddRemovePerf  Git keeps modifying this file so committing it how it wants it.
+Git keeps modifying this file so committing it how it wants it.
+Fixing apparent encoding issue  Was causing grief with Git and Eclipse. Odd.
+Merge pull request #819 from akarnokd/CompositeSubscriptionPerf4  CompositeSubscription performance increase
+CompositeSubscription performance increase
+Merge pull request #817 from Applied-Duality/ScalaBindingsWithLift  Scala Scheduler Bindings Fix
+Merge pull request #818 from akarnokd/CompositeSubscriptionPerf3  CompositeSubscription memory reduction
+CompositeSubscription memory reduction
+- Updated schedulers to reflext 0.17 changes. - Add timer bindings
+Merge branch 'master' of https://github.com/Netflix/RxJava into docs
+Merge pull request #816 from samuelgruetter/globalOnCompleted  One global onCompleted object
+Merge remote-tracking branch 'origin/master' into docs
+Updates some javadoc comments to reflect 0.17 changes
+Merge pull request #812 from akarnokd/ConditionalsFix  Fixed OperationSubscribeOn so OperationConditionalsTest works again.
+Merge pull request #814 from akarnokd/AsyncMultiPush  RunAsync method for outputting multiple values
+one global onCompleted object
+RunAsync method for outputting multiple values
+Fixed OperationSubscribeOn so OperationConditionalsTest works again.
+Merge pull request #785 from benjchristensen/operator-zip  Reimplement Zip Operator Using Lift [Preview]
+Zip NULL and COMPLETE Sentinels
+OperatorZipIterable
+Subscribers for common factory methods  Similar to Observers.
+Reimplement Zip Operator Using Lift  - Use new lift operator implement and non-blocking synchronization approach. - I have had the concurrency model reviewed by some colleagues and all unit tests are passing but further review is justified and welcome.
+Merge pull request #805 from benjchristensen/fix-composite-exception  Fix CompositeException
+Add testMultipleWithSameCause UnitTest  Also make tests capable of failing with timeouts. Before the constructor would immediately go into an infinite loop and hang the tests.
+Added more possible failure cases to CompositeExceptionTest
+Fixed issue #799 - Added break to possibly-infinite loop in CompositeException.attachCallingThreadStack
+Disabling Scala (and Kotlin) until fixed
+Merge pull request #797 from benjchristensen/scheduler-inner-outer  Scheduler Outer/Inner [Preview]
+Update Modules to New Scheduler
+Scheduler Outer/Inner
+0.17.0-SNAPSHOT  Preparing for release of 0.17
+Merge pull request #796 from benjchristensen/subscription-isunsubscribed  Add Subscription.isUnsubscribed()
+Add Subscription.isUnsubscribed()
+Merge pull request #793 from benjchristensen/subscriber-observer  Observer + Subscriber
+Fix Scala Build
+Restored use of Observer in most places
+working on stuff
+Subject reverted to Observable+Observer  - rxjava-core is passing all unit tests - other modules are failing
+Merge pull request #791 from Netflix/docs  improve switchOnNext description in javadocs
+Subscriber and Observer  -> Restore Observer interface -> Subscriber implements Observer, Subscription
+Observer+Subscription -> Subscriber
+improve switchOnNext description in javadocs repair anchors in links to RxJava wiki in javadocs
+Merge pull request #787 from MarioAriasC/master  Fix problem with Observable.create()
+Merge pull request #786 from Netflix/docs  Careful With That Global Search And Replace, Eugene.
+Fix problem with Observable.create(); Avoid use of deprecated methods
+Careful With That Global Search And Replace, Eugene.
+Implement some Android UI related operators  1. OperatorViewClick 2. OperatorEditTextInput 3. OperatorCompoundButtonInput
+Merge pull request #784 from benjchristensen/lift-observer  Lift and Observer+Subscription
+Fix OperationalConditional  All unit tests now pass.
+Fix Typo: s/CompositeException/CompositeSubscription
+Fix Subject.toObservable  - now correctly creates only 1 Observable instance for the life of the Subject - this fixes the OperationJoinsTest - thanks @akarnokd for pointing out my mistake! - all rxjava-core unit tests are now passing
+Conditionals: Fix all but 2 tests
+Restore Broken OperationJoinsTest  - confirmed the assertions, leaving broken until can be fixed (not sure what���s wrong)
+Fix Unit Tests
+TestObserver fix for Scala UnitTest
+Performance comparison  ��� numbers from my machine. Can���t fully explain the increases in performance.
+Fix Exception Handling from SafeObserver and Subscriptions
+Ignore JoinsTest.whenComplicated until questions answered
+OperationJoinTest - fixing
+Clarify intent of unit test
+Fix Subject SubscriptionManager  Remove possibility of infinite loop
+Fixed 1 Unit Test - Linked Observer/Subscription where seemingly obvious to do so.
+Down to 7 of 893 unit tests failing
+Fixed buglet in join binding. Simplified types for groupByUntil, window, buffer, and empty to use Any and Nothing.
+587 of 590 operator unit tests passing
+Operator Tests Retrofitted to use TestObserver  - work around inability of Mockito to correctly mock an abstract class - 15 of 590 tests still failing
+TestObserver
+Added join
+Compiling. Unit Tests Failing.  Now that Observer is an abstract class, Mockito is having issues with it so unit tests are a mess.
+Move Observers to rx.observers
+Subjects Fixed
+Move Observer factory methods to Observers  Follow same pattern as rx.observables, rx.schedulers, rx.subjects, rx.subscriptions
+`Observer` becomes `Observer implements Subscription`  As per decision at https://github.com/Netflix/RxJava/issues/775#issuecomment-33075742
+Rename `bind` to `lift`  As per discussion at https://github.com/Netflix/RxJava/issues/775#issuecomment-33075742
+Merge pull request #778 from vadims/fix-zip-race  Fix zip race condition
+Simplify OperationZip ItemObserver  LinkedList permits null values, no need for NULL_SENTINEL.
+Fix Zip race condition  ItemObserver onNext might not acquire the write lock due to an onCompleted being handled by another thread. When handling onCompleted, the ItemObserver does not check for any values that are ready to be emitted, which might cause OperationZip to never emit OnNext or OnCompleted.
+Merge pull request #770 from benjchristensen/bind  Bind Operator
+Fixed ZipWithIndex using mutable state (not pretty)
+Simple Javadoc for Bind  ��� ready to be re-written by @DavidMGross :-)
+GroupBy: No need to close over parentSubscription  As per https://github.com/Netflix/RxJava/pull/770#commitcomment-5126301
+FromIterable: Remove superfluous onComplete  As per discussion at https://github.com/Netflix/RxJava/pull/770#discussion_r9030183
+Organize and Import
+Remove use of @SafeVarargs (breaking Java6 build)
+Cleanup after rebase.
+Updates while validating no major performance and memory regressions
+Temporarily disable Scala/Kotlin builds until they are fixed
+Groovy: MetaMethod to disambiguate the create method during deprecation phase
+Deprecate the Old Create Method
+Get OperationReplay working via OnSubscribeFunc to Action1 bridge  It had not been successfully migrated before ��� this now passes unit tests. This is the bridge until we port it to the new ���bind��� model.
+BugFix: Another GroupBy use case found and fixed.
+Operator Class  - forgot to add earlier
+Bugfix: GroupBy Completion  Found bug while doing Parallel. It was completing prematurely when child groups were asynchronous and delayed.
+Bind implementation of Parallel
+New Bind Signature and GroupBy Operator  - Changed `bind` signature to match the variant discussed at https://github.com/Netflix/RxJava/issues/746#issuecomment-32711145 - Updated code to new signature. - Re-implemented GroupBy operator with `bind`
+Bind implementation of Merge  - it���s working ��� but I can���t figure out the co/contra-variance for the generics! anyone have ideas?
+Take: Fix Terminal State Handling  - even though unit tests don���t see it because of SafeObserver, the Take operator should not emit onCompleted more than once
+Bind implementation of Map, Cast, Timestamp
+Bind implementation of fromIterable, toList, toSortedList
+Re-implemented Take Operator with Bind  - also simplified implementation to not worry about thread-safety as per Rx contract - performance improvement from 4,033,468 ops/sec -> 6,731,287 ops/sec
+Added Observable.bind  - new create signature - new bind operator - new subscribe overload - OperationReplay is failing unit tests, all others are passing
+Merge pull request #767 from akarnokd/ZipFixes  Zip fix for multiple onCompleted and moved unsubscribe outside the lock.
+Merge pull request #765 from Netflix/docs  A variety of improvements to the javadoc text.
+Zip fix for multiple onCompleted and moved unsubscribe outside the lock.
+A variety of improvements to the javadoc text.
+Merge pull request #762 from Netflix/docs  adding javadoc marble diagram for the mergeMap(next,completed,error) variety
+adding javadoc marble diagram for the mergeMap(next,completed,error) variety
+adding diagrams to javadocs for replay(selector) variants
+Merge pull request #760 from benjchristensen/perf-tests  Performance Tests Source Folder
+Start of Performance Testing Operators  These are examples of how we should proceed. Very likely though we want to use something like Caliper: https://code.google.com/p/caliper/
+Create /src/perf for Performance Tests  - Move existing performance tests into this source folder. - Not building via Gradle yet ��� I have yet to figure that part out.
+Add marble diagrams to new operators & variants. Add javadoc "@deprecated use..." where appropriate. Some javadoc comment reformatting (e.g. overlong lines).
+Merge pull request #752 from benjchristensen/organize-format-alphabetize-finalize  Organize, Format, Alphabetize and Finalize
+Updating License Headers  - since I���m touching all files for the other commits I���ll update the copyright headers as well
+Make Observable Methods Final  Their behavior is interrelated and co-dependent and should therefore not be over-written. Observable itself is not made final as there are some limited reasons for inheritance (such as GroupedObservable and Subjects).
+0.16.2-SNAPSHOT
+Update gradle.properties
+Back to 1.10 after building  ... this still breaks the release build but I want to encourage us to get it working before we release again.
+Revert to 1.8 for build to work ...  ... until the build server handles 1.10.  Some odd issue with JUnit.
+Alphabetize Observable.java  It���s a huge class ��� alphabetized the methods to give rhyme-and-reason for where to place new operators and for navigating it.
+Organize Imports and Format Code  - standardizing all source
+Version 0.16.1
+Merge pull request #732 from chrisgrimm/master  Ported groupByUntil function to scala-adapter
+Version 0.16.1
+Merge pull request #749 from wehjin/splittests  Separated Android test code from source.
+Merge pull request #741 from akarnokd/ZipInstanceMethods  Zip with iterable, removed old aggregator version and updated tests
+Separated Android test code from source.
+Merge pull request #745 from zsxwing/issue-737  Fixed issue #737
+Merge pull request #740 from akarnokd/TimeoutWithSelector  Timeout with selector overloads
+Merge pull request #739 from akarnokd/DebounceWithFunc  Debounce with selector
+Merge pull request #738 from akarnokd/PublishAndPublishLast2  Publish and PublishLast overloads
+Merge pull request #736 from akarnokd/FlatMapOverloads  MergeMap with Iterable and resultSelector overloads
+Merge pull request #735 from akarnokd/WindowViaObservable  Window with Observable boundary.
+Merge pull request #734 from akarnokd/DelayViaObservable  Delay with subscription and item delaying observables.
+Merge pull request #733 from akarnokd/BufferWithObservableBoundary  Buffer with Observable boundary.
+Merge pull request #718 from zsxwing/merge-overloads  Implemented the Merge overloads
+modified groupByUntil include the key of the group in the closings function.
+Moved unsubscribe out the gate
+Replaced MultipleAssignmentSubscription with SerialSubscription
+Fixed issue #737
+Modified to conform Rx.NET
+Merge pull request #742 from alkemist/gradle-1.10  Build with Gradle 1.10.
+Build with Gradle 1.10.  Required that the IDE plugins also be applied to the root, because of the improved Scala support with the IDEA plugin.
+Zip with iterable, removed old aggregator version and updated tests
+Timeout with selector overloads
+Debounce with selector
+Added variance to selector functions
+Publish and PublishLast overloads
+Added event-merger overload
+MergeMap with Iterable and resultSelector overloads
+Window with Observable boundary.
+Delay with subscription and item delaying observables.
+Buffer with Observable boundary.
+ported groupByUntil function.
+Merge pull request #731 from zsxwing/flaky-unit-tests  Replaced 'Thread.sleep' with 'CountDownLatch' to fix the flaky test failures
+Merge pull request #720 from hura/master  Added `Observable.timeout` wrappers to scala adapter
+Replaced 'Thread.sleep' with 'CountDownLatch' to fix the flaky test failures
+Merge pull request #730 from benjchristensen/unsubscribe-error-handling  Improve Error Handling and Stacktraces When Unsubscribe Fails
+Improve Error Handling and Stacktraces  The stacktraces were a mess when onError failed or was not implemented and unsubscribe also failed. That is a far edge case and means code is broken and breaking the Rx contracts ��� but that���s just when we need clear stacktraces. The CompositeException and SafeObserver class now do a dance and wire together a causal chain to provide a stacktrace that can identity all the points of error. Also standardized and simplified the RxJavaPlugin.onErrorHandler while working in the vicinity.  This came about after I was asked to help debug a problem and couldn���t do it by looking at the thrown exception, I had to use a debugger and step through.
+Version 0.16.0
+0.16.1-SNAPSHOT
+Added unit tests
+Implemented the rest 'merge' overloads
+0.16.0-SNAPSHOT
+Merge pull request #727 from benjchristensen/iterable-to-observable-immediate-scheduler  ImmediateScheduler optimization for toObservableIterable
+ToObservableIterable Recursion/Loop  - the ImmediateScheduler no longer schedules itself but uses a loop - 10-20x faster to use a loop rather than schedule itself recursively
+The test has to wait on each action independently. Reduced the size of the iterable because I think it was blowing through the stack.
+Merge pull request #725 from benjchristensen/schedulers-naming  Simpler computation/io naming for Schedulers
+Merge pull request #724 from benjchristensen/revert-current-thread-scheduler-usage  Revert use of CurrentThreadScheduler for Observable.from
+Simpler computation/io naming for Schedulers  - simpler (no one remembers the current names when talking about them) - does not tie naming to a particular implementation involving thread pools versus a pool of event loops or something similar (as we likely will change the implementation, see https://github.com/Netflix/RxJava/issues/713)
+Added `Observable.timeout` wrappers to scala adapter  Added the four timeout methods on Observable in the Scala adaptor. Note for the java/scala type interop: http://stackoverflow.com/q/20912151

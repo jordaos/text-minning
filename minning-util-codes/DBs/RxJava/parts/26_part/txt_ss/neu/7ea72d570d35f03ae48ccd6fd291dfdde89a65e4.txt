@@ -1,0 +1,1 @@
+2.x: safeguard against building with v1 tags (#5219)

@@ -1,0 +1,200 @@
+Merge pull request #2552 from akarnokd/OperatorPublishRequestFix  Publish: fixed incorrect subscriber requested accounting
+Merge pull request #2566 from akarnokd/CombineLatestBackpressureFix  CombineLatest: fixed concurrent requestUpTo yielding -1 requests
+Merge pull request #2575 from abersnaze/subscribeOn_subscription  subscribeOn drops the subscriptions returned from the scheduler.
+Merge pull request #2561 from akarnokd/JCToolsUpdate0129  Updating queue code from JCTools
+subscribeOn drops the subscriptions returned from the scheduler.
+Merge pull request #2574 from jnpr-jalandip/1.x  SizeEviction test needs to return false
+SizeEviction test needs to return false when verifying if it needs eviction
+Merge pull request #2559 from davidmoten/from-iter-request-overflow  OnSubscribeFromIterable - add request overflow check
+Merge pull request #2572 from akarnokd/TestsMoreTime  Give more time to certain concurrency tests.
+add request overflow check for OnSubscribeFromIterable
+Give more time to certain concurrency tests.
+Merge pull request #2563 from akarnokd/RetryBackpressureParallelTestChange  Retry backpressure test: split error conditions into separate test lines.
+Merge pull request #2565 from akarnokd/TestObstructionDetection  Obstruction detection in tests.
+CombineLatest: fixed concurrent requestUpTo yielding -1 requests sometimes.
+Obstruction detection in tests.
+Split error conditions into separate test lines.
+Merge pull request #2540 from akarnokd/MergeMaxConcurrentBackpressure  Merge with max concurrency now supports backpressure.
+Handle concurrent unsubscription in drain (avoid NPE).
+Updating queue code from JCTools
+Merge pull request #2553 from akarnokd/RxRingBufferSynchronized  RxRingBuffer with synchronization
+Removed commented-out code.
+Update RxRingBuffer.java  Yet another undelrying
+Update RxRingBuffer.java  Fixes in comments.
+Correcting javadocs for the amb/ambWith operators
+RxRingBuffer with synchronization
+Merge pull request #2470 from akarnokd/SubjectAdditionalMethods  Subject state information methods & bounded ReplaySubject termination
+Publish: fixed incorrect subscriber requested accounting
+Merge pull request #2550 from davidmoten/request-additive  Subscriber.onStart requests should be additive (and check for overflow)
+onStart requests should be additive (and check for overflow)
+Merge pull request #2548 from davidmoten/request-check  Subscriber.request should throw exception if negative request made
+Subscriber.request should throw exception if negative request made
+Merge pull request #2543 from davidmoten/merge-request-overflow  OperatorMerge handle request overflow
+handle request overflow for OperatorMerge
+Merge pull request #2465 from akarnokd/SchedulerPurgeForJDK6  ScheduledExecutorService: call purge periodically on JDK 6 to avoid
+Merge pull request #2547 from davidmoten/fix-more-warnings  Warnings cleanup
+Merge pull request #2482 from akarnokd/MergeFix0122  Merge: fixed hangs & missed scalar emissions
+remove unnecessary imports, add missing generic types, add SuppressWarnings(unchecked)
+Less concurrent threads and more in-line timeout detection.
+Merge with max concurrency now supports backpressure.
+Merge pull request #2471 from jnlopar/fix1702  Fixes NPEs reported in ReactiveX#1702 by synchronizing queue.
+Back to a field updater.
+Fixes indent.
+Merge: fixed hangs & missed scalar emissions
+Use a PBQ instead of a PQ on the trampoline. Moves counter inside to worker class and ditches the separate field updater.
+Merge pull request #1840 from roman-mazur/unsubscribe-on-interrupt  BlockingObservable: Unsubscribe when thread is interrupted
+Merge pull request #2238 from zsxwing/issue2191  Fix the bug that cache doesn't unsubscribe the source Observable when th...
+Merge pull request #2478 from akarnokd/TestRefCountAsyncFix  testRefCountAsync: adjusted time values as 1 ms is unreliable
+RefCountAsync: adjusted time values as 1 ms is unreliable
+Merge pull request #2476 from akarnokd/WindowFixes0121  Fixed off-by-one error and value-drop in the window operator.
+Merge pull request #2477 from akarnokd/BackpressureTestsFix0121  Backpressure tests fix 0121
+Fixed SLOW_PASS_THRU to prevent JIT optimizing it away.
+BackpressureTests: adjusted some tests to make them more reliable.
+Fixed off-by-one error and value-drop in the window operator.
+Merge pull request #2475 from akarnokd/SyncQueueCloneFix  SynchronousQueue.clone fix
+Merge pull request #2447 from jnlopar/1.x  Fail early if a null subscription is added to a CompositeSubscription.
+SynchronousQueue.clone fix
+Merge pull request #2335 from akarnokd/StatelessOperators  A set of stateless operators that don't need to be instantiated
+Merge pull request #2474 from akarnokd/MergeTestTimeout  MergeTest.testConcurrency timeout to let other tests run
+MergeTest.testConcurrency timeout to let other tests run
+Merge pull request #2455 from duncani/Issue#2191  Fix for #2191 - OperatorMulticast fails to unsubscribe from source
+Added experimental annotations
+Don't block the action on the queue lock.
+Merge branch 'fix1702' of https://github.com/jnlopar/RxJava into fix1702
+Fixes NPEs reported in ReactiveX#1702 by synchronizing queue. Adds unit test for regression.
+Use unsubscribed check instead of a null check.
+Fixes NPEs reported in ReactiveX#1702 by synchronizing queue. Adds unit test for regression.
+Subject state information methods & bounded ReplaySubject termination fix
+Merge pull request #2469 from zsxwing/file-permission  Remove the execute permission from source files
+Remove the execute permission from source files
+Unsubscribe when thread is interrupted
+ScheduledExecutorService: call purge periodically on JDK 6 to avoid cancelled task-retention.
+Merge pull request #2244 from davidmoten/take-last-unsub  OperatorTakeLast add check for isUnsubscribed to fast path
+Merge pull request #2332 from akarnokd/OperatorRetryTestFixAttempt  Operator retry test fix
+Unbroken TestSubscriber
+Moved test cases for issue #2191 into OperatorReplayTest
+Fix for https://github.com/ReactiveX/RxJava/issues/2191 - OperatorMulticast fails to unsubscribe from source.
+IllegalArgumentException > NPE
+Fixes indentation.
+Fail early if a null subscription is added to a CompositeSubscription. Otherwise, it'll just fail late when unsubscribing, which is much harder to trace.
+updating javadocs to link to latest web docs
+Fixed comment typo, added the rest of the operators
+A first set of stateless operators that don't need to be instantiated for lift all the time.
+Fixed the error function.
+Few adjustments.
+Version 1.0.4
+add check for isUnsubscribed to OperatorTakeLast fast path
+Fix the bug that cache doesn't unsubscribe the source Observable when the source is terminated
+Merge pull request #2237 from benjchristensen/publish-ring-buffer-usage  Make Publish Operator Release RingBuffer
+Make Publish Operator Release RingBuffer  - it was retaining the RxRingBuffer reference between subscribes which meant it was never released to the object pool
+Merge pull request #2052 from davidmoten/make-class-static  OperatorDoOnRequest.ParentSubscriber should be static class
+Merge pull request #2156 from zsxwing/map-swallow-fatal-exceptions  Fix the issue that map may swallow fatal exceptions
+enable faster travis builds
+Fix the issue that map may swallow fatal exceptions
+Merge pull request #2053 from akarnokd/ReplaySubjectBoundedFix1218  Fixed wrong bounded ReplaySubject use in test.
+Fixed wrong subject use in test.
+OperatorDoOnRequest.ParentSubscriber should be static class
+Merge pull request #1967 from zsxwing/fix-groupby-unsubscribe  Fix the issue that GroupBy may not call 'unsubscribe'
+Version 1.0.3
+Merge pull request #1973 from akarnokd/ReplaySubjectFix1215  Fixed test issuing non-serialized messages to the subject.
+Update as per review
+javadocs: minor style, grammar changes; add @since annotation to new method
+Fixed test issuing non-serialized messages to the subject.
+Add a new state of `terminated` to fix the race condition of `errorEmitted`; Add more comments.
+Merge pull request #1965 from zsxwing/fix-sample-unsubscribe  Fix the issue that Sample doesn't call 'unsubscribe'
+Propagate onError to all groups
+Fix the issue that GroupBy may not call 'unsubscribe'
+Merge pull request #1966 from zsxwing/fix-groupby-null-key  Fix NPE when the key is null in GroupBy
+Merge pull request #1964 from zsxwing/fix-buffer-request  Handle 0 or negative request in Buffer
+Merge pull request #1957 from zsxwing/fix-scan  Fix 'request(0)' issue in Scan
+Merge pull request #1950 from zsxwing/unsubscribed  Add "Subscriptions.unsubscribed" to fix the 'isUnsubscribed' issue
+Merge pull request #1938 from akarnokd/OperatorAnyFix  Any/All should not unsubscribe downstream.
+Merge pull request #1968 from ReactiveX/bump-to-2.2  Upgrade to Gradle 2.2
+Merge pull request #1961 from benjchristensen/issue-1941-remove-request-batching  Remove Request Batching in Merge
+Apply java plugin
+Bump to 2.2
+add @since section to doOnRequest() javadocs
+Fix the issue that Sample doesn't call 'unsubscribe'
+Fix NPE when the key is null in GroupBy
+Handle 0 or negative request in Buffer
+Remove Request Batching in Merge  Removing the batching until we can find a correct way to do it.  The performance impact of this change is seen here:  Benchmark                                          (size)   Mode   Samples          1.x    No Request Batching r.o.OperatorMergePerf.merge1SyncStreamOfN               1  thrpt         5  4585554.607    4666745.314 102% r.o.OperatorMergePerf.merge1SyncStreamOfN            1000  thrpt         5    51273.033      39922.246 78% r.o.OperatorMergePerf.merge1SyncStreamOfN         1000000  thrpt         5       47.515         37.634 79% r.o.OperatorMergePerf.mergeNAsyncStreamsOfN             1  thrpt         5    90901.735      93454.726 103% r.o.OperatorMergePerf.mergeNAsyncStreamsOfN          1000  thrpt         5        5.407          4.910 91% r.o.OperatorMergePerf.mergeNSyncStreamsOf1              1  thrpt         5  4181618.767    4173322.551 100% r.o.OperatorMergePerf.mergeNSyncStreamsOf1            100  thrpt         5   422193.599     408972.130 97% r.o.OperatorMergePerf.mergeNSyncStreamsOf1           1000  thrpt         5    36886.812      36448.978 99% r.o.OperatorMergePerf.mergeNSyncStreamsOfN              1  thrpt         5  4815945.720    4887943.643 101% r.o.OperatorMergePerf.mergeNSyncStreamsOfN           1000  thrpt         5       43.926         39.027 89% r.o.OperatorMergePerf.mergeTwoAsyncStreamsOfN           1  thrpt         5    72578.046      70412.656 97% r.o.OperatorMergePerf.mergeTwoAsyncStreamsOfN        1000  thrpt         5     3260.024       3064.403 94% r.o.OperatorMergePerf.oneStreamOfNthatMergesIn1         1  thrpt         5  4678858.201    4808504.588 103% r.o.OperatorMergePerf.oneStreamOfNthatMergesIn1      1000  thrpt         5    34407.547      36364.476 106% r.o.OperatorMergePerf.oneStreamOfNthatMergesIn1   1000000  thrpt         5       31.312         32.261 103%
+Merge pull request #1960 from benjchristensen/doOnRequest  doOnRequest
+SerialSubscription and MultipleAssignmentSubscription should use Subscriptions.empty()
+doOnRequest  Similar to doOnSubscribe, doOnNext, etc
+Merge pull request #1953 from akarnokd/OperatorSerializePerfFix  Fixed timer cast-to-int crash causing incorrect benchmark.
+Merge pull request #1952 from zsxwing/remove-action-subscription  Remove ActionSubscription
+Merge pull request #1951 from abersnaze/unnecessary  Remove extraneous request(n) and onCompleted() calls when unsubscribed.
+Merge pull request #1947 from akarnokd/ReplaySubjectFirstEmissionFix  Fixed first emission racing with pre and post subscription.
+Fix 'request(0)' issue in Scan
+Fixed timer cast-to-int crash causing incorrect benchmark.
+Remove ActionSubscription
+Remove extraneous request(n) and onCompleted() calls when unsubscribed.
+Add "Subscriptions.unsubscribed" to fix the 'isUnsubscribed' issue
+tidying up AbstractOnSubscribe javadocs
+Merge pull request #1946 from akarnokd/AbstractOnSubscribe2  AbstractOnSubscribe to help build Observables one onNext at a time.
+minor tweaks to javadocs for new onBackpressureBuffer variants
+Fixed first emission racing with pre and post subscription.
+AbstractOnSubscribe to help build Observables one onNext at a time.
+Merge pull request #1937 from akarnokd/SchedulerTestsFix  Scheduler.Worker to be finally unsubscribed to avoid interference
+Merge pull request #1928 from srvaroa/1.x  Add onBackpressureBuffer with capacity
+Merge pull request #1926 from zsxwing/fix-merge-finally  Move the codes out of the finally block
+Merge pull request #1922 from akarnokd/SchedulersRemoveOnCancelPolicy  Set removeOnCancelPolicy on the threadpool if supported
+Fixed OperatorAll unsubscribing downstream.
+Any should not unsubscribe downstream.
+Scheduler.Worker to be finally unsubscribed to avoid interference.
+Add onBackpressureBuffer with capacity  The operator takes an optional capacity for the buffer and a callback that will be invoked if the buffer fills up, along with a MissingBackpressureException in the Observable's onError.
+Move the codes out of the finally block
+javadoc: diagrams for onBackpressureBlock (would benefit from a review)
+Fixed wrong Java 8 reflection API call
+Set removeOnCancelPolicy on the threadpool if supported
+Update CHANGES.md
+Update CHANGES.md
+1.0.2
+Merge pull request #1918 from ReactiveX/revert-1916-experimentalOnBackpressureBufferWithCapacity  Revert "Experimental onBackpressureBufferWithCapacity"
+Revert "Experimental onBackpressureBufferWithCapacity"
+Merge pull request #1916 from benjchristensen/experimentalOnBackpressureBufferWithCapacity  Experimental onBackpressureBufferWithCapacity
+rx.internal.* warning
+BufferOverflowException -> MissingBackpressureException
+javadocs: add "since" reminder; minor text changes
+Mark onBackpressureBuffer(count) as Beta
+Use Action instead of Func0<Void>  As per https://github.com/ReactiveX/RxJava/pull/1899#discussion_r20863956
+Merge branch '1.x' of github.com:srvaroa/RxJava into experimentalOnBackpressureBufferWithCapacity
+Merge pull request #1907 from benjchristensen/onBackpressureBlock  Experimental: onBackpressureBlock
+Merge pull request #1912 from akarnokd/RetryWithBackpressureFix  Fixed retry without backpressure & test function to support bp.
+Merge pull request #1911 from akarnokd/AtomicPerf  Atomic operations JMH benchmarks
+Fixed retry without backpressure & test function to support bp.
+getAndSet benchmarks
+Atomic operations JMH benchmarks
+Marking OnBackpressureBlock as @Experimental  I chose Experimental instead of Beta since we may still change how it behaves based on what Scheduler is being used.
+Merge branch 'OnBackpressureBlock' of github.com:akarnokd/RxJava into onBackpressureBlock
+Merge pull request #1905 from benjchristensen/lifecycle-annotations  Beta & Experimental Annotations
+Merge pull request #1904 from zsxwing/fix-scan  Fix the bug that Scan may request 0 when n is 1
+Beta & Experimental Annotations  See https://github.com/ReactiveX/RxJava/issues/1824
+Version and Lifecycle Annotations  Use of annotations for lifecycle are inspired by Guava: https://github.com/google/guava#important-warnings
+Merge pull request #1898 from akarnokd/ScheduledActionNoInterrupt  Scheduled action no interrupt
+Fix the bug that Scan may request 0 when n is 1
+Merge pull request #1903 from benjchristensen/testscheduler-1790  Fix TestScheduler Handling of Immediate vs Virtual Time
+Version 1.0.1
+Merge pull request #1901 from akarnokd/RedoRequestFix  Fixed redo & groupBy backpressure management
+Fix TestScheduler Handling of Immediate vs Virtual Time
+Fixed typo.
+Do not leave drain if queue has data and downstream doesn't do backpressure.
+Fixed accidental import * expansion.
+Operator OnBackpressureBlock
+Restore timeout on the test.
+Fixed redo & groupBy backpressure management
+Add optional bound to onBackpressureBuffer  The operator takes an optional capacity for the buffer and a callback to be triggered when the buffer fills up.
+Some class simplifications.
+Perf profile & simplifications.
+Merge pull request #1893 from akarnokd/MergeDelayErrorFix  Fixed incorrect error merging.
+Simplified the memory footprint.
+Cleanup the worker.
+Avoid self-interrupting of a completing ScheduledAction.
+Avoid request(0) to trigger a recursive call.
+The backpressure exception might cut ahead of all onNext events.
+Fixed incorrect error merging.
+Version 1.0.0
+javadocs: remove leftover "@since" annotations; add param description
+Version 1.0.0-rc.12
+Version 1.0.0-rc.11
+Merge pull request #1886 from akarnokd/MergeFix  Buffer with time and merge fix

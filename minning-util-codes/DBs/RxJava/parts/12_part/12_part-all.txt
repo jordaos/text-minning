@@ -1,0 +1,204 @@
+Merge pull request #990 from puniverse/master  Quasar integration contrib module
+Version 0.17.3
+[Gradle Release Plugin] - new version commit:  '0.17.4-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.3'.
+Merge pull request #999 from benjchristensen/serialize-optimizations  New Implementation of SerializedObserver
+Fix unit test determinism
+comments to walk through logic
+Use latches instead of sleep for unit test  As per suggestion at https://github.com/benjchristensen/RxJava/commit/5b317ad827f624bed6cbf5f2e04df050ebbe01d0#commitcomment-5839773
+Merge pull request #1003 from rickbw/callable-func0  Func0 can transparently implement java.util.concurrent.Callable.
+Func0 can transparently implement java.util.concurrent.Callable.  This change doesn't change the API at all for users of Func0, but it makes all Func0 objects immediately reusable with any JDK API that accepts Callables. For example, a Func0 can now be submitted directly to an ExecutorService for asynchronous execution. It also allows the elimination of a small amount of redundant code within RxJava itself.
+Update SerializedObserver to Not Allow Notification Delay  Unit test showing delays. Fails when MAX_DRAIN_ITERATION set to 1, passes as currently configured. Added a thread starvation unit test and marked as ignored for now. Doesn't pass even with MAX_DRAIN_ITERATION set to 1. Probably needs backpressure solution.
+Merge pull request #996 from rspieldenner/perfshadowjar  Perfshadowjar
+tabs to spaces
+Produce a shadow'd jar for the performance benchmarks
+Merge pull request #995 from benjchristensen/jmh-args  Support Custom JMH Args
+Support Custom JMH Args
+New Implementation of SerializedObserver  #### JMH Benchmarks  0.17.3  Benchmark                                                          (size)   Mode   Samples         Mean   Mean error    Units r.operators.OperatorSerializePerf.noSerializationSingleThreaded      1024   avgt         5       45.504        1.710    ns/op r.operators.OperatorSerializePerf.noSerializationSingleThreaded   1048576   avgt         5       58.600        5.647    ns/op r.operators.OperatorSerializePerf.serializedSingleStream             1024   avgt         5       68.610        4.596    ns/op r.operators.OperatorSerializePerf.serializedSingleStream          1048576   avgt         5       71.313        2.318    ns/op r.operators.OperatorSerializePerf.synchronizedSingleStream           1024   avgt         5       73.322        3.666    ns/op r.operators.OperatorSerializePerf.synchronizedSingleStream        1048576   avgt         5       76.518        1.355    ns/op  0.17.2  Benchmark                                                          (size)   Mode   Samples         Mean   Mean error    Units r.operators.OperatorSerializePerf.noSerializationSingleThreaded      1024   avgt         5       45.790        1.184    ns/op r.operators.OperatorSerializePerf.noSerializationSingleThreaded   1048576   avgt         5       58.518        3.788    ns/op r.operators.OperatorSerializePerf.serializedSingleStream             1024   avgt         5       72.665        7.851    ns/op r.operators.OperatorSerializePerf.serializedSingleStream          1048576   avgt         5       74.788        2.946    ns/op r.operators.OperatorSerializePerf.synchronizedSingleStream           1024   avgt         5       73.661        3.499    ns/op r.operators.OperatorSerializePerf.synchronizedSingleStream        1048576   avgt         5       78.386        5.036    ns/op  #### Manual Benchmarks  /**  * 0.17.3:  *  * Run: 10 - 9,746,505 ops/sec  * Run: 11 - 9,956,019 ops/sec  * Run: 12 - 10,053,770 ops/sec  * Run: 13 - 10,076,958 ops/sec  * Run: 14 - 9,983,319 ops/sec  *  * 0.17.2:  *  * Run: 10 - 9,851,999 ops/sec  * Run: 11 - 9,726,975 ops/sec  * Run: 12 - 9,719,762 ops/sec  * Run: 13 - 9,668,141 ops/sec  * Run: 14 - 9,799,700 ops/sec  *  * @param input  */ public void serializedSingleStream(Input input) {     for (int i = 0; i < reps; i++) {         input.observable.serialize().subscribe(input.subscriber);     } }
+Merge pull request #993 from benjchristensen/perf-tests  JMH Perf Tests
+Perf Tests with JMH
+JMH Benchmarks Gradle Config  - this allows running benchmarks - config is hardcoded right now - wasn't able to get uberjar/shadowjar functionality working (https://github.com/Netflix/RxJava/pull/963#issuecomment-38770680)
+Change target back to 1.7  doesn't compile b/c channels implement AutoCloseable, added in JDK 7.
+Match updated RxJava API (rx.util.function -> rx.functions etc.)
+Merge remote-tracking branch 'upstream/master'
+Target Java 1.6
+Migrate Pre-JMH Tests to rx.archive
+Merge pull request #991 from benjchristensen/jmh-build  JMH Benchmark Build Config
+fix jmh build config  This is now working from command-line and Eclipse
+Use Quasar 0.5.0 release
+0.17.2
+[Gradle Release Plugin] - new version commit:  '0.17.3-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.2'.
+Merge pull request #988 from benjchristensen/issue-969  OnErrorFailedException
+OnErrorFailedException  Re-throw when onError throws an Exception. This fixes https://github.com/Netflix/RxJava/issues/969
+Merge pull request #987 from benjchristensen/pivot  Fix Non-Deterministic Pivot Test
+Fix Non-Deterministic Pivot Test  This failed on build servers (small, slow, single or dual-core machines).
+Merge pull request #986 from benjchristensen/issue-985  Fix SynchronizedObserver.runConcurrencyTest
+Fix SynchronizedObserver.runConcurrencyTest  It wasn't waiting on all threads before emitting onCompleted.
+Merge pull request #965 from zsxwing/fix-timeout-unsubscribe  BugFix: Chain Subscription in TimeoutSubscriber and SerializedSubscriber
+Merge pull request #966 from zsxwing/elementAt  Reimplement the ElementAt operator and add it to rxjava-scala
+add marble diagrams to pivot() javadocs
+Merge pull request #984 from benjchristensen/pivot-concurrency  Tests and Javadoc for Pivot
+Add Javadoc to Pivot
+Pivot Unit Test
+Merge pull request #982 from benjchristensen/pivot  Pivot Operator
+Pivot Operator
+Implement ElementAt as Operator
+Add ElementAt and ElementAtOrDefault to rxjava-scala
+Reimplement the ElementAt operator
+Chain Subscription in TimeoutSubscriber and SerializedSubscriber
+Merge pull request #977 from benjchristensen/dematerialize  Dematerialize - handle non-materialized terminal events
+Dematerialize - handle non-materialized terminal events
+Merge pull request #976 from benjchristensen/parallel-merge-assertions  parallel-merge unit test assertions
+parallel-merge unit test assertions  Using serialize for merge allows less threads to be used under contention instead of blocking and using them all. This changes the assertion to be <= 3 instead of == 3 because of that.
+Fix Unit Test Assertion
+Compilation Fix
+Merge pull request #975 from benjchristensen/groupBy-fixes  GroupBy & Time Gap Fixes
+GroupBy & Time Gap Fixes  I ran head-on into the "time gap" (https://github.com/Netflix/RxJava/issues/844) issue while working on a stream processing use case (and new 'pivot' operator I'm writing). This is a solution. It's still not ideal as the Javadocs of BufferUntilSubscriber mention, but this is working better than nothing and does not require blocking threads. A better solution will come as part of the back pressure work where BufferUntilSubscriber will evolve to have a bounded buffer.
+Merge pull request #974 from benjchristensen/testing  TestSubject, TestObserver and TestScheduler Improvements
+TestSubject, TestObserver and TestScheduler Improvements
+Merge pull request #973 from benjchristensen/merge-handle-bad-observable  Merge with Serialize - Handle Bad Observables
+Merge with Serialize  - concurrency unit tests - handle Observable that emits onComplete multiple times
+Merge pull request #970 from abersnaze/notification-lite  Notifications for the allocation adverse.
+Notifications for the allocation adverse.
+Version 0.17.1
+Merge pull request #964 from akarnokd/SubjectSubscriptionManagerFix  SubjectSubscriptionManager fix.
+SubjectSubscriptionManager fix.
+Merge pull request #963 from gvsmirnov/master  A more robust JMH benchmarking set-up
+Updated ObservableBenchmark to follow better benchmarking practices
+Updated gradle build scripts so there is a separate benchmarks task
+[Gradle Release Plugin] - new version commit:  '0.17.2-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.1'.
+Merge pull request #962 from benjchristensen/serialize-synchronize  Migrate from SynchronizedObserver to SerializedObserver
+Synchronize -> Serialize  - migrate all usage to Serialized instead of Synchronized - remove implementations of SerializedObserver that lost the competition (performance and testing in production)
+SerializedObserver and SerializedSubscriber  Using the "queue and lock" implementation which won our performance and production testing.
+queue and lock implementation
+Unlock in finally block
+Unit tests for each
+Clarify names during testing
+Experimenting with different implementations and performance
+Migrate Merge from Synchronize to Serialize
+Functional now ... it seems.
+not quite functional ... and slow
+OperatorSerialize
+OperationSynchronize -> OperatorSynchronize
+Merge pull request #960 from benjchristensen/issue-879-unit-test  Retry Unit Test from #879
+Retry Unit Test from #879  From https://github.com/Netflix/RxJava/issues/879
+Merge pull request #928 from akarnokd/SubscribeOnBoundedFix  Fix deadlock in SubscribeOnBounded
+Merge pull request #959 from rickbw/toFuture-cancellation  OperationToFuture must throw CancellationException on get() if cancelled
+Merge pull request #958 from akarnokd/OperatorSkipWhile  OperatorSkipWhile
+Merge pull request #956 from akarnokd/StringObservableTestFix  Fixed byLine test to use line.separator system property instead of \n.
+Merge pull request #955 from akarnokd/ReplaySubjectLeakFix  Fixed ReplaySubject leak
+Merge pull request #952 from zsxwing/amb  rxjava-scala improvements and reimplemented the `amb` operator
+Merge pull request #938 from soundcloud/operator-weak-binding  OperatorWeakBinding (deprecates OperatorObserveFromAndroidComponent)
+Rewrite AndroidObservableTest to test the new operator
+Forward subscription of wrapped subscriber
+Guard the log calls
+Some cleaning up
+OperatorWeakBinding supports predicates now
+merge remote-tracking branch 'netflix/master' into operator-weak-binding
+Merge pull request #930 from mttkay/android-samples  Initial commit of the Android samples module
+Add sample for binding to list adapters in ListFragment
+Add sample for fragments and connectable observables
+Add full example for Activity + retained fragment + cache
+OperatorSkipWhile
+Revert to using the all Gradle wrapper dist type
+Merge remote-tracking branch 'netflix/master' into android-samples
+Trigger samples build manually via Gradle build property
+Switch to customizable Gradle wrapper
+Bump Android plugin version to 0.9
+OperationToFuture must throw CancellationException on get() if cancelled.  The documentation for Future.get() requires the method to throw CancellationException if the Future was cancelled before the task completed. The Futures returned by OperationToFuture.toFuture() did not respect this contract. Now they do.
+Fixed byLine test to use line.separator system property instead of \n.
+Fixed ReplaySubject leak
+Merge pull request #953 from benjchristensen/observe-on-non-deterministic-test  Make ObserveOnTest.testNonBlockingOuterWhileBlockingOnNext deterministic
+Make OperatorObserveOnTest.testNonBlockingOuterWhileBlockingOnNext deterministic  reported at https://twitter.com/jaceklaskowski/status/443153927069249536
+Update CHANGES.md
+[Gradle Release Plugin] - new version commit:  '0.17.1-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.0'.
+0.17.0-SNAPSHOT
+Update CHANGES.md
+Version 0.17.0 Release Notes
+0.17.0 Release Notes
+Version 0.17.0
+Merge pull request #950 from Acardiac/eclipse-pde-support  Add support for Eclipse PDE
+Change to a single 'get' call
+Fix docs
+Rename observer to subscriber and add a special logic to exit the loop
+Rename OperationAmb to OperatorAmb
+  Reimplement the amb operator
+Add amb, delay and delaySubscription in rxjava-scala
+fixing a variety of errors in javadoc generation (syntax errors, misnamed params, etc.)
+add support for eclipse pde
+correcting markup error in javadoc comments
+Merge branch 'master' of https://github.com/Netflix/RxJava into docs
+Merge pull request #931 from soundcloud/android-operator-improvements  A number of improvements to OperatorObserveFromAndroidComponent
+startWith(observable) marble diagram
+[Gradle Release Plugin] - new version commit:  '0.17.0-RC8-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.0-RC7'.
+Changing line 38 to try and fix build  Odd Jenkins build failures even though command-line build works fine:  ``` :rxjava:rxjava-contrib:rxjava-debug:compileJava/mnt/builds/slave/workspace/OSS-RxJava-release/rxjava-contrib/rxjava-debug/src/main/java/rx/plugins/DebugNotification.java:38: ')' expected             sourceFunc = ((DebugHook<C>.DebugOnSubscribe<T>) sourceFunc).getActual();                                        ^ /mnt/builds/slave/workspace/OSS-RxJava-release/rxjava-contrib/rxjava-debug/src/main/java/rx/plugins/DebugNotification.java:38: ')' expected             sourceFunc = ((DebugHook<C>.DebugOnSubscribe<T>) sourceFunc).getActual();                                         ^ /mnt/builds/slave/workspace/OSS-RxJava-release/rxjava-contrib/rxjava-debug/src/main/java/rx/plugins/DebugNotification.java:38: illegal start of expression             sourceFunc = ((DebugHook<C>.DebugOnSubscribe<T>) sourceFunc).getActual();                                                            ^ /mnt/builds/slave/workspace/OSS-RxJava-release/rxjava-contrib/rxjava-debug/src/main/java/rx/plugins/DebugNotification.java:38: not a statement             sourceFunc = ((DebugHook<C>.DebugOnSubscribe<T>) sourceFunc).getActual();                                                              ^ /mnt/builds/slave/workspace/OSS-RxJava-release/rxjava-contrib/rxjava-debug/src/main/java/rx/plugins/DebugNotification.java:38: ';' expected             sourceFunc = ((DebugHook<C>.DebugOnSubscribe<T>) sourceFunc).getActual();                                                                        ^ 5 errors  FAILED ```
+Ignoring broken unit tests until fixed  /cc @abersnaze
+Move state inside Subscriber
+Merge pull request #923 from samuelgruetter/scala-additions  Observable creation from Subscriber[T]=>Unit for Scala
+Merge pull request #929 from devisnik/fix_maven_search_link  correct link to maven search
+Merge pull request #934 from davidmoten/add-startWith  add Observable.startWith(Observable) method and unit test
+Merge pull request #945 from benjchristensen/merge-940  Manual Merge 940
+Merge branch 'clean-up-hook-args' of github.com:abersnaze/RxJava into merge-940  Conflicts: 	rxjava-core/src/main/java/rx/Observable.java
+Merge pull request #944 from benjchristensen/operator-retry  OperationRetry -> OperatorRetry
+OperationRetry -> OperatorRetry  Updated to use "lift" and Subscriber. Fixes https://github.com/Netflix/RxJava/issues/943 Observable.retry() does not unsubscribe from source
+Merge pull request #942 from benjchristensen/math-module  MathObservable
+math-module  Moving the average/sum/min/max functionality to the MathObservable similar to StringObservable.
+Merge pull request #936 from Applied-Duality/SkipFixed  Skip fixed
+refactor the debug hooks before they become a breaking change.
+First implementation of OperatorWeakBinding
+Fixed state capture bug. Added some additional tests
+Fix project import issue in Android Studio and a compilation failure
+Simplify version property forwarding
+add space to a comment to force ci rebuild to see if suspected non-deterministic test fails again
+add Observable.startWith(Observable) method and unit test to avoid breaking method chaining when want to startWith an Observable rather than just an Iterator or specific values.
+Implemented Skip using Lift in Observable and OperatorSkip Deleted non-time part from OperationSkip Moved tests to OperatorSkipTest
+Initial commit of the Android samples module  refs https://github.com/soundcloud/RxJava/issues/3
+A number of improvements to OperatorObserveFromAndroidComponent  - move the UI thread assert out of the operator and into the helpers; this way, we don't fail the observer anymore with an exception, but the caller. - do not loop unsubscribe through the main thread anymore. This unnecessarily defers releasing the references, and might in fact be processed only after Android creates the component after a rotation change. I had to make the references volatile for this to work. - immediately unsubscribe in case we detect the componentRef has become invalid. This solves the problem that dangling observers would continue to listen to notifications with no observer alive anymore.  refs: https://github.com/Netflix/RxJava/issues/754 https://github.com/Netflix/RxJava/issues/899
+correct link to maven search
+Fix deadlock in SubscribeOnBounded
+[Gradle Release Plugin] - new version commit:  '0.17.0-RC7-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.0-RC6'.
+Merge pull request #927 from benjchristensen/test-subscriber-last-seen-thread  TestSubscriber lastSeenThread
+TestSubscriber lastSeenThread
+Merge pull request #926 from benjchristensen/test-subscriber  TestSubscriber: Default onError and Terminal Latch Behavior
+TestSubscriber: Default onError and Terminal Latch Behavior
+Merge pull request #925 from daveray/rxjava-clojure-bindings-final  Rxjava clojure bindings final
+Added BlockingObservable
+[Gradle Release Plugin] - new version commit:  '0.17.0-RC6-SNAPSHOT'.
+[Gradle Release Plugin] - pre tag commit:  '0.17.0-RC5'.
+seq->o should seq-ify arg
+Implement range
+Implement iterate
+Remove val-fn version of group-by
+Implemented multi-sequence mapcat
+Eliminated macro version of future stuff based on feedback.
+Eliminate sorted-list variants and cleanup sort tests
+Make catch and finally ->> friendly  Base on @mbossenbroek's feedback. Seems like an improvement.
+Update generator docstring
+Reimplement into without toList
+interpose docstring
+Updates from @mbossenbroek's feedback.
+Update merge/merge-delay-error impls.  Split merge into merge/merge* for consistency with other functions that can take one or more observables or observable of observables.
+Avoid intermediate toList for blocking/into
+Implemented partition-all  There isn't really an rxjava impl equivalent to clojure.core/partition, so it's omitted.
+Implement interleave and interleave*
+Implement group-by  Note that since 02ccc4d727a9297f14219549208757c6e0efce2a, the val-fn variant of groupBy is unimplemented so for now an exception is thrown if it's used.
+more README
+deprecate rx.lang.scala.Observable.create[T](Observer[T]=>Subscription)
+Merge branch 'master' of github.com:Netflix/RxJava into scala-additions
+add Subscriber and Observable creation from `Subscriber[T] => Unit`
+some RxScalaDemo tweaks
+tweak RxScalaDemo (and Olympics example)
+Observable.sample(Observable) in Scala
+Added ChannelObservable.get
+-
+map Observable.onError(Throwable) to SendPort.close(Throwable) in
+minor fix in classifier
+Use a custom SuspendableClassifier
+Added ChannelObservable.subscribe
+tests pass
+initial commit
