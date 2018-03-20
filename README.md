@@ -27,3 +27,7 @@
 3. `sentiment-analysis/src/compute-sentiment.py PROJECT_NAME`: para computar os sentimentos nas partes.
 4. `sentiment-analysis/src/put-sentiments-in-sqlite.py PROJECT_NAME`: converter os sentimntos do arquivo gerado no passo anterior em uma tabela, com os sentimentos para cada commit.
 5. `sentiment-analysis/src/sort-commits.py PROJECT_NAME`: classifica as mensagens em "positivo", "negativo" ou "neutro" e gera um CSV com as informações das quantidades para cada parte.
+
+### Get refactorations
+
+1. `minning-util-codes/src/clone-branches.py`: baixar cada parte (branch) do repositório remoto em uma pasta diferente.
