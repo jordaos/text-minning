@@ -43,22 +43,30 @@ public class App
 			StringBuilder sb = new StringBuilder();
 			sb.append("part");
 			sb.append(',');
-			sb.append("Commits neg com refator");
+			sb.append("Commits NEG com refator");
 			sb.append(',');
-			sb.append("Commits neu com refator");
+			sb.append("Total refatorações em NEG");
 			sb.append(',');
-			sb.append("Commits pos com refator");
+			sb.append("Commits NEU com refator");
+			sb.append(',');
+			sb.append("Total refatorações em NEU");
+			sb.append(',');
+			sb.append("Commits POS com refator");
+			sb.append(',');
+			sb.append("Total refatorações em POS");
 			sb.append('\n');
 			
 			for (int i = 1; i <= qtdDirs; i++) {
-
-				int qtdPos = 0;
 				int qtdNeg = 0;
+				int qtdNegRef = 0; // Quantidade de refatorações nos commits negativos para essa parte
+				int qtdPos = 0;
+				int qtdPosRef = 0; // Quantidade de refatorações nos commits positivos para essa parte
 				int qtdNeu = 0;
+				int qtdNeuRef = 0; // Quantidade de refatorações nos commits neutros para essa parte
 				int qtdCommitsComRefat = 0;
 
 				// Carregando o repositório localmete
-				Repository repository = gitService.cloneIfNotExists(REPO_PATH + "_parts/interval_" + i, "");
+				Repository repository = gitService.cloneIfNotExists(REPO_PATH, "");
 
 				// Pegando a lista de commits
 				List<String> commits = util.getCommitList(PARTS_PATH, i);
@@ -67,17 +75,21 @@ public class App
 					String sha = commits.get(j);
 					List<SDRefactoring> refactorings = new ArrayList<SDRefactoring>();
 					refactorings = refDiff.detectAtCommit(repository, sha);
-					if(refactorings.size() > 0) {
+					int qtdRefatoracoes = refactorings.size();
+					if(qtdRefatoracoes > 0) {
 						qtdCommitsComRefat++;
 						String classification = util.getClassification(PARTS_PATH + "/" + i + "_part", sha);
 						if (classification.toLowerCase().indexOf(("none").toLowerCase()) == -1) {
-							System.out.println(classification);
-							if (classification.toLowerCase().indexOf(("pos").toLowerCase()) != -1) 
+							if (classification.toLowerCase().indexOf(("pos").toLowerCase()) != -1) {
 								qtdPos++;
-							else if(classification.toLowerCase().indexOf(("neg").toLowerCase()) != -1) 
+								qtdPosRef += qtdRefatoracoes;
+							}else if(classification.toLowerCase().indexOf(("neg").toLowerCase()) != -1) {
 								qtdNeg++;
-							else if(classification.toLowerCase().indexOf(("neu").toLowerCase()) != -1) 
+								qtdNegRef += qtdRefatoracoes;
+							}else if(classification.toLowerCase().indexOf(("neu").toLowerCase()) != -1) {
 								qtdNeu++;
+								qtdNeuRef += qtdRefatoracoes;
+							}
 						}
 					}
 				}
@@ -85,9 +97,15 @@ public class App
 				sb.append(',');
 				sb.append(qtdNeg);
 				sb.append(',');
+				sb.append(qtdNegRef);
+				sb.append(',');
 				sb.append(qtdNeu);
 				sb.append(',');
+				sb.append(qtdNeuRef);
+				sb.append(',');
 				sb.append(qtdPos);
+				sb.append(',');
+				sb.append(qtdPosRef);
 				sb.append('\n');
 
 				System.out.println("-- " + qtdCommitsComRefat + " commits com refatorações.");

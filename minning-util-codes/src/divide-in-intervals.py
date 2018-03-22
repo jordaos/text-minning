@@ -19,7 +19,7 @@ def have_twohundred_commits(sha, lastVersionHave):
   with cd("projects/" + PROJECT):
     call(["git", "checkout", sha])
     qtdCommits = int(check_output(["ruby", "./../../src/count-commits.rb", "./../../projects/" + PROJECT]))
-    call(["git", "reset", "--hard", "2.x"])
+    call(["git", "reset", "--hard", "master"])
     if (((qtdCommits % 200) == 0 and qtdCommits > lastVersionHave) or (qtdCommits > lastVersionHave + 200)):
       return True
   return False

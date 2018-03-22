@@ -10,7 +10,7 @@
 
 - O projeto tem que estar na pasta `minning-util-codes/projects/project_name`
 - Execute:
-1. `minning-util-codes/src/divide-in-intervals.py PROJECT_NAME`: pega o DB da ultima versão do projeto e divide e tenta dividir os commits em branches de 200. Caso não der certo 200, ele pega o número maior e mais próximo de 200.
+1. `minning-util-codes/src/divide-in-intervals.py PROJECT_NAME`: pega o DB da ultima versão do projeto e divide e tenta dividir os commits em branches de 200. Caso não der certo 200, ele pega o número maior e mais próximo de 200. **Obs:** alterar manualmente a branch master na linha 22 (caso seja diferente de master).
 2. `minning-util-codes/src/remove-duplicated.py PROJECT_NAME`: para retirar de uma parte os commits que tem na parte anterior.
 3. `minning-util-codes/src/create-branches.py PROJECT_NAME`: cria as branches do ultimo commit do intervalo.
 
@@ -30,4 +30,4 @@
 
 ### Get refactorations
 
-1. `minning-util-codes/src/clone-branches.py`: baixar cada parte (branch) do repositório remoto em uma pasta diferente.
+1. Executar o programa java (`detect-refactorings/`), alterando algumas configurações no começo da classe `App.java`
